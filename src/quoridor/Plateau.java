@@ -13,7 +13,7 @@ public class Plateau {
       * @param taille la taille du plateau (longueur et largeur car le plateau est forcément un carré)
       */
     public Plateau(int taille) {
-        this.TAILLE = taille*2;
+        this.TAILLE = taille*2-1;
         this.DAMIER = new int[this.TAILLE][this.TAILLE];
     }
 

@@ -82,6 +82,13 @@ public abstract class Joueur {
       int y = coordonnee.getY1();
       if (this.plateau.getValue(x, y) == 0) {
         int[][] tab = this.getDeplacementPossibles();
+        for(int i=0;i < 4;i++){
+          int a = tab[i][0];
+          int b = tab[i][1];
+          if(x == a && y == b){
+            this.pion.setCoordonnee(new Coordonnee(x,y,null,null));
+          }
+        }
         this.pion.setCoordonnee(coordonnee);
       }
     }
@@ -103,25 +110,25 @@ public abstract class Joueur {
         int x = this.pion.getCoordonnee().getX1();
         int y = this.pion.getCoordonnee().getY1();
         if((x+2) < this.plateau.getTaille()){
-          if(this.plateau.getValue(x+2,y) == 0){
+          if(this.plateau.getValue(x+2,y) == 0 && this.plateau.getValue(x+1,y) == 0){
             tab[0][0] = x+2;
             tab[0][1] = y;
           }
         }
         if((x-2) < this.plateau.getTaille()){
-          if(this.plateau.getValue(x-2,y) == 0){
+          if(this.plateau.getValue(x-2,y) == 0 && this.plateau.getValue(x-1,y) == 0){
             tab[1][0] = x-2;
             tab[1][1] = y;
           }
         }
         if((y+2) < this.plateau.getTaille()){
-          if(this.plateau.getValue(x,y+2) == 0){
+          if(this.plateau.getValue(x,y+2) == 0 && this.plateau.getValue(x,y+1) == 0){
             tab[2][0] = x;
             tab[2][1] = y+2;
           }
         }
         if((y-2) < this.plateau.getTaille()){
-          if(this.plateau.getValue(x,y-2) == 0){
+          if(this.plateau.getValue(x,y-2) == 0  && this.plateau.getValue(x,y-1) == 0){
             tab[3][0] = x;
             tab[3][1] = y-2;
           }
