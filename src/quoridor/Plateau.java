@@ -16,7 +16,7 @@ public class Plateau {
       */
     public Plateau(int taille) {
         this.TAILLE = taille*2;
-        this.DAMIER = new int[taille][taille];
+        this.DAMIER = new int[this.TAILLE][this.TAILLE];
     }
 
     /**
