@@ -81,6 +81,7 @@ public abstract class Joueur {
       int x = coordonnee.getX1();
       int y = coordonnee.getY1();
       if (this.plateau.getValue(x, y) == 0) {
+        int[][] tab = this.getDeplacementPossibles();
         this.pion.setCoordonnee(coordonnee);
       }
     }
@@ -91,6 +92,40 @@ public abstract class Joueur {
       */
     public void placerBarriere(Coordonnee coordonnee) {
 
+    }
+
+    /**
+      * Retourne les différents déplacements possibles du pion
+      * @return les différents déplacements possibles du pion sous la forme d'un tableau à deux dimensions
+      */
+    public int[][] getDeplacementPossibles() {
+        int[][] tab = new int[4][2];
+        int x = this.pion.getCoordonnee().getX1();
+        int y = this.pion.getCoordonnee().getY1();
+        if((x+2) < this.plateau.getTaille()){
+          if(this.plateau.getValue(x+2,y) == 0){
+            tab[0][0] = x+2;
+            tab[0][1] = y;
+          }
+        }
+        if((x-2) < this.plateau.getTaille()){
+          if(this.plateau.getValue(x-2,y) == 0){
+            tab[1][0] = x-2;
+            tab[1][1] = y;
+          }
+        }
+        if((y+2) < this.plateau.getTaille()){
+          if(this.plateau.getValue(x,y+2) == 0){
+            tab[2][0] = x;
+            tab[2][1] = y+2;
+          }
+        }
+        if((y-2) < this.plateau.getTaille()){
+          if(this.plateau.getValue(x,y-2) == 0){
+            tab[3][0] = x;
+            tab[3][1] = y-2;
+          }
+        }
     }
 
     /**
