@@ -1,9 +1,6 @@
 package quoridor;
 
-import java.io.DataInputStream;
-import java.io.FileInputStream;
-import java.io.FileOutputStream;
-import java.io.IOException;
+import java.io.*;
 import java.util.ArrayList;
 
 /**
@@ -14,7 +11,7 @@ public class Partie {
     private int tour;
     private Mode mode;
     private Plateau plateau;
-    private ArrayList<Joueur> joueur;
+    private ArrayList<Joueur> joueurs;
 
     /**
       * Créé un nouvel objet Partie
@@ -23,6 +20,7 @@ public class Partie {
     public Partie(String fileName) {
         this.configuration(fileName);
         this.initialisation();
+        this.start();
     }
 
   /**
@@ -61,8 +59,21 @@ public class Partie {
       */
     private void initialisation() {
         this.tour = 0;
+        this.plateau = new Plateau(9);
+        this.joueurs = new ArrayList<Joueur>();
 
-
+        switch (this.mode) {
+            case HH:
+                this.joueurs.add(new Humain("Joueur1", 1, "RED", new ArrayList<Barriere>(), new Pion("RED", new Coordonnee((int) Math.round((double)plateau.getTaille()/2),0,-1,-1)), plateau));
+                this.joueurs.add(new Humain("Joueur2", 2, "BLUE", new ArrayList<Barriere>(), new Pion("BLUE", new Coordonnee((int) Math.round((double)plateau.getTaille()/2),plateau.getTaille(),-1,-1)), plateau));
+                break;
+            case HI:
+                this.joueurs.add(new Humain("Joueur1", 1, "RED", new ArrayList<Barriere>(), new Pion("RED", new Coordonnee((int) Math.round((double)plateau.getTaille()/2),0,-1,-1)), plateau));
+                this.joueurs.add(new IA("Joueur2", 2, "BLUE", new ArrayList<Barriere>(), new Pion("BLUE", new Coordonnee((int) Math.round((double)plateau.getTaille()/2),plateau.getTaille(),-1,-1)), plateau, Difficulte.FACILE));
+                break;
+            default:
+                break;
+        }
     }
 
     /**
@@ -73,6 +84,7 @@ public class Partie {
         try {
             DataInputStream in = new DataInputStream(new FileInputStream(fileName));
 
+            this.mode = Mode.HH;
 
             in.close();
         } catch (IOException e) {
