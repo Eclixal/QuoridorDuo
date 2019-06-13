@@ -4,8 +4,6 @@ import java.util.ArrayList;
 
 /**
   * Cette classe gère les différents aspect de la partie
-  * @author AlexM02 , Drmarsupial35 , Eclixal , griffin568
-  * @version 0.1.0
   */
 public class Partie {
 

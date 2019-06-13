@@ -4,8 +4,6 @@ import java.util.ArrayList;
 
 /**
   * Classe abstraite gérant les joueurs
-  * @author AlexM02 , Drmarsupial35 , Eclixal , griffin568
-  * @version 0.1.0
   */
 public abstract class Joueur {
 
