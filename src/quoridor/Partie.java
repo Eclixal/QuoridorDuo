@@ -1,11 +1,13 @@
 package quoridor;
 
+import java.io.DataInputStream;
+import java.io.FileInputStream;
+import java.io.FileOutputStream;
+import java.io.IOException;
 import java.util.ArrayList;
 
 /**
   * Cette classe gère les différents aspect de la partie
-  * @author AlexM02 , Drmarsupial35 , Eclixal , griffin568
-  * @version 0.1.0
   */
 public class Partie {
 
@@ -19,7 +21,8 @@ public class Partie {
       * @param fileName le nom du fichier de configuration
       */
     public Partie(String fileName) {
-
+        this.configuration(fileName);
+        this.initialisation();
     }
 
   /**
@@ -57,15 +60,24 @@ public class Partie {
       * Initialise les différents éléments constants de la partie
       */
     private void initialisation() {
+        this.tour = 0;
+
 
     }
 
     /**
       * Configure les éléments non constants de la partie à l'aide du fichier de configuration
-      * @param filename le nom du fichier de configuration
+      * @param fileName le nom du fichier de configuration
       */
-    private void configuration(String filename) {
+    private void configuration(String fileName) {
+        try {
+            DataInputStream in = new DataInputStream(new FileInputStream(fileName));
 
+
+            in.close();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 
     /**
