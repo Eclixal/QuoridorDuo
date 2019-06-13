@@ -105,4 +105,18 @@ public class Partie {
     public void fin() {
 
     }
+
+    public void afficher(){
+      for(int i = 0;i < this.plateau.getTaille();i++){
+        for(int j = 0;j < this.plateau.getTaille();j++){
+          if(i%2 != 0 || j%2 != 0){
+            System.out.print("B-L\t");
+          }
+          else{
+            System.out.print("P-L\t");
+          }
+        }
+        System.out.println();
+      }
+    }
 }
