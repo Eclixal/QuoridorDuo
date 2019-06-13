@@ -2,8 +2,6 @@ package quoridor;
 
 /**
   * Cette classe gère les pions utilisés par les joueurs
-  * @author AlexM02 , Drmarsupial35 , Eclixal , griffin568
-  * @version 0.1.0
   */
 public class Pion {
 
