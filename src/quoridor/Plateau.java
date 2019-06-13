@@ -40,7 +40,7 @@ public class Plateau {
         * @param x The position x
         * @param y The position y
         */
-        public int setValue(int x, int y, int value){
+        public void setValue(int x, int y, int value) {
           this.DAMIER[x][y] = value;
         }
 }
