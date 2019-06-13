@@ -55,4 +55,9 @@ public class IA extends Joueur {
     public void plannification() {
 
     }
+
+    @Override
+    public void jeu() {
+
+    }
 }

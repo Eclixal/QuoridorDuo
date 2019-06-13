@@ -22,4 +22,9 @@ public class Humain extends Joueur {
     public Humain(String nom, int numero, String couleur, ArrayList<Barriere> barrieres, Pion pion, Plateau plateau) {
         super(nom, numero, couleur, barrieres, pion, plateau);
     }
+
+    @Override
+    public void jeu() {
+
+    }
 }
