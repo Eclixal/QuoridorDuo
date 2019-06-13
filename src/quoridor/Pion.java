@@ -6,19 +6,16 @@ package quoridor;
 public class Pion {
 
     private final String COULEUR;
-    private int[][] deplacementPossibles;
     private Coordonnee coordonnee;
-    private Plateau plateau;
 
     /**
       * Créé un nouvel objet Pion
       * @param couleur la couleur du joueur (désigne une forme en mode texte)
       * @param coordonnee les coordonnées de départ du pion
       */
-    public Pion(String couleur, Coordonnee coordonnee, Plateau plateau) {
+    public Pion(String couleur, Coordonnee coordonnee) {
         this.COULEUR = couleur;
         this.coordonnee = coordonnee;
-        this.plateau = plateau;
     }
 
     /**
