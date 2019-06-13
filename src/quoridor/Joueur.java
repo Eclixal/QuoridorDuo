@@ -78,7 +78,11 @@ public abstract class Joueur {
       * @param coordonnee les coordonnées à atteindre
       */
     public void deplacerPion(Coordonnee coordonnee) {
-
+      int x = coordonnee.getX1();
+      int y = coordonnee.getY1();
+      if(this.plateau.getValue[x][y] == 0){
+        this.pion.setCoordonnee(coordonnee);
+      }
     }
 
     /**
@@ -92,7 +96,5 @@ public abstract class Joueur {
     /**
       * Permet au joueur de jouer
       */
-    public void jeu() {
-
-    }
+    public abstract void jeu() {}
 }

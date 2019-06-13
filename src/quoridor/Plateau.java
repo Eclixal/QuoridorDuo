@@ -24,4 +24,23 @@ public class Plateau {
     public int getTaille() {
         return TAILLE;
     }
+
+    /**
+      * Get the value in an index of the table.
+      * @param x The position x
+      * @param y The position y
+      * @return The value
+      */
+      public int getValue(int x, int y){
+        return this.DAMIER[x][y];
+      }
+
+      /**
+        * Set a value in an index of the table.
+        * @param x The position x
+        * @param y The position y
+        */
+        public int setValue(int x, int y, int value){
+          this.DAMIER[x][y] = value;
+        }
 }
