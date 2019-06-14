@@ -164,7 +164,7 @@ public abstract class Joueur {
       */
     public int[][] getDeplacementPossibles(int x, int y) {
         int[][] tab = new int[4][2];
-        if((x+2) < this.plateau.getTaille() && (x+1) && (x+1) > 0){
+        if((x+2) < this.plateau.getTaille() && (x+1) > 0){
           if(this.plateau.getValue(x+2,y) == 0 && this.plateau.getValue(x+1,y) == 0){
             tab[0][0] = x+2;
             tab[0][1] = y;
