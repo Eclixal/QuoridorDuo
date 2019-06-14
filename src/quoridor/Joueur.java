@@ -33,7 +33,7 @@ public abstract class Joueur {
         this.plateau = plateau;
         this.joueurs = joueurs;
 
-        for (int i = 0; i < 20/joueurs.size(); i++)
+        for (int i = 0; i < 20/2; i++) //attention changer 2 par joueur.size()
             this.barrieres.add(new Barriere(this.getCouleur(), new Coordonnee(-1,-1,-1,-1)));
     }
 
@@ -92,7 +92,7 @@ public abstract class Joueur {
           int b = tab[i][1];
           if(x == a && y == b){
             this.pion.setCoordonnee(new Coordonnee(x,y,-1,-1));
-            this.plateau.setValue(x,y,1);
+            this.plateau.setValue(x,y,this.NUMERO);
           }
         }
         this.pion.setCoordonnee(coordonnee);
