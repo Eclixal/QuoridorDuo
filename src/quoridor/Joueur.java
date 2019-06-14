@@ -97,19 +97,22 @@ public abstract class Joueur {
       boolean ret = false;
       int x = coordonnee.getX1();
       int y = coordonnee.getY1();
-      if (this.plateau.getValue(x, y) == 0) {
-        int[][] tab = this.getDeplacementPossibles(pion.getCoordonnee().getX1(), pion.getCoordonnee().getY1());
-        for(int i=0;i < 5;i++){
-          int a = tab[i][0];
-          int b = tab[i][1];
-          if(x == a && y == b){
-            this.plateau.setValue(this.pion.getCoordonnee().getX1(),this.pion.getCoordonnee().getY1(), 0);
-            this.pion.setCoordonnee(new Coordonnee(x,y,-1,-1));
-            this.plateau.setValue(x,y,this.NUMERO);
-            ret = true;
+      if(x >= 0 && x < this.plateau.getTaille() && y >= 0 && y < this.plateau.getTaille()){
+        if (this.plateau.getValue(x, y) == 0) {
+          int[][] tab = this.getDeplacementPossibles(pion.getCoordonnee().getX1(), pion.getCoordonnee().getY1());
+          for(int i=0;i < 5;i++){
+            int a = tab[i][0];
+            int b = tab[i][1];
+            if(x == a && y == b){
+              this.plateau.setValue(this.pion.getCoordonnee().getX1(),this.pion.getCoordonnee().getY1(), 0);
+              this.pion.setCoordonnee(new Coordonnee(x,y,-1,-1));
+              this.plateau.setValue(x,y,this.NUMERO);
+              ret = true;
+            }
           }
         }
-      } else {
+      }
+      if(!ret){
         System.out.println("Ce placement est impossible !");
       }
       return ret;
