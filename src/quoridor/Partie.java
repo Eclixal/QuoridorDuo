@@ -59,51 +59,49 @@ public class Partie {
       */
     private void initialisation() {
         this.tour = 0;
-        this.plateau = new Plateau(9, this);
+        this.plateau = new Plateau(9);
         this.joueurs = new ArrayList<Joueur>();
 
         switch (this.mode) {
             case HH:
-                this.joueurs.add(new Humain("Joueur1", 1, "RED", new ArrayList<Barriere>(), new Pion("RED", new Coordonnee(0,(int) Math.round((double)plateau.getTaille()/2)-1,-1,-1)), plateau));
-                this.joueurs.add(new Humain("Joueur2", 2, "BLUE", new ArrayList<Barriere>(), new Pion("BLUE", new Coordonnee(plateau.getTaille()-1, (int) Math.round((double)plateau.getTaille()/2)-1,-1,-1)), plateau));
+                this.joueurs.add(new Humain("Joueur1", 1, "RED", new ArrayList<Barriere>(), new Pion("RED", new Coordonnee((int) Math.round((double)plateau.getTaille()/2),0,-1,-1)), plateau, this.joueurs));
+                this.joueurs.add(new Humain("Joueur2", 2, "BLUE", new ArrayList<Barriere>(), new Pion("BLUE", new Coordonnee((int) Math.round((double)plateau.getTaille()/2),plateau.getTaille(),-1,-1)), plateau, this.joueurs));
                 break;
             case HI:
-                this.joueurs.add(new Humain("Joueur1", 1, "RED", new ArrayList<Barriere>(), new Pion("RED", new Coordonnee(0,(int) Math.round((double)plateau.getTaille()/2)-1,-1,-1)), plateau));
-                this.joueurs.add(new IA("Joueur2", 2, "BLUE", new ArrayList<Barriere>(), new Pion("BLUE", new Coordonnee(plateau.getTaille()-1, (int) Math.round((double)plateau.getTaille()/2)-1,-1,-1)), plateau, Difficulte.FACILE));
+                this.joueurs.add(new Humain("Joueur1", 1, "RED", new ArrayList<Barriere>(), new Pion("RED", new Coordonnee((int) Math.round((double)plateau.getTaille()/2),0,-1,-1)), plateau, this.joueurs));
+                this.joueurs.add(new IA("Joueur2", 2, "BLUE", new ArrayList<Barriere>(), new Pion("BLUE", new Coordonnee((int) Math.round((double)plateau.getTaille()/2),plateau.getTaille(),-1,-1)), plateau, Difficulte.FACILE, this.joueurs));
                 break;
             case II:
-                this.joueurs.add(new IA("Joueur1", 1, "RED", new ArrayList<Barriere>(), new Pion("RED", new Coordonnee(0,(int) Math.round((double)plateau.getTaille()/2)-1,-1,-1)), plateau, Difficulte.FACILE));
-                this.joueurs.add(new IA("Joueur2", 2, "BLUE", new ArrayList<Barriere>(), new Pion("BLUE", new Coordonnee(plateau.getTaille()-1, (int) Math.round((double)plateau.getTaille()/2)-1, -1, -1)), plateau, Difficulte.FACILE));
+                this.joueurs.add(new IA("Joueur1", 1, "RED", new ArrayList<Barriere>(), new Pion("RED", new Coordonnee((int) Math.round((double)plateau.getTaille()/2),0,-1,-1)), plateau, Difficulte.FACILE, this.joueurs));
+                this.joueurs.add(new IA("Joueur2", 2, "BLUE", new ArrayList<Barriere>(), new Pion("BLUE", new Coordonnee((int) Math.round((double)plateau.getTaille()/2),plateau.getTaille(),-1,-1)), plateau, Difficulte.FACILE, this.joueurs));
             case HHHH:
-                this.joueurs.add(new Humain("Joueur1", 1, "RED", new ArrayList<Barriere>(), new Pion("RED", new Coordonnee(0,(int) Math.round((double)plateau.getTaille()/2)-1,-1,-1)), plateau));
-                this.joueurs.add(new Humain("Joueur2", 2, "BLUE", new ArrayList<Barriere>(), new Pion("BLUE", new Coordonnee(plateau.getTaille()-1, (int) Math.round((double)plateau.getTaille()/2)-1,-1,-1)), plateau));
-                this.joueurs.add(new Humain("Joueur3", 3, "GREEN", new ArrayList<Barriere>(), new Pion("GREEN", new Coordonnee((int) Math.round((double)plateau.getTaille()/2)-1, plateau.getTaille()-1,-1,-1)), plateau));
-                this.joueurs.add(new Humain("Joueur4", 4, "YELLOW", new ArrayList<Barriere>(), new Pion("YELLOW", new Coordonnee((int) Math.round((double)plateau.getTaille()/2)-1, 0,-1,-1)), plateau));
+                this.joueurs.add(new Humain("Joueur1", 1, "RED", new ArrayList<Barriere>(), new Pion("RED", new Coordonnee((int) Math.round((double)plateau.getTaille()/2),0,-1,-1)), plateau, this.joueurs));
+                this.joueurs.add(new Humain("Joueur2", 2, "BLUE", new ArrayList<Barriere>(), new Pion("BLUE", new Coordonnee((int) Math.round((double)plateau.getTaille()/2),0,-1,-1)), plateau, this.joueurs));
+                this.joueurs.add(new Humain("Joueur3", 3, "GREEN", new ArrayList<Barriere>(), new Pion("GREEN", new Coordonnee(0, (int) Math.round((double)plateau.getTaille()/2),-1,-1)), plateau, this.joueurs));
+                this.joueurs.add(new Humain("Joueur4", 4, "YELLOW", new ArrayList<Barriere>(), new Pion("YELLOW", new Coordonnee(0, (int) Math.round((double)plateau.getTaille()/2),-1,-1)), plateau, this.joueurs));
             case HHHI:
-                this.joueurs.add(new Humain("Joueur1", 1, "RED", new ArrayList<Barriere>(), new Pion("RED", new Coordonnee(0,(int) Math.round((double)plateau.getTaille()/2)-1,-1,-1)), plateau));
-                this.joueurs.add(new Humain("Joueur2", 2, "BLUE", new ArrayList<Barriere>(), new Pion("BLUE", new Coordonnee(plateau.getTaille()-1, (int) Math.round((double)plateau.getTaille()/2)-1,-1,-1)), plateau));
-                this.joueurs.add(new Humain("Joueur3", 3, "GREEN", new ArrayList<Barriere>(), new Pion("GREEN", new Coordonnee((int) Math.round((double)plateau.getTaille()/2)-1, plateau.getTaille()-1,-1,-1)), plateau));
-                this.joueurs.add(new IA("Joueur4", 4, "YELLOW", new ArrayList<Barriere>(), new Pion("YELLOW", new Coordonnee((int) Math.round((double)plateau.getTaille()/2)-1, 0,-1,-1)), plateau, Difficulte.FACILE));
+                this.joueurs.add(new Humain("Joueur1", 1, "RED", new ArrayList<Barriere>(), new Pion("RED", new Coordonnee((int) Math.round((double)plateau.getTaille()/2),0,-1,-1)), plateau, this.joueurs));
+                this.joueurs.add(new Humain("Joueur2", 2, "BLUE", new ArrayList<Barriere>(), new Pion("BLUE", new Coordonnee((int) Math.round((double)plateau.getTaille()/2),0,-1,-1)), plateau, this.joueurs));
+                this.joueurs.add(new Humain("Joueur3", 3, "GREEN", new ArrayList<Barriere>(), new Pion("GREEN", new Coordonnee(0, (int) Math.round((double)plateau.getTaille()/2),-1,-1)), plateau, this.joueurs));
+                this.joueurs.add(new IA("Joueur4", 4, "YELLOW", new ArrayList<Barriere>(), new Pion("YELLOW", new Coordonnee(0, (int) Math.round((double)plateau.getTaille()/2),-1,-1)), plateau, Difficulte.FACILE, this.joueurs));
             case HHII:
-                this.joueurs.add(new Humain("Joueur1", 1, "RED", new ArrayList<Barriere>(), new Pion("RED", new Coordonnee(0,(int) Math.round((double)plateau.getTaille()/2)-1,-1,-1)), plateau));
-                this.joueurs.add(new Humain("Joueur2", 2, "BLUE", new ArrayList<Barriere>(), new Pion("BLUE", new Coordonnee(plateau.getTaille()-1, (int) Math.round((double)plateau.getTaille()/2)-1,-1,-1)), plateau));
-                this.joueurs.add(new IA("Joueur3", 3, "GREEN", new ArrayList<Barriere>(), new Pion("GREEN", new Coordonnee((int) Math.round((double)plateau.getTaille()/2)-1, plateau.getTaille()-1,-1,-1)), plateau, Difficulte.FACILE));
-                this.joueurs.add(new IA("Joueur4", 4, "YELLOW", new ArrayList<Barriere>(), new Pion("YELLOW", new Coordonnee((int) Math.round((double)plateau.getTaille()/2)-1, 0,-1,-1)), plateau, Difficulte.FACILE));
+                this.joueurs.add(new Humain("Joueur1", 1, "RED", new ArrayList<Barriere>(), new Pion("RED", new Coordonnee((int) Math.round((double)plateau.getTaille()/2),0,-1,-1)), plateau, this.joueurs));
+                this.joueurs.add(new Humain("Joueur2", 2, "BLUE", new ArrayList<Barriere>(), new Pion("BLUE", new Coordonnee((int) Math.round((double)plateau.getTaille()/2),0,-1,-1)), plateau, this.joueurs));
+                this.joueurs.add(new IA("Joueur3", 3, "GREEN", new ArrayList<Barriere>(), new Pion("GREEN", new Coordonnee(0, (int) Math.round((double)plateau.getTaille()/2),-1,-1)), plateau, Difficulte.FACILE, this.joueurs));
+                this.joueurs.add(new IA("Joueur4", 4, "YELLOW", new ArrayList<Barriere>(), new Pion("YELLOW", new Coordonnee(0, (int) Math.round((double)plateau.getTaille()/2),-1,-1)), plateau, Difficulte.FACILE, this.joueurs));
             case HIII:
-                this.joueurs.add(new Humain("Joueur1", 1, "RED", new ArrayList<Barriere>(), new Pion("RED", new Coordonnee(0,(int) Math.round((double)plateau.getTaille()/2)-1,-1,-1)), plateau));
-                this.joueurs.add(new IA("Joueur2", 2, "BLUE", new ArrayList<Barriere>(), new Pion("BLUE", new Coordonnee(plateau.getTaille()-1, (int) Math.round((double)plateau.getTaille()/2)-1,-1,-1)), plateau, Difficulte.FACILE));
-                this.joueurs.add(new IA("Joueur3", 3, "GREEN", new ArrayList<Barriere>(), new Pion("GREEN", new Coordonnee((int) Math.round((double)plateau.getTaille()/2)-1, plateau.getTaille()-1,-1,-1)), plateau, Difficulte.FACILE));
-                this.joueurs.add(new IA("Joueur4", 4, "YELLOW", new ArrayList<Barriere>(), new Pion("YELLOW", new Coordonnee((int) Math.round((double)plateau.getTaille()/2)-1, 0,-1,-1)), plateau, Difficulte.FACILE));
+                this.joueurs.add(new Humain("Joueur1", 1, "RED", new ArrayList<Barriere>(), new Pion("RED", new Coordonnee((int) Math.round((double)plateau.getTaille()/2),0,-1,-1)), plateau, this.joueurs));
+                this.joueurs.add(new IA("Joueur2", 2, "BLUE", new ArrayList<Barriere>(), new Pion("BLUE", new Coordonnee((int) Math.round((double)plateau.getTaille()/2),0,-1,-1)), plateau, Difficulte.FACILE, this.joueurs));
+                this.joueurs.add(new IA("Joueur3", 3, "GREEN", new ArrayList<Barriere>(), new Pion("GREEN", new Coordonnee(0, (int) Math.round((double)plateau.getTaille()/2),-1,-1)), plateau, Difficulte.FACILE, this.joueurs));
+                this.joueurs.add(new IA("Joueur4", 4, "YELLOW", new ArrayList<Barriere>(), new Pion("YELLOW", new Coordonnee(0, (int) Math.round((double)plateau.getTaille()/2),-1,-1)), plateau, Difficulte.FACILE, this.joueurs));
             case IIII:
-                this.joueurs.add(new IA("Joueur1", 1, "RED", new ArrayList<Barriere>(), new Pion("RED", new Coordonnee(0,(int) Math.round((double)plateau.getTaille()/2)-1,-1,-1)), plateau, Difficulte.FACILE));
-                this.joueurs.add(new IA("Joueur2", 2, "BLUE", new ArrayList<Barriere>(), new Pion("BLUE", new Coordonnee(plateau.getTaille()-1, (int) Math.round((double)plateau.getTaille()/2)-1,-1,-1)), plateau, Difficulte.FACILE));
-                this.joueurs.add(new IA("Joueur3", 3, "GREEN", new ArrayList<Barriere>(), new Pion("GREEN", new Coordonnee((int) Math.round((double)plateau.getTaille()/2)-1, plateau.getTaille()-1,-1,-1)), plateau, Difficulte.FACILE));
-                this.joueurs.add(new IA("Joueur4", 4, "YELLOW", new ArrayList<Barriere>(), new Pion("YELLOW", new Coordonnee((int) Math.round((double)plateau.getTaille()/2)-1, 0,-1,-1)), plateau, Difficulte.FACILE));
+                this.joueurs.add(new IA("Joueur1", 1, "RED", new ArrayList<Barriere>(), new Pion("RED", new Coordonnee((int) Math.round((double)plateau.getTaille()/2),0,-1,-1)), plateau, Difficulte.FACILE, this.joueurs));
+                this.joueurs.add(new IA("Joueur2", 2, "BLUE", new ArrayList<Barriere>(), new Pion("BLUE", new Coordonnee((int) Math.round((double)plateau.getTaille()/2),0,-1,-1)), plateau, Difficulte.FACILE, this.joueurs));
+                this.joueurs.add(new IA("Joueur3", 3, "GREEN", new ArrayList<Barriere>(), new Pion("GREEN", new Coordonnee(0, (int) Math.round((double)plateau.getTaille()/2),-1,-1)), plateau, Difficulte.FACILE, this.joueurs));
+                this.joueurs.add(new IA("Joueur4", 4, "YELLOW", new ArrayList<Barriere>(), new Pion("YELLOW", new Coordonnee(0, (int) Math.round((double)plateau.getTaille()/2),-1,-1)), plateau, Difficulte.FACILE, this.joueurs));
             default:
                 break;
         }
-
-        System.out.println(this.joueurs.get(0).existWay(this.joueurs.get(0).getPion().getCoordonnee().getX1(), this.joueurs.get(0).getPion().getCoordonnee().getY1()));
     }
 
     /**
@@ -126,14 +124,44 @@ public class Partie {
       * Lance la partie
       */
     public void start() {
-
+      boolean fin = false;
+      int gagnant = 0;
+      if(this.mode.length() == 2){
+        while(!fin){
+          int i = 0;
+          while(i < 2 && !fin){
+            Coordonnee fin = this.joueurs.getFin();
+            this.joueurs.get(i).jeu();
+            if(fin.getX1() == this.joueurs.get(i).getPion.getCoordonnee().getX1() || fin.getY1() == this.joueurs.get(i).getPion.getCoordonnee().getY1()){
+              fin = true;
+              gagnant = this.joueurs.get(i);
+            }
+            i++;
+          }
+        }
+      }
+      else{
+        while(!fin){
+          int i = 0;
+          while(i < 4 && !fin){
+            Coordonnee fin = this.joueurs.getFin();
+            this.joueurs.get(i).jeu();
+            if(fin.getX1() == this.joueurs.get(i).getPion.getCoordonnee().getX1() || fin.getY1() == this.joueurs.get(i).getPion.getCoordonnee().getY1()){
+              fin = true;
+            }
+            i++;
+          }
+        }
+      }
+      this.fin(gagnant);
     }
 
     /**
       * Termine la partie
+      * @param gagnant L'indice du gagnant dans la liste joueurs
       */
-    public void fin() {
-
+    public void fin(int gagnant) {
+      System.out.println("Le joueur "+this.joueurs.get(i).getNom()+" a gagné !");
     }
 
     public void afficher(){
