@@ -101,7 +101,7 @@ public abstract class Joueur {
           int a = tab[i][0];
           int b = tab[i][1];
           if(x == a && y == b){
-            this.plateau.setValue(this.pion.getCoordonnee().getX1(),this.pion.getCoordonnee().getY1());
+            this.plateau.setValue(this.pion.getCoordonnee().getX1(),this.pion.getCoordonnee().getY1(), 0);
             this.pion.setCoordonnee(new Coordonnee(x,y,-1,-1));
             this.plateau.setValue(x,y,this.NUMERO);
           }
@@ -125,6 +125,7 @@ public abstract class Joueur {
                 this.plateau.setValue(possibleMove[i][0], possibleMove[i][1], numDeplacement);
                 if (getFin().getX1() != -1 && possibleMove[i][0] == getFin().getX1() || getFin().getY1() != -1 && possibleMove[i][1] == getFin().getY1()) {
                     exist = true;
+                    System.out.println("OKKKKK");
                 } else {
                     if (existWay(possibleMove[i][0], possibleMove[i][1])) {
                         exist = true;
