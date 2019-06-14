@@ -20,8 +20,8 @@ public class IA extends Joueur {
       * @param plateau le plateau de jeu
       * @param difficulte le niveau de difficulté de cette IA
       */
-    public IA(String nom, int numero, String couleur, ArrayList<Barriere> barrieres, Pion pion, Plateau plateau, Difficulte difficulte) {
-        super(nom, numero, couleur, barrieres, pion, plateau);
+    public IA(String nom, int numero, String couleur, ArrayList<Barriere> barrieres, Pion pion, Plateau plateau, Difficulte difficulte, ArrayList<Joueur> joueurs) {
+        super(nom, numero, couleur, barrieres, pion, plateau,joueurs);
         this.DIFFICULTE = difficulte;
     }
 

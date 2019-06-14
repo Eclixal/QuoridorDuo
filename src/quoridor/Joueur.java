@@ -23,13 +23,14 @@ public abstract class Joueur {
       * @param pion le pion utilisé par le joueur
       * @param plateau le plateau de jeu
       */
-    public Joueur(String nom, int numero, String couleur, ArrayList<Barriere> barrieres, Pion pion, Plateau plateau) {
+    public Joueur(String nom, int numero, String couleur, ArrayList<Barriere> barrieres, Pion pion, Plateau plateau, ArrayList<Joueur> joueurs) {
         this.nom = nom;
         this.NUMERO = numero;
         this.COULEUR = couleur;
         this.barrieres = barrieres;
         this.pion = pion;
         this.plateau = plateau;
+        this.players = players;
     }
 
     /**
