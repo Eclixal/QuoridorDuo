@@ -7,14 +7,20 @@ public class Plateau {
 
     private final int TAILLE;
     private final int[][] DAMIER;
+    private Partie partie;
 
     /**
       * Créé un nouvel objet Plateau
       * @param taille la taille du plateau (longueur et largeur car le plateau est forcément un carré)
       */
-    public Plateau(int taille) {
+    public Plateau(int taille, Partie partie) {
         this.TAILLE = taille*2-1;
+        this.partie = partie;
         this.DAMIER = new int[this.TAILLE][this.TAILLE];
+    }
+
+    public Partie getPartie() {
+        return partie;
     }
 
     /**

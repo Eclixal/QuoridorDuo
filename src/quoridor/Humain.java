@@ -19,8 +19,8 @@ public class Humain extends Joueur {
       * @param pion le pion utilisé par le joueur
       * @param plateau le plateau de jeu
       */
-    public Humain(String nom, int numero, String couleur, ArrayList<Barriere> barrieres, Pion pion, Plateau plateau, ArrayList<Joueur> joueurs) {
-        super(nom, numero, couleur, barrieres, pion, plateau, joueurs);
+    public Humain(String nom, int numero, String couleur, ArrayList<Barriere> barrieres, Pion pion, Plateau plateau) {
+        super(nom, numero, couleur, barrieres, pion, plateau);
     }
 
     @Override

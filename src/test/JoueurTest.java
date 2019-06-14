@@ -3,6 +3,8 @@ package test;
 import org.junit.Test;
 import quoridor.*;
 
+import java.util.ArrayList;
+
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotNull;
 
@@ -12,7 +14,7 @@ public class JoueurTest {
     @Test()
     public void testJoueurHumain() {
         Pion pion = new Pion("red", new Coordonnee(2,1, -1, -1));
-        Plateau plateau = new Plateau(10);
+        Plateau plateau = new Plateau(10, null);
 
         Joueur joueur = new Humain("Joueur1", 1, "red", null, pion, plateau);
 
@@ -27,7 +29,7 @@ public class JoueurTest {
     @Test()
     public void testJoueurIA() {
         Pion pion = new Pion("blue", new Coordonnee(2,1, -1, -1));
-        Plateau plateau = new Plateau(10);
+        Plateau plateau = new Plateau(10, null);
 
         IA joueur = new IA("IA1", 2, "blue", null, pion, plateau, Difficulte.IMPOSSIBLE);
 
