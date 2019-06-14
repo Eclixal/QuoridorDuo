@@ -191,33 +191,98 @@ public abstract class Joueur {
       * @return les différents déplacements possibles du pion sous la forme d'un tableau à deux dimensions
       */
     public int[][] getDeplacementPossibles(int x, int y) {
-        int[][] tab = {{-1,-1}, {-1,-1}, {-1,-1}, {-1,-1}};
-        if((x+2) < this.plateau.getTaille() && (x+1) >= 0){
-          if(this.plateau.getValue(x+2,y) == 0 && this.plateau.getValue(x+1,y) == 0){
-            tab[0][0] = x+2;
+      int[][] tab = {{-1,-1}, {-1,-1}, {-1,-1}, {-1,-1}, {-1,-1}};
+      if((x+2) < this.plateau.getTaille() && (x+1) >= 0){
+        if(this.plateau.getValue(x+2,y) == 0 && this.plateau.getValue(x+1,y) == 0){
+          tab[0][0] = x+2;
+          tab[0][1] = y;
+        }
+        else if((x+4) < this.plateau.getTaille()){
+          if(this.plateau.getValue(x+2,y) != 0 && this.plateau.getValue(x+1,y) == 0 && this.plateau.getValue(x+4,y) == 0 && this.plateau.getValue(x+3,y) == 0){
+            tab[0][0] = x+4;
             tab[0][1] = y;
           }
-        }
-        if((y+2) < this.plateau.getTaille() && (y+1) >= 0){
-            if(this.plateau.getValue(x,y+2) == 0 && this.plateau.getValue(x,y+1) == 0){
-                tab[1][0] = x;
-                tab[1][1] = y+2;
+          else if(this.plateau.getValue(x+2,y) != 0 && this.plateau.getValue(x+1,y) == 0 && ((this.plateau.getValue(x+4,y) != 0 && this.plateau.getValue(x+3,y) == 0) || this.plateau.getValue(x+3,y) != 0)){
+            if((y+2) < this.plateau.getTaille() && this.plateau.getValue(x+2,y+2) == 0 && this.plateau.getValue(x+2,y+1) == 0){
+              tab[0][0] = x+2;
+              tab[0][1] = y+2;
             }
-        }
-        if((x-1) < this.plateau.getTaille() && (x-2) >= 0){
-          if(this.plateau.getValue(x-2,y) == 0 && this.plateau.getValue(x-1,y) == 0){
-            tab[2][0] = x-2;
-            tab[2][1] = y;
+            if((y-2) >= 0 && this.plateau.getValue(x+2,y-2) == 0 && this.plateau.getValue(x+2,y-1) == 0){
+              tab[4][0] = x+2;
+              tab[4][1] = y-2;
+            }
           }
         }
-        if((y-1) < this.plateau.getTaille() && (y-2) >= 0){
-          if(this.plateau.getValue(x,y-2) == 0  && this.plateau.getValue(x,y-1) == 0){
-            tab[3][0] = x;
-            tab[3][1] = y-2;
+      }
+      if((y+2) < this.plateau.getTaille() && (y+1) >= 0){
+          if(this.plateau.getValue(x,y+2) == 0 && this.plateau.getValue(x,y+1) == 0){
+              tab[1][0] = x;
+              tab[1][1] = y+2;
+          }
+          else if((y+4) < this.plateau.getTaille()){
+            if(this.plateau.getValue(x,y+2) != 0 && this.plateau.getValue(x,y+1) == 0 && this.plateau.getValue(x,y+4) == 0 && this.plateau.getValue(x,y+3) == 0){
+              tab[0][0] = x;
+              tab[0][1] = y+4;
+            }
+            else if(this.plateau.getValue(x,y+2) != 0 && this.plateau.getValue(x,y+1) == 0 && ((this.plateau.getValue(x,y+4) != 0 && this.plateau.getValue(x,y+3) == 0) || this.plateau.getValue(x,y+3) != 0)){
+              if((x+2) < this.plateau.getTaille() && this.plateau.getValue(x+2,y+2) == 0 && this.plateau.getValue(x+1,y+2) == 0){
+                tab[0][0] = x+2;
+                tab[0][1] = y+2;
+              }
+              if((x-2) >= 0 && this.plateau.getValue(x-2,y+2) == 0 && this.plateau.getValue(x-2,y+1) == 0){
+                tab[4][0] = x-2;
+                tab[4][1] = y+2;
+              }
+            }
           }
         }
-        return tab;
-    }
+      }
+      if((x-1) < this.plateau.getTaille() && (x-2) >= 0){
+        if(this.plateau.getValue(x-2,y) == 0 && this.plateau.getValue(x-1,y) == 0){
+          tab[2][0] = x-2;
+          tab[2][1] = y;
+        }
+        else if((x-4) < this.plateau.getTaille()){
+          if(this.plateau.getValue(x-2,y) != 0 && this.plateau.getValue(x-1,y) == 0 && this.plateau.getValue(x-4,y) == 0 && this.plateau.getValue(x-3,y) == 0){
+            tab[0][0] = x-4;
+            tab[0][1] = y;
+          }
+          else if(this.plateau.getValue(x-2,y) != 0 && this.plateau.getValue(x-1,y) == 0 && ((this.plateau.getValue(x-4,y) != 0 && this.plateau.getValue(x-3,y) == 0) || this.plateau.getValue(x-3,y) != 0)){
+            if((y+2) < this.plateau.getTaille() && this.plateau.getValue(x-2,y+2) == 0 && this.plateau.getValue(x-2,y+1) == 0){
+              tab[0][0] = x-2;
+              tab[0][1] = y+2;
+            }
+            if((y-2) >= 0 && this.plateau.getValue(x-2,y-2) == 0 && this.plateau.getValue(x-2,y-1) == 0){
+              tab[4][0] = x-2;
+              tab[4][1] = y-2;
+            }
+          }
+        }
+      }
+      if((y-1) < this.plateau.getTaille() && (y-2) >= 0){
+        if(this.plateau.getValue(x,y-2) == 0  && this.plateau.getValue(x,y-1) == 0){
+          tab[3][0] = x;
+          tab[3][1] = y-2;
+        }
+        else if((y-4) < this.plateau.getTaille()){
+          if(this.plateau.getValue(x,y-2) != 0 && this.plateau.getValue(x,y-1) == 0 && this.plateau.getValue(x,y-4) == 0 && this.plateau.getValue(x,y-3) == 0){
+            tab[0][0] = x;
+            tab[0][1] = y+4;
+          }
+          else if(this.plateau.getValue(x,y-2) != 0 && this.plateau.getValue(x,y-1) == 0 && ((this.plateau.getValue(x,y-4) != 0 && this.plateau.getValue(x,y-3) == 0) || this.plateau.getValue(x,y-3) != 0)){
+            if((x+2) < this.plateau.getTaille() && this.plateau.getValue(x+2,y-2) == 0 && this.plateau.getValue(x+1,y-2) == 0){
+              tab[0][0] = x+2;
+              tab[0][1] = y-2;
+            }
+            if((x-2) >= 0 && this.plateau.getValue(x-2,y-2) == 0 && this.plateau.getValue(x-2,y-1) == 0){
+              tab[4][0] = x-2;
+              tab[4][1] = y-2;
+            }
+          }
+        }
+      }
+      return tab;
+      }
 
     /**
       * Permet au joueur de jouer
