@@ -167,36 +167,40 @@ public abstract class Joueur {
         boolean ret = false;
         int[][] tmp = new int[plateau.getTaille()][plateau.getTaille()];
 
-        for (int x = 0; x < plateau.getDAMIER().length; x++) {
-            for (int y = 0; y < plateau.getDAMIER()[x].length; y++)
-                tmp[x][y] = plateau.getDAMIER()[x][y];
-        }
+        if(coordonnee.getX1() >= 0 && coordonnee.getX1() < this.plateau.getTaille() && coordonnee.getY1() >= 0 && coordonnee.getY1() < this.plateau.getTaille()
+            && coordonnee.getX2() >= 0 && coordonnee.getX2() < this.plateau.getTaille() && coordonnee.getY2() >= 0 && coordonnee.getY2() < this.plateau.getTaille()) {
 
-        tmp[coordonnee.getX1()][coordonnee.getY1()] = 5;
-        tmp[coordonnee.getX1()-(coordonnee.getX1()-coordonnee.getX2())][coordonnee.getY1()-(coordonnee.getY1()-coordonnee.getY2())] = 5;
-        tmp[coordonnee.getX2()][coordonnee.getY2()] = 5;
+            for (int x = 0; x < plateau.getDAMIER().length; x++) {
+                for (int y = 0; y < plateau.getDAMIER()[x].length; y++)
+                    tmp[x][y] = plateau.getDAMIER()[x][y];
+            }
 
-        boolean canPlace = true;
-        for (int i = 0; i < plateau.getPartie().getJoueurs().size() && canPlace; i++) {
-            if (!existWay(plateau.getPartie().getJoueurs().get(i).getPion().getCoordonnee().getX1(), plateau.getPartie().getJoueurs().get(i).getPion().getCoordonnee().getY1(), tmp))
-                canPlace = false;
-        }
+            tmp[coordonnee.getX1()][coordonnee.getY1()] = 5;
+            tmp[coordonnee.getX1() - (coordonnee.getX1() - coordonnee.getX2())][coordonnee.getY1() - (coordonnee.getY1() - coordonnee.getY2())] = 5;
+            tmp[coordonnee.getX2()][coordonnee.getY2()] = 5;
 
-        if (canPlace) {
-            this.plateau.setValue(coordonnee.getX1(), coordonnee.getY1(), 5);
-            this.plateau.setValue(coordonnee.getX1()-(coordonnee.getX1()-coordonnee.getX2()), coordonnee.getY1()-(coordonnee.getY1()-coordonnee.getY2()), 5);
-            this.plateau.setValue(coordonnee.getX2(), coordonnee.getY2(), 5);
-            ret = true;
-            boolean changed = false;
-            for (int i = 0; i < barrieres.size() && !changed; i++) {
-                if (barrieres.get(i).getCoordonnee().getX1() == -1) {
-                    barrieres.get(i).setCoordonnee(coordonnee);
-                    changed = true;
+            boolean canPlace = true;
+            for (int i = 0; i < plateau.getPartie().getJoueurs().size() && canPlace; i++) {
+                if (!existWay(plateau.getPartie().getJoueurs().get(i).getPion().getCoordonnee().getX1(), plateau.getPartie().getJoueurs().get(i).getPion().getCoordonnee().getY1(), tmp))
+                    canPlace = false;
+            }
+
+            if (canPlace) {
+                this.plateau.setValue(coordonnee.getX1(), coordonnee.getY1(), 5);
+                this.plateau.setValue(coordonnee.getX1() - (coordonnee.getX1() - coordonnee.getX2()), coordonnee.getY1() - (coordonnee.getY1() - coordonnee.getY2()), 5);
+                this.plateau.setValue(coordonnee.getX2(), coordonnee.getY2(), 5);
+                ret = true;
+                boolean changed = false;
+                for (int i = 0; i < barrieres.size() && !changed; i++) {
+                    if (barrieres.get(i).getCoordonnee().getX1() == -1) {
+                        barrieres.get(i).setCoordonnee(coordonnee);
+                        changed = true;
+                    }
                 }
             }
-        } else {
-            System.out.println("Ce placement est impossible !");
         }
+        if (!ret)
+            System.out.println("Ce placement est impossible !");
         return ret;
     }
 
