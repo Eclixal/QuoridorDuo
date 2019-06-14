@@ -62,6 +62,22 @@ public class Partie {
         this.plateau = new Plateau(9, this);
         this.joueurs = new ArrayList<Joueur>();
 
+        this.plateau.setValue(6,7, 5);
+        this.plateau.setValue(7,7, 5);
+        this.plateau.setValue(8,7, 5);
+        this.plateau.setValue(9,7, 5);
+        this.plateau.setValue(10,7, 5);
+
+        this.plateau.setValue(9,8, 5);
+        this.plateau.setValue(9,9, 5);
+        this.plateau.setValue(9,10, 5);
+        this.plateau.setValue(9,11, 5);
+        this.plateau.setValue(9,12, 5);
+        this.plateau.setValue(9,13, 5);
+        this.plateau.setValue(9,14, 5);
+        this.plateau.setValue(9,15, 5);
+        this.plateau.setValue(9,16, 5);
+
         switch (this.mode) {
             case HH:
                 this.joueurs.add(new Humain("Joueur1", 1, "RED", new ArrayList<Barriere>(), new Pion("RED", new Coordonnee(0,(int) Math.round((double)plateau.getTaille()/2)-1,-1,-1)), plateau));
