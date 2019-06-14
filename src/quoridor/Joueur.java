@@ -93,7 +93,8 @@ public abstract class Joueur {
       * si celles-ci sont atteignables
       * @param coordonnee les coordonnées à atteindre
       */
-    public void deplacerPion(Coordonnee coordonnee) {
+    public boolean deplacerPion(Coordonnee coordonnee) {
+      boolean ret = false;
       int x = coordonnee.getX1();
       int y = coordonnee.getY1();
       if (this.plateau.getValue(x, y) == 0) {
@@ -105,11 +106,13 @@ public abstract class Joueur {
             this.plateau.setValue(this.pion.getCoordonnee().getX1(),this.pion.getCoordonnee().getY1(), 0);
             this.pion.setCoordonnee(new Coordonnee(x,y,-1,-1));
             this.plateau.setValue(x,y,this.NUMERO);
+            ret = true;
           }
         }
       } else {
-        System.out.println("Le placement est impossible !");
+        System.out.println("Ce placement est impossible !");
       }
+      return ret;
     }
 
     private int numDeplacement = 1;
@@ -157,7 +160,8 @@ public abstract class Joueur {
       * Place une barrière aux coordonnées sélectionnées s'il en reste une au joueur
       * @param coordonnee les coordonnées où placer la barrière
       */
-    public void placerBarriere(Coordonnee coordonnee) {
+    public boolean placerBarriere(Coordonnee coordonnee) {
+        boolean ret = false;
         int[][] tmp = new int[plateau.getTaille()][plateau.getTaille()];
 
         for (int x = 0; x < plateau.getDAMIER().length; x++) {
@@ -179,7 +183,7 @@ public abstract class Joueur {
             this.plateau.setValue(coordonnee.getX1(), coordonnee.getY1(), 5);
             this.plateau.setValue(coordonnee.getX1()-(coordonnee.getX1()-coordonnee.getX2()), coordonnee.getY1()-(coordonnee.getY1()-coordonnee.getY2()), 5);
             this.plateau.setValue(coordonnee.getX2(), coordonnee.getY2(), 5);
-
+            ret = true;
             boolean changed = false;
             for (int i = 0; i < barrieres.size() && !changed; i++) {
                 if (barrieres.get(i).getCoordonnee().getX1() == -1) {
@@ -188,8 +192,9 @@ public abstract class Joueur {
                 }
             }
         } else {
-            System.out.println("ERREUR TU PEUX PAS !!!!!");
+            System.out.println("Ce placement est impossible !");
         }
+        return ret;
     }
 
     /**

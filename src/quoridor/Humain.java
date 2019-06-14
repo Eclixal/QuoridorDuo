@@ -32,7 +32,10 @@ public class Humain extends Joueur {
         int x = Integer.parseInt(scanner.nextLine());
         System.out.print("Position horizontal :");
         int y = Integer.parseInt(scanner.nextLine());
-        this.deplacerPion(new Coordonnee(x,y,-1,-1));
+        boolean joue = this.deplacerPion(new Coordonnee(x,y,-1,-1));
+        if(!joue){
+          this.jeu();
+        }
       }
       else if(choix.equals("2")){
         boolean verif = false;
@@ -50,7 +53,10 @@ public class Humain extends Joueur {
           int x2 = Integer.parseInt(scanner.nextLine());
           System.out.print("Position horizontal de la deuxième case de la barrière : ");
           int y2 = Integer.parseInt(scanner.nextLine());
-          this.placerBarriere(new Coordonnee(x1,y1,x2,y2));
+          boolean joue = this.placerBarriere(new Coordonnee(x1,y1,x2,y2));
+          if(!joue){
+            this.jeu();
+          }
         }
         else{
           System.out.println("Vous n'avez plus de barrières !");
