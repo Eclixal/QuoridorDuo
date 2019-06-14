@@ -13,6 +13,7 @@ public abstract class Joueur {
     protected ArrayList<Barriere> barrieres;
     protected Pion pion;
     protected Plateau plateau;
+    protected ArrayList<Joueur> joueurs;
 
     /**
       * Créé un nouvel objet Humain
@@ -30,7 +31,10 @@ public abstract class Joueur {
         this.barrieres = barrieres;
         this.pion = pion;
         this.plateau = plateau;
-        this.players = players;
+        this.joueurs = joueurs;
+
+        for (int i = 0; i < 20/joueurs.size(); i++)
+            this.barrieres.add(new Barriere(this.getCouleur(), new Coordonnee(-1,-1,-1,-1)));
     }
 
     /**
