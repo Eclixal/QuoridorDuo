@@ -1,6 +1,7 @@
 package quoridor;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 
 /**
   * Classe abstraite gérant les joueurs
@@ -96,8 +97,8 @@ public abstract class Joueur {
       int x = coordonnee.getX1();
       int y = coordonnee.getY1();
       if (this.plateau.getValue(x, y) == 0) {
-        int[][] tab = this.getDeplacementPossibles(x, y);
-        for(int i=0;i < 4;i++){
+        int[][] tab = this.getDeplacementPossibles(pion.getCoordonnee().getX1(), pion.getCoordonnee().getY1());
+        for(int i=0;i < 5;i++){
           int a = tab[i][0];
           int b = tab[i][1];
           if(x == a && y == b){
@@ -106,7 +107,8 @@ public abstract class Joueur {
             this.plateau.setValue(x,y,this.NUMERO);
           }
         }
-        this.pion.setCoordonnee(coordonnee);
+      } else {
+        System.out.println("Le placement est impossible !");
       }
     }
 
@@ -116,21 +118,21 @@ public abstract class Joueur {
      * Permet de savoir s'il existe un chemin pour gagner
      * @return true s'il existe la possibilité de placer un pion
      */
-    public boolean existWay(int x, int y) {
+    public boolean existWay(int x, int y, int[][] tmp) {
         boolean exist = false;
         int[][] possibleMove = getDeplacementPossibles(x, y);
 
-        for (int i = 0; i < 4 && !exist; i++) {
+        for (int i = 0; i < 5 && !exist; i++) {
             if (isValide(possibleMove[i][0], possibleMove[i][1])) {
                 numDeplacement++;
-                this.tmp[possibleMove[i][0]][possibleMove[i][1]] = numDeplacement;
+                tmp[possibleMove[i][0]][possibleMove[i][1]] = numDeplacement;
                 if (((getFin().getX1() != -1 && possibleMove[i][0] == getFin().getX1()) || (getFin().getY1() != -1 && possibleMove[i][1] == getFin().getY1())) || (getFin().getX1() != -1 && x == getFin().getX1() || getFin().getY1() != -1 && y == getFin().getY1())) {
                     exist = true;
                 } else {
-                    if (existWay(possibleMove[i][0], possibleMove[i][1])) {
+                    if (existWay(possibleMove[i][0], possibleMove[i][1], tmp)) {
                         exist = true;
                     } else {
-                        this.tmp[possibleMove[i][0]][possibleMove[i][1]] =  -1;
+                        tmp[possibleMove[i][0]][possibleMove[i][1]] =  -1;
                         numDeplacement--;
                     }
                 }
@@ -151,21 +153,25 @@ public abstract class Joueur {
         return fin;
     }
 
-    private int[][] tmp;
-
     /**
       * Place une barrière aux coordonnées sélectionnées s'il en reste une au joueur
       * @param coordonnee les coordonnées où placer la barrière
       */
     public void placerBarriere(Coordonnee coordonnee) {
-        tmp = plateau.getDAMIER();
+        int[][] tmp = new int[plateau.getTaille()][plateau.getTaille()];
+
+        for (int x = 0; x < plateau.getDAMIER().length; x++) {
+            for (int y = 0; y < plateau.getDAMIER()[x].length; y++)
+                tmp[x][y] = plateau.getDAMIER()[x][y];
+        }
+
         tmp[coordonnee.getX1()][coordonnee.getY1()] = 5;
         tmp[coordonnee.getX1()-(coordonnee.getX1()-coordonnee.getX2())][coordonnee.getY1()-(coordonnee.getY1()-coordonnee.getY2())] = 5;
         tmp[coordonnee.getX2()][coordonnee.getY2()] = 5;
 
         boolean canPlace = true;
         for (int i = 0; i < plateau.getPartie().getJoueurs().size() && canPlace; i++) {
-            if (!existWay(plateau.getPartie().getJoueurs().get(i).getPion().getCoordonnee().getX1(), plateau.getPartie().getJoueurs().get(i).getPion().getCoordonnee().getY1()))
+            if (!existWay(plateau.getPartie().getJoueurs().get(i).getPion().getCoordonnee().getX1(), plateau.getPartie().getJoueurs().get(i).getPion().getCoordonnee().getY1(), tmp))
                 canPlace = false;
         }
 
@@ -236,13 +242,12 @@ public abstract class Joueur {
             }
           }
         }
-      }
       if((x-1) < this.plateau.getTaille() && (x-2) >= 0){
         if(this.plateau.getValue(x-2,y) == 0 && this.plateau.getValue(x-1,y) == 0){
           tab[2][0] = x-2;
           tab[2][1] = y;
         }
-        else if((x-4) < this.plateau.getTaille()){
+        else if((x-4) > 0){
           if(this.plateau.getValue(x-2,y) != 0 && this.plateau.getValue(x-1,y) == 0 && this.plateau.getValue(x-4,y) == 0 && this.plateau.getValue(x-3,y) == 0){
             tab[0][0] = x-4;
             tab[0][1] = y;

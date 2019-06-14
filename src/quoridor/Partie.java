@@ -20,7 +20,7 @@ public class Partie {
     public Partie(String fileName) {
         this.configuration(fileName);
         this.initialisation();
-        //this.start();
+        this.start();
     }
 
   /**
@@ -61,22 +61,6 @@ public class Partie {
         this.tour = 0;
         this.plateau = new Plateau(9, this);
         this.joueurs = new ArrayList<Joueur>();
-
-        this.plateau.setValue(6,7, 5);
-        this.plateau.setValue(7,7, 5);
-        this.plateau.setValue(8,7, 5);
-        this.plateau.setValue(9,7, 5);
-        this.plateau.setValue(10,7, 5);
-
-        this.plateau.setValue(9,8, 5);
-        this.plateau.setValue(9,9, 5);
-        this.plateau.setValue(9,10, 5);
-        this.plateau.setValue(9,11, 5);
-        this.plateau.setValue(9,12, 5);
-        this.plateau.setValue(9,13, 5);
-        this.plateau.setValue(9,14, 5);
-        this.plateau.setValue(9,15, 5);
-        this.plateau.setValue(9,16, 5);
 
         switch (this.mode) {
             case HH:
@@ -146,7 +130,8 @@ public class Partie {
         while(!fin){
           int i = 0;
           while(i < 2 && !fin){
-            Coordonnee finC = this.joueurs.get(i).getFin();
+              afficher();
+              Coordonnee finC = this.joueurs.get(i).getFin();
             this.joueurs.get(i).jeu();
             if(finC.getY1() == this.joueurs.get(i).getPion().getCoordonnee().getX1() || finC.getY1() == this.joueurs.get(i).getPion().getCoordonnee().getY1()){
               fin = true;
