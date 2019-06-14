@@ -41,6 +41,8 @@ public abstract class Joueur {
         else
             this.fin = new Coordonnee(0, -1, -1, -1);
 
+        this.plateau.setValue(this.pion.getCoordonnee().getX1(), this.pion.getCoordonnee().getY1(), this.getNumero());
+
         for (int i = 0; i < 20/plateau.getPartie().getMode().toString().length(); i++)
             this.barrieres.add(new Barriere(this.getCouleur(), new Coordonnee(-1,-1,-1,-1)));
     }
@@ -112,7 +114,7 @@ public abstract class Joueur {
      * Permet de savoir s'il existe un chemin pour gagner
      * @return true s'il existe la possibilité de placer un pion
      */
-    private boolean existWay(int x, int y) {
+    public boolean existWay(int x, int y) {
         boolean exist = false;
         int[][] possibleMove = getDeplacementPossibles(x, y);
 
