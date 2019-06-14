@@ -118,8 +118,6 @@ public class Partie {
             default:
                 break;
         }
-
-        System.out.println(this.joueurs.get(0).existWay(this.joueurs.get(0).getPion().getCoordonnee().getX1(), this.joueurs.get(0).getPion().getCoordonnee().getY1()));
     }
 
     /**
@@ -207,5 +205,9 @@ public class Partie {
         }
         System.out.println();
       }
+    }
+
+    public ArrayList<Joueur> getJoueurs() {
+        return joueurs;
     }
 }

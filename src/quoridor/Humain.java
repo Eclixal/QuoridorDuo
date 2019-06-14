@@ -25,7 +25,7 @@ public class Humain extends Joueur {
 
     public void jeu() {
       scanner = new Scanner(System.in);
-      System.out.println("Joueur "+this.name+" : 1 - Déplacer le pion | 2 - Placer une barrière");
+      System.out.println("Joueur "+this.nom+" : 1 - Déplacer le pion | 2 - Placer une barrière");
       String choix = scanner.nextLine();
       if(choix.equals("1")){
         System.out.print("Position vertical : ");
@@ -54,7 +54,7 @@ public class Humain extends Joueur {
         }
         else{
           System.out.println("Vous n'avez plus de barrières !");
-          this.play();
+          this.jeu();
         }
       }
     }

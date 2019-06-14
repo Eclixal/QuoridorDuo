@@ -109,6 +109,7 @@ public abstract class Joueur {
         this.pion.setCoordonnee(coordonnee);
       }
     }
+
     private int numDeplacement = 1;
 
     /**
@@ -122,15 +123,14 @@ public abstract class Joueur {
         for (int i = 0; i < 4 && !exist; i++) {
             if (isValide(possibleMove[i][0], possibleMove[i][1])) {
                 numDeplacement++;
-                System.out.println(possibleMove[i][0] + " / " + possibleMove[i][1] + " - " + numDeplacement);
-                this.plateau.setValue(possibleMove[i][0], possibleMove[i][1], numDeplacement);
+                this.tmp[possibleMove[i][0]][possibleMove[i][1]] = numDeplacement;
                 if (((getFin().getX1() != -1 && possibleMove[i][0] == getFin().getX1()) || (getFin().getY1() != -1 && possibleMove[i][1] == getFin().getY1())) || (getFin().getX1() != -1 && x == getFin().getX1() || getFin().getY1() != -1 && y == getFin().getY1())) {
                     exist = true;
                 } else {
                     if (existWay(possibleMove[i][0], possibleMove[i][1])) {
                         exist = true;
                     } else {
-                        this.plateau.setValue(possibleMove[i][0], possibleMove[i][1], -11);
+                        this.tmp[possibleMove[i][0]][possibleMove[i][1]] =  -1;
                         numDeplacement--;
                     }
                 }
@@ -151,12 +151,39 @@ public abstract class Joueur {
         return fin;
     }
 
+    private int[][] tmp;
+
     /**
       * Place une barrière aux coordonnées sélectionnées s'il en reste une au joueur
       * @param coordonnee les coordonnées où placer la barrière
       */
     public void placerBarriere(Coordonnee coordonnee) {
+        tmp = plateau.getDAMIER();
+        tmp[coordonnee.getX1()][coordonnee.getY1()] = 5;
+        tmp[coordonnee.getX1()-(coordonnee.getX1()-coordonnee.getX2())][coordonnee.getY1()-(coordonnee.getY1()-coordonnee.getY2())] = 5;
+        tmp[coordonnee.getX2()][coordonnee.getY2()] = 5;
 
+        boolean canPlace = true;
+        for (int i = 0; i < plateau.getPartie().getJoueurs().size() && canPlace; i++) {
+            if (!existWay(plateau.getPartie().getJoueurs().get(i).getPion().getCoordonnee().getX1(), plateau.getPartie().getJoueurs().get(i).getPion().getCoordonnee().getY1()))
+                canPlace = false;
+        }
+
+        if (canPlace) {
+            this.plateau.setValue(coordonnee.getX1(), coordonnee.getY1(), 5);
+            this.plateau.setValue(coordonnee.getX1()-(coordonnee.getX1()-coordonnee.getX2()), coordonnee.getY1()-(coordonnee.getY1()-coordonnee.getY2()), 5);
+            this.plateau.setValue(coordonnee.getX2(), coordonnee.getY2(), 5);
+
+            boolean changed = false;
+            for (int i = 0; i < barrieres.size() && !changed; i++) {
+                if (barrieres.get(i).getCoordonnee().getX1() == -1) {
+                    barrieres.get(i).setCoordonnee(coordonnee);
+                    changed = true;
+                }
+            }
+        } else {
+            System.out.println("ERREUR TU PEUX PAS !!!!!");
+        }
     }
 
     /**

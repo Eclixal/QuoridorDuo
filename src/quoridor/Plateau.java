@@ -49,4 +49,8 @@ public class Plateau {
         public void setValue(int x, int y, int value) {
           this.DAMIER[x][y] = value;
         }
+
+        public int[][] getDAMIER() {
+            return DAMIER;
+        }
 }
