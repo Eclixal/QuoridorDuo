@@ -100,7 +100,7 @@ public abstract class Joueur {
           int b = tab[i][1];
           if(x == a && y == b){
             this.pion.setCoordonnee(new Coordonnee(x,y,-1,-1));
-            this.plateau.setValue(x,y,1);
+            this.plateau.setValue(x,y,this.NUMERO);
           }
         }
         this.pion.setCoordonnee(coordonnee);

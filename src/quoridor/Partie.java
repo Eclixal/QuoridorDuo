@@ -138,14 +138,26 @@ public class Partie {
       for(int i = 0;i < this.plateau.getTaille();i++){
         for(int j = 0;j < this.plateau.getTaille();j++){
           if(i%2 != 0 || j%2 != 0){
-            System.out.print("B-L\t");
+            if(this.plateau.getValue(i,j) == 5){
+              if(i%2 != 0 && j%2 == 0){
+                System.out.print("--\t");
+              }
+              else if(i%2 == 0 && j%2 != 0){
+                System.out.print("|\t");
+              }
+              else{
+                System.out.print("\t");
+              }
+            }
+            else{
+              System.out.print("\t");
+            }
           }
           else{
-            System.out.print("P-L\t");
+            System.out.print(this.plateau.getValue(i,j)+"\t");
           }
         }
         System.out.println();
       }
-
     }
 }
