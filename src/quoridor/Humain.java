@@ -23,8 +23,39 @@ public class Humain extends Joueur {
         super(nom, numero, couleur, barrieres, pion, plateau);
     }
 
-    @Override
     public void jeu() {
-
+      scanner = new Scanner(System.in);
+      System.out.println("Joueur "+this.name+" : 1 - Déplacer le pion | 2 - Placer une barrière");
+      String choix = scanner.nextLine();
+      if(choix.equals("1")){
+        System.out.print("Position vertical : ");
+        int x = Integer.parseInt(scanner.nextLine());
+        System.out.print("Position horizontal :");
+        int y = Integer.parseInt(scanner.nextLine());
+        this.deplacerPion(new Coordonnee(x,y,-1,-1));
+      }
+      else if(choix.equals("2")){
+        boolean verif = false;
+        for(Barriere barr : this.barrieres){
+          if(barr.getCoordonnee().getX1() == -1){
+            verif = true;
+          }
+        }
+        if(verif){
+          System.out.print("Position vertical de la première case de la barrière : ");
+          int x1 = Integer.parseInt(scanner.nextLine());
+          System.out.print("Position horizontal de la première case de la barrière :");
+          int y1 = Integer.parseInt(scanner.nextLine());
+          System.out.print("Position vertical de la deuxième case de la barrière : ");
+          int x2 = Integer.parseInt(scanner.nextLine());
+          System.out.print("Position horizontal de la deuxième case de la barrière : ");
+          int y2 = Integer.parseInt(scanner.nextLine());
+          this.placerBarriere(new Coordonnee(x1,y1,x2,y2));
+        }
+        else{
+          System.out.println("Vous n'avez plus de barrières !");
+          this.play();
+        }
+      }
     }
 }

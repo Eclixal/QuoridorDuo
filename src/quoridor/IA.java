@@ -56,7 +56,6 @@ public class IA extends Joueur {
 
     }
 
-    @Override
     public void jeu() {
 
     }
