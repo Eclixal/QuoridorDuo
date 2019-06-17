@@ -99,16 +99,19 @@ public abstract class Joueur {
       int y = coordonnee.getY1();
       if(x >= 0 && x < this.plateau.getTaille() && y >= 0 && y < this.plateau.getTaille()){
         if (this.plateau.getValue(x, y) == 0) {
-          int[][] tab = this.getDeplacementPossibles(pion.getCoordonnee().getX1(), pion.getCoordonnee().getY1());
-          for(int i=0;i < 5;i++){
-            int a = tab[i][0];
-            int b = tab[i][1];
+          ArrayList<int> liste = this.getDeplacementPossibles(pion.getCoordonnee().getX1(), pion.getCoordonnee().getY1());
+          int i = 0;
+          while(i < liste.size()){
+            int a = liste.get(i);
+            i++;
+            int b = liste.get(i);
             if(x == a && y == b){
               this.plateau.setValue(this.pion.getCoordonnee().getX1(),this.pion.getCoordonnee().getY1(), 0);
               this.pion.setCoordonnee(new Coordonnee(x,y,-1,-1));
               this.plateau.setValue(x,y,this.NUMERO);
               ret = true;
             }
+            i++;
           }
         }
       }
@@ -232,97 +235,97 @@ public abstract class Joueur {
       * Retourne les différents déplacements possibles du pion
       * @return les différents déplacements possibles du pion sous la forme d'un tableau à deux dimensions
       */
-    public int[][] getDeplacementPossibles(int x, int y) {
-      int[][] tab = {{-1,-1}, {-1,-1}, {-1,-1}, {-1,-1}, {-1,-1}};
+    public ArrayList<int> getDeplacementPossibles(int x, int y) {
+      ArrayList<int> liste = new ArrayList<int>();
       if((x+2) < this.plateau.getTaille() && (x+1) >= 0){
         if(this.plateau.getValue(x+2,y) == 0 && this.plateau.getValue(x+1,y) == 0){
-          tab[0][0] = x+2;
-          tab[0][1] = y;
+          liste.add(x+2);
+          liste.add(y);
         }
         else if((x+4) < this.plateau.getTaille()){
           if(this.plateau.getValue(x+2,y) != 0 && this.plateau.getValue(x+1,y) == 0 && this.plateau.getValue(x+4,y) == 0 && this.plateau.getValue(x+3,y) == 0){
-            tab[0][0] = x+4;
-            tab[0][1] = y;
+            liste.add(x+4);
+            liste.add(y);
           }
           else if(this.plateau.getValue(x+2,y) != 0 && this.plateau.getValue(x+1,y) == 0 && ((this.plateau.getValue(x+4,y) != 0 && this.plateau.getValue(x+3,y) == 0) || this.plateau.getValue(x+3,y) != 0)){
             if((y+2) < this.plateau.getTaille() && this.plateau.getValue(x+2,y+2) == 0 && this.plateau.getValue(x+2,y+1) == 0){
-              tab[0][0] = x+2;
-              tab[0][1] = y+2;
+              liste.add(x+2);
+              liste.add(y+2);
             }
             if((y-2) >= 0 && this.plateau.getValue(x+2,y-2) == 0 && this.plateau.getValue(x+2,y-1) == 0){
-              tab[4][0] = x+2;
-              tab[4][1] = y-2;
+              liste.add(x+2);
+              liste.add(y-2);
             }
           }
         }
       }
       if((y+2) < this.plateau.getTaille() && (y+1) >= 0){
           if(this.plateau.getValue(x,y+2) == 0 && this.plateau.getValue(x,y+1) == 0){
-              tab[1][0] = x;
-              tab[1][1] = y+2;
+              liste.add(x);
+              liste.add(y+2);
           }
           else if((y+4) < this.plateau.getTaille()){
             if(this.plateau.getValue(x,y+2) != 0 && this.plateau.getValue(x,y+1) == 0 && this.plateau.getValue(x,y+4) == 0 && this.plateau.getValue(x,y+3) == 0){
-              tab[0][0] = x;
-              tab[0][1] = y+4;
+              liste.add(x);
+              liste.add(y+4);
             }
             else if(this.plateau.getValue(x,y+2) != 0 && this.plateau.getValue(x,y+1) == 0 && ((this.plateau.getValue(x,y+4) != 0 && this.plateau.getValue(x,y+3) == 0) || this.plateau.getValue(x,y+3) != 0)){
               if((x+2) < this.plateau.getTaille() && this.plateau.getValue(x+2,y+2) == 0 && this.plateau.getValue(x+1,y+2) == 0){
-                tab[0][0] = x+2;
-                tab[0][1] = y+2;
+                liste.add(x+2);
+                liste.add(y+2);
               }
               if((x-2) >= 0 && this.plateau.getValue(x-2,y+2) == 0 && this.plateau.getValue(x-2,y+1) == 0){
-                tab[4][0] = x-2;
-                tab[4][1] = y+2;
+                liste.add(x-2);
+                liste.add(y+2);
               }
             }
           }
         }
       if((x-1) < this.plateau.getTaille() && (x-2) >= 0){
         if(this.plateau.getValue(x-2,y) == 0 && this.plateau.getValue(x-1,y) == 0){
-          tab[2][0] = x-2;
-          tab[2][1] = y;
+          liste.add(x-2);
+          liste.add(y);
         }
         else if((x-4) > 0){
           if(this.plateau.getValue(x-2,y) != 0 && this.plateau.getValue(x-1,y) == 0 && this.plateau.getValue(x-4,y) == 0 && this.plateau.getValue(x-3,y) == 0){
-            tab[0][0] = x-4;
-            tab[0][1] = y;
+            liste.add(x-4);
+            liste.add(y);
           }
           else if(this.plateau.getValue(x-2,y) != 0 && this.plateau.getValue(x-1,y) == 0 && ((this.plateau.getValue(x-4,y) != 0 && this.plateau.getValue(x-3,y) == 0) || this.plateau.getValue(x-3,y) != 0)){
             if((y+2) < this.plateau.getTaille() && this.plateau.getValue(x-2,y+2) == 0 && this.plateau.getValue(x-2,y+1) == 0){
-              tab[0][0] = x-2;
-              tab[0][1] = y+2;
+              liste.add(x-2);
+              liste.add(y+2);
             }
             if((y-2) >= 0 && this.plateau.getValue(x-2,y-2) == 0 && this.plateau.getValue(x-2,y-1) == 0){
-              tab[4][0] = x-2;
-              tab[4][1] = y-2;
+              liste.add(x-2);
+              liste.add(y-2);
             }
           }
         }
       }
       if((y-1) < this.plateau.getTaille() && (y-2) >= 0){
         if(this.plateau.getValue(x,y-2) == 0  && this.plateau.getValue(x,y-1) == 0){
-          tab[3][0] = x;
-          tab[3][1] = y-2;
+          liste.add(x);
+          liste.add(y-2);
         }
         else if((y-4) < this.plateau.getTaille()){
           if(this.plateau.getValue(x,y-2) != 0 && this.plateau.getValue(x,y-1) == 0 && this.plateau.getValue(x,y-4) == 0 && this.plateau.getValue(x,y-3) == 0){
-            tab[0][0] = x;
-            tab[0][1] = y+4;
+            liste.add(x);
+            liste.add(y+4);
           }
           else if(this.plateau.getValue(x,y-2) != 0 && this.plateau.getValue(x,y-1) == 0 && ((this.plateau.getValue(x,y-4) != 0 && this.plateau.getValue(x,y-3) == 0) || this.plateau.getValue(x,y-3) != 0)){
             if((x+2) < this.plateau.getTaille() && this.plateau.getValue(x+2,y-2) == 0 && this.plateau.getValue(x+1,y-2) == 0){
-              tab[0][0] = x+2;
-              tab[0][1] = y-2;
+              liste.add(x+2);
+              liste.add(y-2);
             }
             if((x-2) >= 0 && this.plateau.getValue(x-2,y-2) == 0 && this.plateau.getValue(x-2,y-1) == 0){
-              tab[4][0] = x-2;
-              tab[4][1] = y-2;
+              liste.add(x-2);
+              liste.add(y-2);
             }
           }
         }
       }
-      return tab;
+      return liste;
       }
 
     /**
