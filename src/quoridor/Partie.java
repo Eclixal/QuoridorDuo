@@ -288,7 +288,7 @@ public class Partie {
         try {
             DataInputStream in = new DataInputStream(new FileInputStream(fileName));
 
-            this.mode = Mode.HH;
+            this.mode = Mode.HI;
 
             in.close();
         } catch (IOException e) {
@@ -306,10 +306,10 @@ public class Partie {
         while(!fin){
           int i = j;
           while(i < 2 && !fin){
-              afficher();
-              Coordonnee finC = this.joueurs.get(i).getFin();
+            this.afficher();
+            Coordonnee finC = this.joueurs.get(i).getFin();
             this.joueurs.get(i).jeu();
-            if(finC.getY1() == this.joueurs.get(i).getPion().getCoordonnee().getX1() || finC.getY1() == this.joueurs.get(i).getPion().getCoordonnee().getY1()){
+            if(finC.getX1() == this.joueurs.get(i).getPion().getCoordonnee().getX1() || finC.getY1() == this.joueurs.get(i).getPion().getCoordonnee().getY1()){
               fin = true;
               gagnant = i;
             }

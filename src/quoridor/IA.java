@@ -57,6 +57,60 @@ public class IA extends Joueur {
     }
 
     public void jeu() {
-
+      if(this.getDifficulte() == Difficulte.FACILE){
+        double i1 = Math.random() * 2;
+        int i = (int) i1;
+        boolean verif = false;
+        for(Barriere barr : this.barrieres){
+          if(barr.getCoordonnee().getX1() == -1){
+            verif = true;
+          }
+        }
+        if(i == 0 || !verif){
+          ArrayList liste = this.getDeplacementPossibles(this.pion.getCoordonnee().getX1(), this.pion.getCoordonnee().getY1());
+          int j = 1;
+          while(j%2 != 0){
+            double test = Math.random() * liste.size();
+            j = (int) test;
+          }
+          this.deplacerPion(new Coordonnee((int) liste.get(j), (int) liste.get(j+1), -1, -1));
+        }
+        else{
+          boolean trouve = false;
+          while(!trouve){
+            double a1 = Math.random() * this.plateau.getTaille();
+            double b1 = Math.random() * this.plateau.getTaille();
+            int a = (int) a1;
+            int b = (int) b1;
+            int c = 0;
+            int d = 0;
+            int e = 0;
+            int f = 0;
+            int g = 0;
+            if((a%2 == 0 && b%2 != 0) || (a%2 != 0 && b%2 ==0)){
+              if(a%2 == 0 && b%2 != 0){
+                c = a+1;
+                d = b;
+                e = a+2;
+                f = b;
+                g = -1;
+              }
+              else if(a%2 != 0 && b%2 ==0){
+                c = a;
+                d = b+1;
+                e = a;
+                f = b+2;
+                g = -2;
+              }
+              if(this.plateau.getValue(a,b) == 0 && this.plateau.getValue(c,d) == 0 && this.plateau.getValue(e,f) == 0){
+                trouve = true;
+                System.out.println(a+"   "+b);
+                System.out.println(e+"   "+f);
+                this.placerBarriere(new Coordonnee(a,b,g,-1));
+              }
+            }
+          }
+        }
+      }
     }
 }
