@@ -49,11 +49,9 @@ public class Humain extends Joueur {
           int x1 = Integer.parseInt(scanner.nextLine());
           System.out.print("Position horizontal de la première case de la barrière :");
           int y1 = Integer.parseInt(scanner.nextLine());
-          System.out.print("Position vertical de la deuxième case de la barrière : ");
+          System.out.print("Placer la barrière horizontalement (-2) ou verticalement (-1) : ");
           int x2 = Integer.parseInt(scanner.nextLine());
-          System.out.print("Position horizontal de la deuxième case de la barrière : ");
-          int y2 = Integer.parseInt(scanner.nextLine());
-          boolean joue = this.placerBarriere(new Coordonnee(x1,y1,x2,y2));
+          boolean joue = this.placerBarriere(new Coordonnee(x1,y1,x2,-1));
           if(!joue){
             this.jeu();
           }
