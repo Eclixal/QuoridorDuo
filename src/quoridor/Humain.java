@@ -62,7 +62,7 @@ public class Humain extends Joueur {
         }
       }
       else if(choix.equals("3")){
-        this.plateau.getPartie().sauvegarder();
+        this.plateau.getPartie().sauvegarder(getNumero()-1);
       }
       else{
         System.out.println("Numéro de choix impossible !");

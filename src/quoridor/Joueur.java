@@ -30,9 +30,29 @@ public abstract class Joueur {
         this.nom = nom;
         this.NUMERO = numero;
         this.COULEUR = couleur;
-        this.barrieres = barrieres;
         this.pion = pion;
         this.plateau = plateau;
+
+        if (barrieres == null) {
+            this.barrieres = new ArrayList<Barriere>();
+            for (int i = 0; i < 20/plateau.getPartie().getMode().toString().length(); i++)
+                this.barrieres.add(new Barriere(this.getCouleur(), new Coordonnee(-1,-1,-1,-1)));
+        } else {
+            this.barrieres = barrieres;
+            for (Barriere barriere : this.barrieres) {
+                if (barriere.getCoordonnee().getX1() != -1 && barriere.getCoordonnee().getY1() != -1
+                    && barriere.getCoordonnee().getX2() == -1) {
+                    this.plateau.setValue(barriere.getCoordonnee().getX1(), barriere.getCoordonnee().getY1(), 5);
+                    this.plateau.setValue(barriere.getCoordonnee().getX1() + 1, barriere.getCoordonnee().getY1(), 5);
+                    this.plateau.setValue(barriere.getCoordonnee().getX1() + 2, barriere.getCoordonnee().getY1(), 5);
+                } else if (barriere.getCoordonnee().getX1() != -1 && barriere.getCoordonnee().getY1() != -1
+                        && barriere.getCoordonnee().getX2() == -2) {
+                    this.plateau.setValue(barriere.getCoordonnee().getX1(), barriere.getCoordonnee().getY1(), 5);
+                    this.plateau.setValue(barriere.getCoordonnee().getX1(), barriere.getCoordonnee().getY1() + 1, 5);
+                    this.plateau.setValue(barriere.getCoordonnee().getX1(), barriere.getCoordonnee().getY1() + 2, 5);
+                }
+            }
+        }
 
         if (pion.getCoordonnee().getX1() == 0)
             this.fin = new Coordonnee(this.plateau.getTaille()-1, -1, -1, -1);
@@ -44,9 +64,6 @@ public abstract class Joueur {
             this.fin = new Coordonnee(-1, 0, -1, -1);
 
         this.plateau.setValue(this.pion.getCoordonnee().getX1(), this.pion.getCoordonnee().getY1(), this.getNumero());
-
-        for (int i = 0; i < 20/plateau.getPartie().getMode().toString().length(); i++)
-            this.barrieres.add(new Barriere(this.getCouleur(), new Coordonnee(-1,-1,-1,-1)));
     }
 
     /**
@@ -134,7 +151,6 @@ public abstract class Joueur {
             if(isValide(liste.get(i), liste.get(i+1), tmp)) {
                 numDeplacement++;
                 tmp[liste.get(i)][liste.get(i+1)] = numDeplacement;
-                System.out.println(numDeplacement);
                 if (((getFin().getX1() != -1 && liste.get(i) == getFin().getX1()) || (getFin().getY1() != -1 && liste.get(i+1) == getFin().getY1())) || (getFin().getX1() != -1 && x == getFin().getX1() || getFin().getY1() != -1 && y == getFin().getY1())) {
                     exist = true;
                 } else {
