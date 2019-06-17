@@ -300,37 +300,37 @@ public class Partie {
       * Lance la partie
       */
     public void start(int j) {
-      boolean fin = false;
-      int gagnant = 0;
-      if(this.mode.toString().length() == 2){
-        while(!fin){
-          int i = j;
-          while(i < 2 && !fin){
-            this.afficher();
-            Coordonnee finC = this.joueurs.get(i).getFin();
-            this.joueurs.get(i).jeu();
-            if(finC.getX1() == this.joueurs.get(i).getPion().getCoordonnee().getX1() || finC.getY1() == this.joueurs.get(i).getPion().getCoordonnee().getY1()){
-              fin = true;
-              gagnant = i;
+        boolean fin = false;
+        int gagnant = 0;
+        if(this.mode.toString().length() == 2){
+            while(!fin){
+                int i = j;
+                while(i < 2 && !fin){
+                    this.afficher();
+                    Coordonnee finC = this.joueurs.get(i).getFin();
+                    this.joueurs.get(i).jeu();
+                    if(finC.getX1() == this.joueurs.get(i).getPion().getCoordonnee().getX1() || finC.getY1() == this.joueurs.get(i).getPion().getCoordonnee().getY1()){
+                        fin = true;
+                        gagnant = i;
+                    }
+                    i++;
+                }
             }
-            i++;
-          }
         }
-      }
-      else{
-        while(!fin){
-          int i = j;
-          while(i < 4 && !fin){
-            Coordonnee finC = this.joueurs.get(i).getFin();
-            this.joueurs.get(i).jeu();
-            if(finC.getX1() == this.joueurs.get(i).getPion().getCoordonnee().getX1() || finC.getY1() == this.joueurs.get(i).getPion().getCoordonnee().getY1()){
-              fin = true;
+        else{
+            while(!fin){
+                int i = j;
+                while(i < 4 && !fin){
+                    Coordonnee finC = this.joueurs.get(i).getFin();
+                    this.joueurs.get(i).jeu();
+                    if(finC.getX1() == this.joueurs.get(i).getPion().getCoordonnee().getX1() || finC.getY1() == this.joueurs.get(i).getPion().getCoordonnee().getY1()){
+                        fin = true;
+                    }
+                    i++;
+                }
             }
-            i++;
-          }
         }
-      }
-      this.fin(gagnant);
+        this.fin(gagnant);
     }
 
     /**
