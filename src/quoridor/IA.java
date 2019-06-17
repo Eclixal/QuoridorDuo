@@ -104,10 +104,8 @@ public class IA extends Joueur {
               }
               if(c < this.plateau.getTaille() && d < this.plateau.getTaille() && e < this.plateau.getTaille() && g < this.plateau.getTaille()){
                 if(this.plateau.getValue(a,b) == 0 && this.plateau.getValue(c,d) == 0 && this.plateau.getValue(e,f) == 0){
-                  trouve = true;
-                  System.out.println(a+"   "+b);
-                  System.out.println(e+"   "+f);
-                  this.placerBarriere(new Coordonnee(a,b,g,-1));
+                  if(this.placerBarriere(new Coordonnee(a,b,g,-1)))
+                    trouve = true;
                 }
               }
             }
