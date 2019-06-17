@@ -15,6 +15,7 @@ public abstract class Joueur {
     protected Pion pion;
     protected Plateau plateau;
     protected Coordonnee fin;
+    private int numDeplacement = 1;
 
     /**
       * Créé un nouvel objet Humain
@@ -99,7 +100,7 @@ public abstract class Joueur {
       int y = coordonnee.getY1();
       if(x >= 0 && x < this.plateau.getTaille() && y >= 0 && y < this.plateau.getTaille()){
         if (this.plateau.getValue(x, y) == 0) {
-          ArrayList<int> liste = this.getDeplacementPossibles(pion.getCoordonnee().getX1(), pion.getCoordonnee().getY1());
+          ArrayList<Integer> liste = this.getDeplacementPossibles(pion.getCoordonnee().getX1(), pion.getCoordonnee().getY1());
           int i = 0;
           while(i < liste.size()){
             int a = liste.get(i);
@@ -121,39 +122,39 @@ public abstract class Joueur {
       return ret;
     }
 
-    private int numDeplacement = 1;
-
     /**
      * Permet de savoir s'il existe un chemin pour gagner
      * @return true s'il existe la possibilité de placer un pion
      */
     public boolean existWay(int x, int y, int[][] tmp) {
         boolean exist = false;
-        int[][] possibleMove = getDeplacementPossibles(x, y);
-
-        for (int i = 0; i < 5 && !exist; i++) {
-            if (isValide(possibleMove[i][0], possibleMove[i][1])) {
+        ArrayList<Integer> liste = getDeplacementPossibles(x, y);
+        int i = 0;
+        while(i < liste.size() && !exist) {
+            if(isValide(liste.get(i), liste.get(i+1), tmp)) {
                 numDeplacement++;
-                tmp[possibleMove[i][0]][possibleMove[i][1]] = numDeplacement;
-                if (((getFin().getX1() != -1 && possibleMove[i][0] == getFin().getX1()) || (getFin().getY1() != -1 && possibleMove[i][1] == getFin().getY1())) || (getFin().getX1() != -1 && x == getFin().getX1() || getFin().getY1() != -1 && y == getFin().getY1())) {
+                tmp[liste.get(i)][liste.get(i+1)] = numDeplacement;
+                System.out.println(numDeplacement);
+                if (((getFin().getX1() != -1 && liste.get(i) == getFin().getX1()) || (getFin().getY1() != -1 && liste.get(i+1) == getFin().getY1())) || (getFin().getX1() != -1 && x == getFin().getX1() || getFin().getY1() != -1 && y == getFin().getY1())) {
                     exist = true;
                 } else {
-                    if (existWay(possibleMove[i][0], possibleMove[i][1], tmp)) {
+                    if (existWay(liste.get(i), liste.get(i+1), tmp)) {
                         exist = true;
                     } else {
-                        tmp[possibleMove[i][0]][possibleMove[i][1]] =  -1;
+                        tmp[liste.get(i)][liste.get(i+1)] =  -1;
                         numDeplacement--;
                     }
                 }
             }
+            i = i + 2;
         }
 
         return exist;
     }
 
-    private boolean isValide(int x, int y) {
+    private boolean isValide(int x, int y, int[][] tmp) {
         boolean ret = false;
-        if (x >= 0 && x < this.plateau.getTaille() && y >= 0 && y < this.plateau.getTaille() && this.plateau.getValue(x, y) == 0)
+        if (x >= 0 && x < this.plateau.getTaille() && y >= 0 && y < this.plateau.getTaille() && this.plateau.getValue(x, y) == 0 && tmp[x][y] == 0)
             ret = true;
         return ret;
     }
@@ -235,8 +236,8 @@ public abstract class Joueur {
       * Retourne les différents déplacements possibles du pion
       * @return les différents déplacements possibles du pion sous la forme d'un tableau à deux dimensions
       */
-    public ArrayList<int> getDeplacementPossibles(int x, int y) {
-      ArrayList<int> liste = new ArrayList<int>();
+    public ArrayList<Integer> getDeplacementPossibles(int x, int y) {
+      ArrayList<Integer> liste = new ArrayList<Integer>();
       if((x+2) < this.plateau.getTaille() && (x+1) >= 0){
         if(this.plateau.getValue(x+2,y) == 0 && this.plateau.getValue(x+1,y) == 0){
           liste.add(x+2);
