@@ -117,7 +117,7 @@ public abstract class Joueur {
       int y = coordonnee.getY1();
       if(x >= 0 && x < this.plateau.getTaille() && y >= 0 && y < this.plateau.getTaille()){
         if (this.plateau.getValue(x, y) == 0) {
-          ArrayList<Integer> liste = this.getDeplacementPossibles(pion.getCoordonnee().getX1(), pion.getCoordonnee().getY1());
+          ArrayList<Integer> liste = this.getDeplacementPossibles(pion.getCoordonnee().getX1(), pion.getCoordonnee().getY1(), this.plateau.getDAMIER());
           int i = 0;
           while(i < liste.size()){
             int a = liste.get(i);
@@ -145,12 +145,14 @@ public abstract class Joueur {
      */
     public boolean existWay(int x, int y, int[][] tmp) {
         boolean exist = false;
-        ArrayList<Integer> liste = getDeplacementPossibles(x, y);
+        ArrayList<Integer> liste = getDeplacementPossibles(x, y, tmp);
+
         int i = 0;
         while(i < liste.size() && !exist) {
             if(isValide(liste.get(i), liste.get(i+1), tmp)) {
                 numDeplacement++;
                 tmp[liste.get(i)][liste.get(i+1)] = numDeplacement;
+
                 if (((getFin().getX1() != -1 && liste.get(i) == getFin().getX1()) || (getFin().getY1() != -1 && liste.get(i+1) == getFin().getY1())) || (getFin().getX1() != -1 && x == getFin().getX1() || getFin().getY1() != -1 && y == getFin().getY1())) {
                     exist = true;
                 } else {
@@ -164,7 +166,6 @@ public abstract class Joueur {
             }
             i = i + 2;
         }
-
         return exist;
     }
 
@@ -213,7 +214,9 @@ public abstract class Joueur {
 
            if (ret) {
                boolean canPlace = true;
+
                for (int i = 0; i < plateau.getPartie().getJoueurs().size() && canPlace; i++) {
+                   numDeplacement = 1;
                    if (!existWay(plateau.getPartie().getJoueurs().get(i).getPion().getCoordonnee().getX1(), plateau.getPartie().getJoueurs().get(i).getPion().getCoordonnee().getY1(), tmp))
                        canPlace = false;
                }
@@ -252,46 +255,46 @@ public abstract class Joueur {
       * Retourne les différents déplacements possibles du pion
       * @return les différents déplacements possibles du pion sous la forme d'un tableau à deux dimensions
       */
-    public ArrayList<Integer> getDeplacementPossibles(int x, int y) {
+    public ArrayList<Integer> getDeplacementPossibles(int x, int y, int[][] tableau) {
       ArrayList<Integer> liste = new ArrayList<Integer>();
-      if((x+2) < this.plateau.getTaille() && (x+1) >= 0){
-        if(this.plateau.getValue(x+2,y) == 0 && this.plateau.getValue(x+1,y) == 0){
-          liste.add(x+2);
-          liste.add(y);
-        }
-        else if((x+4) < this.plateau.getTaille()){
-          if(this.plateau.getValue(x+2,y) != 0 && this.plateau.getValue(x+1,y) == 0 && this.plateau.getValue(x+4,y) == 0 && this.plateau.getValue(x+3,y) == 0){
-            liste.add(x+4);
-            liste.add(y);
-          }
-          else if(this.plateau.getValue(x+2,y) != 0 && this.plateau.getValue(x+1,y) == 0 && ((this.plateau.getValue(x+4,y) != 0 && this.plateau.getValue(x+3,y) == 0) || this.plateau.getValue(x+3,y) != 0)){
-            if((y+2) < this.plateau.getTaille() && this.plateau.getValue(x+2,y+2) == 0 && this.plateau.getValue(x+2,y+1) == 0){
+      if((x+2) < this.plateau.getTaille() && (x+1) >= 0) {
+          if(tableau[x+2][y] == 0 && tableau[x+1][y] == 0){
               liste.add(x+2);
-              liste.add(y+2);
-            }
-            if((y-2) >= 0 && this.plateau.getValue(x+2,y-2) == 0 && this.plateau.getValue(x+2,y-1) == 0){
-              liste.add(x+2);
-              liste.add(y-2);
-            }
+              liste.add(y);
           }
-        }
+          else if((x+4) < this.plateau.getTaille()){
+              if(tableau[x+2][y] != 0 && tableau[x+1][y] == 0 && tableau[x+4][y] == 0 && tableau[x+3][y] == 0){
+                  liste.add(x+4);
+                  liste.add(y);
+              }
+              else if(tableau[x+2][y] != 0 && tableau[x+1][y] == 0 && (tableau[x + 4][y] != 0 || tableau[x + 3][y] != 0)){
+                  if((y+2) < this.plateau.getTaille() && tableau[x+2][y+2] == 0 && tableau[x+2][y+1] == 0){
+                      liste.add(x+2);
+                      liste.add(y+2);
+                  }
+                  if((y-2) >= 0 && tableau[x+2][y-2] == 0 && tableau[x+2][y-1] == 0){
+                      liste.add(x+2);
+                      liste.add(y-2);
+                  }
+              }
+          }
       }
-      if((y+2) < this.plateau.getTaille() && (y+1) >= 0){
-          if(this.plateau.getValue(x,y+2) == 0 && this.plateau.getValue(x,y+1) == 0){
+        if((y+2) < this.plateau.getTaille() && (y+1) >= 0){
+          if(tableau[x][y+2] == 0 && tableau[x][y+1] == 0){
               liste.add(x);
               liste.add(y+2);
           }
           else if((y+4) < this.plateau.getTaille()){
-            if(this.plateau.getValue(x,y+2) != 0 && this.plateau.getValue(x,y+1) == 0 && this.plateau.getValue(x,y+4) == 0 && this.plateau.getValue(x,y+3) == 0){
+            if(tableau[x][y+2] != 0 && tableau[x][y+1] == 0 && tableau[x][y+4] == 0 && tableau[x][y+3] == 0){
               liste.add(x);
               liste.add(y+4);
             }
-            else if(this.plateau.getValue(x,y+2) != 0 && this.plateau.getValue(x,y+1) == 0 && ((this.plateau.getValue(x,y+4) != 0 && this.plateau.getValue(x,y+3) == 0) || this.plateau.getValue(x,y+3) != 0)){
-              if((x+2) < this.plateau.getTaille() && this.plateau.getValue(x+2,y+2) == 0 && this.plateau.getValue(x+1,y+2) == 0){
+            else if(tableau[x][y+2] != 0 && tableau[x][y+1] == 0 && (tableau[x][y + 4] != 0 || tableau[x][y + 3] != 0)){
+              if((x+2) < this.plateau.getTaille() && tableau[x+2][y+2] == 0 && tableau[x+1][y+2] == 0){
                 liste.add(x+2);
                 liste.add(y+2);
               }
-              if((x-2) >= 0 && this.plateau.getValue(x-2,y+2) == 0 && this.plateau.getValue(x-2,y+1) == 0){
+              if((x-2) >= 0 && tableau[x-2][y+2] == 0 && tableau[x-2][y+1] == 0){
                 liste.add(x-2);
                 liste.add(y+2);
               }
@@ -299,21 +302,21 @@ public abstract class Joueur {
           }
         }
       if((x-1) < this.plateau.getTaille() && (x-2) >= 0){
-        if(this.plateau.getValue(x-2,y) == 0 && this.plateau.getValue(x-1,y) == 0){
+        if(tableau[x-2][y] == 0 && tableau[x-1][y] == 0){
           liste.add(x-2);
           liste.add(y);
         }
         else if((x-4) > 0){
-          if(this.plateau.getValue(x-2,y) != 0 && this.plateau.getValue(x-1,y) == 0 && this.plateau.getValue(x-4,y) == 0 && this.plateau.getValue(x-3,y) == 0){
+          if(tableau[x-2][y] != 0 && tableau[x-1][y] == 0 && tableau[x-4][y] == 0 && tableau[x-3][y] == 0){
             liste.add(x-4);
             liste.add(y);
           }
-          else if(this.plateau.getValue(x-2,y) != 0 && this.plateau.getValue(x-1,y) == 0 && ((this.plateau.getValue(x-4,y) != 0 && this.plateau.getValue(x-3,y) == 0) || this.plateau.getValue(x-3,y) != 0)){
-            if((y+2) < this.plateau.getTaille() && this.plateau.getValue(x-2,y+2) == 0 && this.plateau.getValue(x-2,y+1) == 0){
+          else if(tableau[x-2][y] != 0 && tableau[x-1][y] == 0 && (tableau[x - 4][y] != 0 || tableau[x - 3][y] != 0)){
+            if((y+2) < this.plateau.getTaille() && tableau[x-2][y+2] == 0 && tableau[x-2][y+1] == 0){
               liste.add(x-2);
               liste.add(y+2);
             }
-            if((y-2) >= 0 && this.plateau.getValue(x-2,y-2) == 0 && this.plateau.getValue(x-2,y-1) == 0){
+            if((y-2) >= 0 && tableau[x-2][y-2] == 0 && tableau[x-2][y-1] == 0){
               liste.add(x-2);
               liste.add(y-2);
             }
@@ -321,21 +324,21 @@ public abstract class Joueur {
         }
       }
       if((y-1) < this.plateau.getTaille() && (y-2) >= 0){
-        if(this.plateau.getValue(x,y-2) == 0  && this.plateau.getValue(x,y-1) == 0){
+        if(tableau[x][y-2] == 0  && tableau[x][y-1] == 0){
           liste.add(x);
           liste.add(y-2);
         }
-        else if((y-4) < this.plateau.getTaille()){
-          if(this.plateau.getValue(x,y-2) != 0 && this.plateau.getValue(x,y-1) == 0 && this.plateau.getValue(x,y-4) == 0 && this.plateau.getValue(x,y-3) == 0){
+        else if((y-4) > 0){
+          if(tableau[x][y-2] != 0 && tableau[x][y-1] == 0 && tableau[x][y-4] == 0 && tableau[x][y-3] == 0){
             liste.add(x);
             liste.add(y+4);
           }
-          else if(this.plateau.getValue(x,y-2) != 0 && this.plateau.getValue(x,y-1) == 0 && ((this.plateau.getValue(x,y-4) != 0 && this.plateau.getValue(x,y-3) == 0) || this.plateau.getValue(x,y-3) != 0)){
-            if((x+2) < this.plateau.getTaille() && this.plateau.getValue(x+2,y-2) == 0 && this.plateau.getValue(x+1,y-2) == 0){
+          else if(tableau[x][y-2] != 0 && tableau[x][y-1] == 0 && (tableau[x][y - 4] != 0 || tableau[x][y - 3] != 0)){
+            if((x+2) < this.plateau.getTaille() && tableau[x+2][y-2] == 0 && tableau[x+1][y-2] == 0){
               liste.add(x+2);
               liste.add(y-2);
             }
-            if((x-2) >= 0 && this.plateau.getValue(x-2,y-2) == 0 && this.plateau.getValue(x-2,y-1) == 0){
+            if((x-2) >= 0 && tableau[x-2][y-2] == 0 && tableau[x-2][y-1] == 0){
               liste.add(x-2);
               liste.add(y-2);
             }

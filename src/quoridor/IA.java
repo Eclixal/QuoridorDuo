@@ -67,7 +67,7 @@ public class IA extends Joueur {
           }
         }
         if(i == 0 || !verif){
-          ArrayList liste = this.getDeplacementPossibles(this.pion.getCoordonnee().getX1(), this.pion.getCoordonnee().getY1());
+          ArrayList liste = this.getDeplacementPossibles(this.pion.getCoordonnee().getX1(), this.pion.getCoordonnee().getY1(), this.plateau.getDAMIER());
           int j = 1;
           while(j%2 != 0){
             double test = Math.random() * liste.size();
@@ -77,7 +77,7 @@ public class IA extends Joueur {
         }
         else{
           boolean trouve = false;
-          while(!trouve){
+          while(!trouve) {
             double a1 = Math.random() * this.plateau.getTaille();
             double b1 = Math.random() * this.plateau.getTaille();
             int a = (int) a1;
@@ -90,6 +90,7 @@ public class IA extends Joueur {
               else if(a%2 != 0 && b%2 ==0){
                 c = -2;
               }
+              System.out.println(a + " / " + b + " - " + c);
               if(this.placerBarriere(new Coordonnee(a,b,c,-1))){
                   trouve = true;
               }
