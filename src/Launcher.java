@@ -1,5 +1,6 @@
 import quoridor.Mode;
 import quoridor.Partie;
+import view.Menu;
 
 import java.io.*;
 import java.util.Scanner;
@@ -37,6 +38,9 @@ public class Launcher {
           } catch (Exception ignored) { }
         }
         Partie partie = new Partie(true, fileName);
+      }
+      else if(string.equals("gui")){
+        new Menu();
       }
     }
 }

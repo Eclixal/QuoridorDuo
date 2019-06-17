@@ -83,30 +83,15 @@ public class IA extends Joueur {
             int a = (int) a1;
             int b = (int) b1;
             int c = 0;
-            int d = 0;
-            int e = 0;
-            int f = 0;
-            int g = 0;
             if((a%2 == 0 && b%2 != 0) || (a%2 != 0 && b%2 ==0)){
               if(a%2 == 0 && b%2 != 0){
-                c = a+1;
-                d = b;
-                e = a+2;
-                f = b;
-                g = -1;
+                c = -1;
               }
               else if(a%2 != 0 && b%2 ==0){
-                c = a;
-                d = b+1;
-                e = a;
-                f = b+2;
-                g = -2;
+                c = -2;
               }
-              if(c < this.plateau.getTaille() && d < this.plateau.getTaille() && e < this.plateau.getTaille() && g < this.plateau.getTaille()){
-                if(this.plateau.getValue(a,b) == 0 && this.plateau.getValue(c,d) == 0 && this.plateau.getValue(e,f) == 0){
-                  if(this.placerBarriere(new Coordonnee(a,b,g,-1)))
-                    trouve = true;
-                }
+              if(this.placerBarriere(new Coordonnee(a,b,c,-1))){
+                  trouve = true;
               }
             }
           }
