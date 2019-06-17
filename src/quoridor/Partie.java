@@ -166,7 +166,18 @@ public class Partie {
     }
 
     public void afficher(){
+      System.out.print("\t");
+      for(int k = 0;k < this.plateau.getTaille();k++){
+        System.out.print(k+"\t");
+      }
+      System.out.println();
+      System.out.print("\t");
+      for(int k = 0;k < this.plateau.getTaille();k++){
+        System.out.print("--\t");
+      }
+      System.out.println();
       for(int i = 0;i < this.plateau.getTaille();i++){
+        System.out.print(i+"|\t");
         for(int j = 0;j < this.plateau.getTaille();j++){
           if(i%2 != 0 || j%2 != 0){
             if(this.plateau.getValue(i,j) == 5){
