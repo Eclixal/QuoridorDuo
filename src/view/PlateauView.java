@@ -3,6 +3,7 @@ package view;
 import quoridor.Plateau;
 import javax.swing.JTable;
 import javax.swing.JFrame;
+import javax.swing.table.TableColumn;
 
 public class PlateauView {
 
@@ -23,5 +24,22 @@ public class PlateauView {
     JTable table = new JTable(model);
     frame.add(table);
     table.setRowSelectionAllowed(false);
+    table.setRowHeight(50);
+
+    for(int i = 0;i < this.plateau.getTaille();i++){
+      if(i%2 == 0){
+        TableColumn column = table.getColumnModel().getColumn(i);
+        column.setMinWidth(50);
+        column.setMaxWidth(50);
+      }
+      else{
+        table.setRowHeight(i,20);
+        TableColumn column = table.getColumnModel().getColumn(i);
+        column.setMinWidth(20);
+        column.setMaxWidth(20);
+      }
+    }
+
+    frame.pack();
   }
 }

@@ -7,6 +7,7 @@ import javax.swing.JLabel;
 import javax.swing.JButton;
 import javax.swing.JPanel;
 import java.awt.GridLayout;
+import javax.swing.ImageIcon;
 
 public class Menu {
 
@@ -36,8 +37,8 @@ public class Menu {
     panel.setLayout(grid);
     grid.setHgap(100);
     grid.setVgap(100);
-    
-    nouvelle = new JButton("Nouvelle partie");
+
+    nouvelle = new JButton("Nouvelle partie",new ImageIcon("../images/pionRouge.png"));
     panel.add(nouvelle);
 
     charger = new JButton("Charger une partie");
