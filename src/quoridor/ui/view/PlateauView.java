@@ -1,4 +1,4 @@
-package view;
+package quoridor.ui.view;
 
 import quoridor.Plateau;
 import javax.swing.JTable;

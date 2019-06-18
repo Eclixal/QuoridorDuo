@@ -1,4 +1,4 @@
-package view;
+package quoridor.ui.view;
 
 import javax.swing.table.AbstractTableModel;
 import javax.swing.ImageIcon;
