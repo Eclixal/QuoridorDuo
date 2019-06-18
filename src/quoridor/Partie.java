@@ -336,6 +336,7 @@ public class Partie {
                     this.joueurs.get(i).jeu();
                     if(finC.getX1() == this.joueurs.get(i).getPion().getCoordonnee().getX1() || finC.getY1() == this.joueurs.get(i).getPion().getCoordonnee().getY1()){
                         fin = true;
+                        gagnant = i;
                     }
                     i++;
                 }
@@ -350,7 +351,6 @@ public class Partie {
       */
     public void fin(int gagnant) {
       System.out.println("Le joueur "+this.joueurs.get(gagnant).getNom()+" a gagné !");
-
       this.afficher();
     }
 
