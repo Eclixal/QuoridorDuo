@@ -1,11 +1,12 @@
 package quoridor.ui.listener;
 
-import quoridor.ui.custom.CustomFileChooser;
+import quoridor.ui.custom.SauvegardeFileChooser;
 import quoridor.ui.view.Menu;
 
 import javax.sound.sampled.AudioInputStream;
 import javax.sound.sampled.AudioSystem;
 import javax.sound.sampled.Clip;
+import javax.swing.filechooser.FileNameExtensionFilter;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.io.File;
@@ -24,9 +25,11 @@ public class MenuListener extends MouseAdapter {
         if (e.getSource() == menu.getNouvelle()) {
             menu.repaint();
         } else if (e.getSource() == menu.getCharger()) {
-            CustomFileChooser chooser = new CustomFileChooser(menu.getjPanel());
-            chooser.show();
-
+            SauvegardeFileChooser sauvegardeFileChooser = new SauvegardeFileChooser(menu);
+            FileNameExtensionFilter filter = new FileNameExtensionFilter(
+                    ".bin", "bin");
+            sauvegardeFileChooser.setFileFilter(filter);
+            sauvegardeFileChooser.show();
         } else if (e.getSource() == menu.getQuitter())
             System.exit(0);
     }

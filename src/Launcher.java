@@ -2,6 +2,7 @@ import quoridor.Mode;
 import quoridor.Partie;
 import quoridor.ui.view.Menu;
 
+import javax.swing.*;
 import java.io.*;
 import java.util.Scanner;
 
@@ -40,6 +41,12 @@ public class Launcher {
         Partie partie = new Partie(true, fileName);
       }
       else if(string.equals("gui")){
+        try {
+          UIManager.setLookAndFeel(UIManager.getSystemLookAndFeelClassName());
+        } catch (ClassNotFoundException | InstantiationException | IllegalAccessException | UnsupportedLookAndFeelException ex) {
+          ex.printStackTrace();
+        }
+
         new Menu();
       }
     }
