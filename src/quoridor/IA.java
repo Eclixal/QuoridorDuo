@@ -56,7 +56,7 @@ public class IA extends Joueur {
 
     }
 
-    public void jeu(boolean gui, int x, int y) {
+    public String jeu(boolean gui, int x, int y) {
       if(this.getDifficulte() == Difficulte.FACILE){
         double i1 = Math.random() * 2;
         int i = (int) i1;
@@ -98,5 +98,6 @@ public class IA extends Joueur {
           }
         }
       }
+      return "";
     }
 }

@@ -365,5 +365,5 @@ public abstract class Joueur {
     /**
       * Permet au joueur de jouer
       */
-    public abstract void jeu(boolean gui, int x, int y);
+    public abstract String jeu(boolean gui, int x, int y);
 }
