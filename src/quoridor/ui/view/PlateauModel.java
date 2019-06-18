@@ -16,11 +16,7 @@ public class PlateauModel extends AbstractTableModel{
   public Object getValueAt(int r, int c){
     Object ret = new Object();
     int valeur = this.damier[r][c];
-    if(valeur == 0 && r%2 == 0 && c%2 == 0){
-      ImageIcon image = new ImageIcon();
-      ret = image;
-    }
-    else if(valeur == 1){
+    if(valeur == 1){
       ImageIcon image = new ImageIcon("../images/Rond_rouge.png");
       ImageIcon icon = new ImageIcon(image.getImage().getScaledInstance(40, 40, Image.SCALE_DEFAULT));
       ret = icon;
@@ -41,18 +37,11 @@ public class PlateauModel extends AbstractTableModel{
       ret = icon;
     }
     else if(valeur == 5){
-      ImageIcon image = new ImageIcon();
-      ret = image;
+      ImageIcon image = new ImageIcon("../images/Barriere.jpg");
+      ImageIcon icon = new ImageIcon(image.getImage().getScaledInstance(50, 50, Image.SCALE_DEFAULT));
+      ret = icon;
     }
-    else if(valeur == 0 && r%2 == 0 && c%2 != 0){
-      ImageIcon image = new ImageIcon();
-      ret = image;
-    }
-    else if(valeur == 0 && r%2 != 0 && c%2 == 0){
-      ImageIcon image = new ImageIcon();
-      ret = image;
-    }
-    else if(valeur == 0 && r%2 != 0 && c%2 !=0){
+    else{
       ImageIcon image = new ImageIcon();
       ret = image;
     }

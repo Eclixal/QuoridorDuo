@@ -11,6 +11,9 @@ public class PlateauView {
 
   public PlateauView(Plateau plateau){
     this.plateau = plateau;
+    this.plateau.setValue(3,4,5);
+    this.plateau.setValue(3,5,5);
+    this.plateau.setValue(3,6,5);
     this.initialise();
   }
 
