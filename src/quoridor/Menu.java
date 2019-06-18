@@ -5,6 +5,8 @@ import javax.swing.JFrame;
 import java.awt.BorderLayout;
 import javax.swing.JLabel;
 import javax.swing.JButton;
+import javax.swing.JPanel;
+import java.awt.GridLayout;
 
 public class Menu {
 
@@ -20,20 +22,27 @@ public class Menu {
     JFrame frame = new JFrame("Quoridor");
     frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
     frame.setVisible(true);
-    frame.setLayout(null);
+
+    BorderLayout layout = new BorderLayout();
+    frame.setLayout(layout);
 
     label = new JLabel("Quoridor");
-    label.setBounds(100,10,50,50);
-    frame.add(label);
+    frame.add(label,BorderLayout.NORTH);
 
+    JPanel panel = new JPanel();
+    frame.add(panel,BorderLayout.CENTER);
+
+    GridLayout grid = new GridLayout(2,3);
+    panel.setLayout(grid);
+    grid.setHgap(100);
+    grid.setVgap(100);
+    
     nouvelle = new JButton("Nouvelle partie");
-    nouvelle.setBounds(150,150,50,50);
-    frame.add(nouvelle);
+    panel.add(nouvelle);
 
     charger = new JButton("Charger une partie");
-    charger.setBounds(150,300,50,50);
-    frame.add(charger);
+    panel.add(charger);
 
-    frame.setSize(1000,600);
+    frame.pack();
   }
 }
