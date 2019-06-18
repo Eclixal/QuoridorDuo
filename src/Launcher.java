@@ -1,5 +1,6 @@
 import quoridor.Mode;
 import quoridor.Partie;
+import quoridor.ui.MainFrame;
 import quoridor.ui.view.Menu;
 
 import javax.swing.*;
@@ -47,7 +48,10 @@ public class Launcher {
           ex.printStackTrace();
         }
 
-        new Menu();
+        MainFrame mainFrame = new MainFrame();
+        mainFrame.setContentPane(new Menu());
+        mainFrame.revalidate();
+        mainFrame.repaint();
       }
     }
 }
