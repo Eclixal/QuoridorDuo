@@ -34,6 +34,11 @@ public class Partie {
         this.charger(saveFile);
     }
 
+    public Partie(){
+      this.mode = Mode.HH;
+      this.initialisation();
+    }
+
     /**
       * Retourne le mode de jeu utilisé
       * @return le mode de jeu utilisé
@@ -41,6 +46,8 @@ public class Partie {
     public Mode getMode() {
         return mode;
     }
+
+    public Plateau getPlateau(){ return this.plateau; }
 
     /**
       * Sauvegarde la partie
