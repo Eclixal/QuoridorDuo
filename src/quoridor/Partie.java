@@ -327,7 +327,8 @@ public class Partie {
           if(this.mode.toString().length() == 2){
               while(!fin){
                   int i = j;
-                  while(i < 2 && !fin){
+                  while(i < 2 && !fin) {
+                      this.afficher();
                       Coordonnee finC = this.joueurs.get(i).getFin();
                       this.joueurs.get(i).jeu(gui,-1,-1);
                       if(finC.getX1() == this.joueurs.get(i).getPion().getCoordonnee().getX1() || finC.getY1() == this.joueurs.get(i).getPion().getCoordonnee().getY1()){
@@ -342,6 +343,7 @@ public class Partie {
               while(!fin){
                   int i = j;
                   while(i < 4 && !fin) {
+                      this.afficher();
                       Coordonnee finC = this.joueurs.get(i).getFin();
                       this.joueurs.get(i).jeu(gui,-1,-1);
                       if(finC.getX1() == this.joueurs.get(i).getPion().getCoordonnee().getX1() || finC.getY1() == this.joueurs.get(i).getPion().getCoordonnee().getY1()){
