@@ -133,9 +133,6 @@ public abstract class Joueur {
           }
         }
       }
-      if(!ret){
-        System.out.println("Ce placement est impossible !");
-      }
       return ret;
     }
 
@@ -265,9 +262,6 @@ public abstract class Joueur {
                    ret = false;
            }
         }
-        if (!ret)
-            System.out.println("Ce placement est impossible !");
-        return ret;
     }
 
     /**
@@ -370,5 +364,5 @@ public abstract class Joueur {
     /**
       * Permet au joueur de jouer
       */
-    public abstract void jeu();
+    public abstract void jeu(boolean gui, int x, int y);
 }

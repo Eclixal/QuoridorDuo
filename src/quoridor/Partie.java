@@ -18,19 +18,19 @@ public class Partie {
       * Créé un nouvel objet Partie
       * @param fileName le nom du fichier de configuration
       */
-    public Partie(String fileName) {
+    public Partie(String fileName, boolean gui) {
         this.configuration(fileName);
         this.initialisation();
-        this.start(0);
+        this.start(0, gui);
     }
 
-    public Partie(Mode mode) {
+    public Partie(Mode mode, boolean gui) {
         this.mode = mode;
         this.initialisation();
-        this.start(0);
+        this.start(0, gui);
     }
 
-    public Partie(boolean save, String saveFile) {
+    public Partie(boolean save, String saveFile, boolean gui) {
         this.charger(saveFile);
     }
 
@@ -81,7 +81,7 @@ public class Partie {
       * Charge les données de sauvegarde contenues dans le fichier sélectionné
       * @param filename le fichier contenant les données à charger
       */
-    public void charger(String filename) {
+    public void charger(String filename, boolean gui) {
         try {
             this.plateau = new Plateau(9, this);
             this.joueurs = new ArrayList<Joueur>();
@@ -224,7 +224,7 @@ public class Partie {
             }
             in.close();
 
-            this.start(joueurTo);
+            this.start(joueurTo, gui);
 
         } catch (IOException e) {
             e.printStackTrace();
@@ -316,41 +316,39 @@ public class Partie {
     /**
       * Lance la partie
       */
-    public void start(int j) {
-        boolean fin = false;
-        int gagnant = 0;
-        if(this.mode.toString().length() == 2){
-            while(!fin){
-                int i = j;
-                while(i < 2 && !fin){
-                    this.afficher();
-                    Coordonnee finC = this.joueurs.get(i).getFin();
-                    this.joueurs.get(i).jeu();
-                    if(finC.getX1() == this.joueurs.get(i).getPion().getCoordonnee().getX1() || finC.getY1() == this.joueurs.get(i).getPion().getCoordonnee().getY1()){
-                        fin = true;
-                        gagnant = i;
-                    }
-                    i++;
-                }
+    public void start(int j, boolean gui) {
+      boolean fin = false;
+      int gagnant = 0;
+      if(this.mode.toString().length() == 2){
+        while(!fin){
+          int i = j;
+          while(i < 2 && !fin){
+            Coordonnee finC = this.joueurs.get(i).getFin();
+            this.joueurs.get(i).jeu(gui,-1,-1);
+           if(finC.getX1() == this.joueurs.get(i).getPion().getCoordonnee().getX1() || finC.getY1() == this.joueurs.get(i).getPion().getCoordonnee().getY1()){
+             fin = true;
+             gagnant = i;
+           }
+           i++;
+         }
+       }
+     }
+     else{
+       while(!fin){
+         int i = j;
+         while(i < 4 && !fin) {
+           Coordonnee finC = this.joueurs.get(i).getFin();
+           this.joueurs.get(i).jeu(gui,-1,-1);
+           if(finC.getX1() == this.joueurs.get(i).getPion().getCoordonnee().getX1() || finC.getY1() == this.joueurs.get(i).getPion().getCoordonnee().getY1()){
+             fin = true;
+             gagnant = i;
             }
+          i++;
         }
-        else{
-            while(!fin){
-                int i = j;
-                while(i < 4 && !fin) {
-                    this.afficher();
-                    Coordonnee finC = this.joueurs.get(i).getFin();
-                    this.joueurs.get(i).jeu();
-                    if(finC.getX1() == this.joueurs.get(i).getPion().getCoordonnee().getX1() || finC.getY1() == this.joueurs.get(i).getPion().getCoordonnee().getY1()){
-                        fin = true;
-                        gagnant = i;
-                    }
-                    i++;
-                }
-            }
-        }
-        this.fin(gagnant);
+      }
     }
+    this.fin(gagnant);
+  }
 
     /**
       * Termine la partie
