@@ -99,4 +99,8 @@ public class Humain extends Joueur {
       }
       return ret;
     }
+
+    public boolean isIA(){
+      return false;
+    }
 }

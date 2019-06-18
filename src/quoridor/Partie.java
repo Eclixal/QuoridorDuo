@@ -320,9 +320,7 @@ public class Partie {
       boolean fin = false;
       int gagnant = 0;
       if (gui) {
-
-
-
+        
       } else {
           if(this.mode.toString().length() == 2){
               while(!fin){

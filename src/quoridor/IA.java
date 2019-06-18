@@ -100,4 +100,8 @@ public class IA extends Joueur {
       }
       return "";
     }
+
+    public boolean isIA(){
+      return true;
+    }
 }

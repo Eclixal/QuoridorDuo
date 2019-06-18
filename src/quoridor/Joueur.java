@@ -366,4 +366,6 @@ public abstract class Joueur {
       * Permet au joueur de jouer
       */
     public abstract String jeu(boolean gui, int x, int y);
+
+    public abstract boolean isIA();
 }
