@@ -15,5 +15,4 @@ public class MainFrame extends JFrame {
         device.setFullScreenWindow(this);
         this.setVisible(true);
     }
-
 }
