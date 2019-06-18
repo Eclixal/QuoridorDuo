@@ -262,6 +262,7 @@ public abstract class Joueur {
                    ret = false;
            }
         }
+        return ret;
     }
 
     /**

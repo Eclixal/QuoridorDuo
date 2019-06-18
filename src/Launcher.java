@@ -2,6 +2,7 @@ import quoridor.Mode;
 import quoridor.Partie;
 import quoridor.ui.MainFrame;
 import quoridor.ui.view.Menu;
+import quoridor.ui.view.PlateauView;
 
 import javax.swing.*;
 import java.io.*;
@@ -19,7 +20,7 @@ public class Launcher {
       if (string.equals("o")) {
         System.out.print("Nom du fichier : ");
         string = scan.nextLine();
-        Partie partie = new Partie(string);
+        Partie partie = new Partie(string, false);
       } else if (string.equals("n")) {
         Mode mode = null;
         while (mode == null) {
@@ -28,7 +29,7 @@ public class Launcher {
             mode = Mode.valueOf(scan.nextLine());
           } catch (IllegalArgumentException ignored) {}
         }
-        Partie partie = new Partie(mode);
+        Partie partie = new Partie(mode, false);
       } else if (string.equals("save")) {
         String fileName = null;
         while (fileName == null) {
@@ -39,7 +40,7 @@ public class Launcher {
             fileName = str;
           } catch (Exception ignored) { }
         }
-        Partie partie = new Partie(true, fileName);
+        Partie partie = new Partie(true, fileName, false);
       }
       else if(string.equals("gui")){
         try {
@@ -48,9 +49,10 @@ public class Launcher {
           ex.printStackTrace();
         }
 
+        Partie partie = new Partie();
         MainFrame mainFrame = new MainFrame();
-        mainFrame.setContentPane(new Menu());
-        mainFrame.revalidate();
+        mainFrame.setContentPane(new Menu(mainFrame));
+        mainFrame.validate();
         mainFrame.repaint();
       }
     }

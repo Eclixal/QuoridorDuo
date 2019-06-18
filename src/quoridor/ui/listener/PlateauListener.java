@@ -1,15 +1,15 @@
 package quoridor.ui.listener;
 
-import java.awt.event.ListSelectionListener;
-import java.awt.event.ListSelectionEvent;
+import javax.swing.*;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
 
-public class PlateauListener implements ListSelectionListener{
+public class PlateauListener extends MouseAdapter {
 
-  public PlateauListener(){
-    
-  }
-
-  public void valueChanged(ListSelectionEvent e){
-
+  @Override
+  public void mouseClicked(MouseEvent e) {
+    JTable jTable = (JTable) e.getSource();
+    int row = jTable.rowAtPoint(e.getPoint());
+    int col = jTable.columnAtPoint(e.getPoint());
   }
 }

@@ -31,7 +31,7 @@ public class Partie {
     }
 
     public Partie(boolean save, String saveFile, boolean gui) {
-        this.charger(saveFile);
+        this.charger(saveFile, gui);
     }
 
     public Partie(){
@@ -319,34 +319,40 @@ public class Partie {
     public void start(int j, boolean gui) {
       boolean fin = false;
       int gagnant = 0;
-      if(this.mode.toString().length() == 2){
-        while(!fin){
-          int i = j;
-          while(i < 2 && !fin){
-            Coordonnee finC = this.joueurs.get(i).getFin();
-            this.joueurs.get(i).jeu(gui,-1,-1);
-           if(finC.getX1() == this.joueurs.get(i).getPion().getCoordonnee().getX1() || finC.getY1() == this.joueurs.get(i).getPion().getCoordonnee().getY1()){
-             fin = true;
-             gagnant = i;
-           }
-           i++;
-         }
-       }
-     }
-     else{
-       while(!fin){
-         int i = j;
-         while(i < 4 && !fin) {
-           Coordonnee finC = this.joueurs.get(i).getFin();
-           this.joueurs.get(i).jeu(gui,-1,-1);
-           if(finC.getX1() == this.joueurs.get(i).getPion().getCoordonnee().getX1() || finC.getY1() == this.joueurs.get(i).getPion().getCoordonnee().getY1()){
-             fin = true;
-             gagnant = i;
-            }
-          i++;
-        }
+      if (gui) {
+
+
+
+      } else {
+          if(this.mode.toString().length() == 2){
+              while(!fin){
+                  int i = j;
+                  while(i < 2 && !fin){
+                      Coordonnee finC = this.joueurs.get(i).getFin();
+                      this.joueurs.get(i).jeu(gui,-1,-1);
+                      if(finC.getX1() == this.joueurs.get(i).getPion().getCoordonnee().getX1() || finC.getY1() == this.joueurs.get(i).getPion().getCoordonnee().getY1()){
+                          fin = true;
+                          gagnant = i;
+                      }
+                      i++;
+                  }
+              }
+          }
+          else{
+              while(!fin){
+                  int i = j;
+                  while(i < 4 && !fin) {
+                      Coordonnee finC = this.joueurs.get(i).getFin();
+                      this.joueurs.get(i).jeu(gui,-1,-1);
+                      if(finC.getX1() == this.joueurs.get(i).getPion().getCoordonnee().getX1() || finC.getY1() == this.joueurs.get(i).getPion().getCoordonnee().getY1()){
+                          fin = true;
+                          gagnant = i;
+                      }
+                      i++;
+                  }
+              }
+          }
       }
-    }
     this.fin(gagnant);
   }
 
@@ -389,7 +395,7 @@ public class Partie {
               System.out.print("\t");
             }
           }
-          else{
+          else {
             System.out.print(this.plateau.getValue(i,j)+"\t");
           }
         }

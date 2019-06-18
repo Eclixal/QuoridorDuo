@@ -1,12 +1,13 @@
 package quoridor.ui.view;
 
 import quoridor.Plateau;
-import javax.swing.JTable;
-import javax.swing.JFrame;
-import javax.swing.table.TableColumn;
-import javax.swing.ListSelectionModel;
+import quoridor.ui.listener.PlateauListener;
 
-public class PlateauView {
+import javax.swing.*;
+import javax.swing.table.TableColumn;
+import java.awt.*;
+
+public class PlateauView extends JPanel {
 
   private Plateau plateau;
 
@@ -15,21 +16,21 @@ public class PlateauView {
     this.plateau.setValue(3,4,5);
     this.plateau.setValue(3,5,5);
     this.plateau.setValue(3,6,5);
-    this.initialise();
-  }
 
-  public void initialise(){
-    JFrame frame = new JFrame("Quoridor");
-    frame.setVisible(true);
-    frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+    this.setLayout(new GridBagLayout());
+    GridBagConstraints constraints = new GridBagConstraints();
+    constraints.insets = new Insets(10,10,10,10);
+    constraints.fill = GridBagConstraints.VERTICAL;
+
 
     PlateauModel model = new PlateauModel(this.plateau.getDAMIER());
 
     JTable table = new JTable(model);
-    frame.add(table);
+
+    table.addMouseListener(new PlateauListener());
+
     table.setRowSelectionAllowed(false);
     table.setRowHeight(50);
-
     for(int i = 0;i < this.plateau.getTaille();i++){
       if(i%2 == 0){
         TableColumn column = table.getColumnModel().getColumn(i);
@@ -44,9 +45,6 @@ public class PlateauView {
       }
     }
 
-    ListSelectionModel cellSelectionModel = table.getSelectionModel();
-    cellSelectionModel.addListSelectionListener(new PlateauListener());
-
-    frame.pack();
+    this.add(table, constraints);
   }
 }

@@ -1,5 +1,6 @@
 package quoridor.ui.view;
 
+import quoridor.ui.MainFrame;
 import quoridor.ui.custom.JButtonMenu;
 import quoridor.ui.listener.MenuListener;
 import sun.audio.AudioData;
@@ -21,7 +22,11 @@ public class Menu extends JPanel {
   private JButtonMenu charger;
   private JButtonMenu quitter;
 
-  public Menu() {
+  private MainFrame mainFrame;
+
+  public Menu(MainFrame mainFrame) {
+    this.mainFrame = mainFrame;
+
     this.setLayout(new GridBagLayout());
 
     GridBagConstraints constraints = new GridBagConstraints();
@@ -108,11 +113,20 @@ public class Menu extends JPanel {
     return quitter;
   }
 
+  public MainFrame getMainFrame() {
+    return mainFrame;
+  }
+
+  private ContinuousAudioDataStream audioDataStream;
   private void music() {
     try {
       AudioData data = new AudioStream(new FileInputStream("sons/main_theme_menu2.wav")).getData();
-      ContinuousAudioDataStream BGM = new ContinuousAudioDataStream(data);
-      AudioPlayer.player.start(BGM);
-    } catch(IOException ignored) {ignored.printStackTrace();}
+      audioDataStream = new ContinuousAudioDataStream(data);
+      AudioPlayer.player.start(audioDataStream);
+    } catch(IOException ignored) { }
+  }
+
+  public ContinuousAudioDataStream getAudioDataStream() {
+    return audioDataStream;
   }
 }
