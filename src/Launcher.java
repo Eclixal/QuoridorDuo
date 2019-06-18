@@ -1,7 +1,6 @@
 import quoridor.Mode;
 import quoridor.Partie;
-import view.Menu;
-import view.PlateauView;
+import quoridor.ui.view.Menu;
 
 import java.io.*;
 import java.util.Scanner;
@@ -41,8 +40,7 @@ public class Launcher {
         Partie partie = new Partie(true, fileName);
       }
       else if(string.equals("gui")){
-        Partie partie = new Partie();
-        new PlateauView(partie.getPlateau());
+        new Menu();
       }
     }
 }
