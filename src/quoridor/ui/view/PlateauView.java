@@ -4,6 +4,7 @@ import quoridor.Plateau;
 import javax.swing.JTable;
 import javax.swing.JFrame;
 import javax.swing.table.TableColumn;
+import javax.swing.ListSelectionModel;
 
 public class PlateauView {
 
@@ -42,6 +43,9 @@ public class PlateauView {
         column.setMaxWidth(20);
       }
     }
+
+    ListSelectionModel cellSelectionModel = table.getSelectionModel();
+    cellSelectionModel.addListSelectionListener(new PlateauListener());
 
     frame.pack();
   }
