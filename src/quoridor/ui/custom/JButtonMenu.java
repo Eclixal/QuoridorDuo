@@ -1,4 +1,4 @@
-package quoridor.ui.button;
+package quoridor.ui.custom;
 
 import javax.swing.*;
 import java.awt.*;

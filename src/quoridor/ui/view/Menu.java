@@ -1,7 +1,7 @@
 package quoridor.ui.view;
 
-import quoridor.ui.button.JButtonListener;
-import quoridor.ui.button.JButtonMenu;
+import quoridor.ui.custom.JButtonMenu;
+import quoridor.ui.listener.MenuListener;
 import sun.audio.AudioData;
 import sun.audio.AudioPlayer;
 import sun.audio.AudioStream;
@@ -22,6 +22,8 @@ public class Menu extends JFrame {
   private JButtonMenu charger;
   private JButtonMenu quitter;
 
+  private JPanel jPanel;
+
   public Menu() {
     this.setTitle("Quoridor");
     this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -29,11 +31,11 @@ public class Menu extends JFrame {
     this.setResizable(false);
     this.setUndecorated(true);
 
-    JPanel panel = new JPanel();
-    panel.setLayout(new GridBagLayout());
+    jPanel = new JPanel();
+    jPanel.setLayout(new GridBagLayout());
 
     GridBagConstraints constraints = new GridBagConstraints();
-    constraints.insets = new Insets(10,10,10,10);;
+    constraints.insets = new Insets(10,10,10,10);
 
     this.label = new JLabel("Quoridor");
     this.label.setBorder(new EmptyBorder(10, 10, 100, 10));
@@ -45,7 +47,7 @@ public class Menu extends JFrame {
     constraints.gridy = 0;
     constraints.gridx = 0;
 
-    panel.add(this.label, constraints);
+    jPanel.add(this.label, constraints);
 
     constraints.fill = GridBagConstraints.HORIZONTAL;
 
@@ -58,12 +60,12 @@ public class Menu extends JFrame {
     this.nouvelle.setFocusPainted(false);
     this.nouvelle.setHoverBackgroundColor(Color.decode("#3d3d3d"));
     this.nouvelle.setPressedBackgroundColor(Color.decode("#484848"));
-    this.nouvelle.addMouseListener(new JButtonListener());
+    this.nouvelle.addMouseListener(new MenuListener(this));
 
     constraints.gridx = 0;
     constraints.gridy = 1;
 
-    panel.add(this.nouvelle, constraints);
+    jPanel.add(this.nouvelle, constraints);
 
     this.charger = new JButtonMenu("Charger une partie");
     this.charger.setMargin(new Insets(10,10,10,10));
@@ -74,12 +76,12 @@ public class Menu extends JFrame {
     this.charger.setForeground(Color.WHITE);
     this.charger.setHoverBackgroundColor(Color.decode("#3d3d3d"));
     this.charger.setPressedBackgroundColor(Color.decode("#484848"));
-    this.charger.addMouseListener(new JButtonListener());
+    this.charger.addMouseListener(new MenuListener(this));
 
     constraints.gridx = 0;
     constraints.gridy = 2;
 
-    panel.add(this.charger, constraints);
+    jPanel.add(this.charger, constraints);
 
     this.quitter = new JButtonMenu("Quitter");
     this.quitter.setMargin(new Insets(10,10,10,10));
@@ -90,19 +92,35 @@ public class Menu extends JFrame {
     this.quitter.setForeground(Color.WHITE);
     this.quitter.setHoverBackgroundColor(Color.decode("#3d3d3d"));
     this.quitter.setPressedBackgroundColor(Color.decode("#484848"));
-    this.quitter.addMouseListener(new JButtonListener());
+    this.quitter.addMouseListener(new MenuListener(this));
 
     constraints.insets = new Insets(40,10,10,10);
     constraints.gridx = 0;
     constraints.gridy = 3;
 
-    panel.add(this.quitter, constraints);
+    jPanel.add(this.quitter, constraints);
 
-    this.setContentPane(panel);
+    this.setContentPane(jPanel);
 
     music();
 
     this.setVisible(true);
+  }
+
+  public JPanel getjPanel() {
+    return jPanel;
+  }
+
+  public JButtonMenu getCharger() {
+    return charger;
+  }
+
+  public JButtonMenu getNouvelle() {
+    return nouvelle;
+  }
+
+  public JButtonMenu getQuitter() {
+    return quitter;
   }
 
   private void music() {
