@@ -301,7 +301,7 @@ public abstract class Joueur {
                   liste.add(y);
               }
               else if(tableau[x+2][y] != 0 && tableau[x+1][y] == 0 && ((tableau[x + 4][y] != 0 && tableau[x + 3][y] == 0) || tableau[x + 3][y] != 0)){
-                  if((y+2) < this.plateau.getTaille() && tableau[x+2][y+2] == 0 && tableau[x+2][y+1] == 0){
+                  if((y+2) < this.plateau.getTaille() && tableau[x+2][y+2] == 0 && tableau[x+1][y+2] == 0){
                       liste.add(x+2);
                       liste.add(y+2);
                   }
@@ -323,14 +323,13 @@ public abstract class Joueur {
               liste.add(y+4);
             }
             else if(tableau[x][y+2] != 0 && tableau[x][y+1] == 0 && ((tableau[x][y + 4] != 0 && tableau[x][y + 3] != 0) || tableau[x][y + 3] != 0)){
-              if((x+2) < this.plateau.getTaille() && tableau[x+2][y+2] == 0 && tableau[x+1][y+2] == 0){
+              if((x+2) < this.plateau.getTaille() && tableau[x+2][y+2] == 0 && tableau[x+2][y+1] == 0){
                 liste.add(x+2);
                 liste.add(y+2);
               }
               if((x-2) >= 0 && tableau[x-2][y+2] == 0 && tableau[x-1][y+2] == 0){
                 liste.add(x-2);
                 liste.add(y+2);
-                System.out.println(1);
               }
             }
           }
@@ -346,7 +345,7 @@ public abstract class Joueur {
             liste.add(y);
           }
           else if(tableau[x-2][y] != 0 && tableau[x-1][y] == 0 && ((tableau[x - 4][y] != 0 && tableau[x - 3][y] != 0) || tableau[x - 3][y] != 0)){
-            if((y+2) < this.plateau.getTaille() && tableau[x-2][y+2] == 0 && tableau[x-2][y+1] == 0){
+            if((y+2) < this.plateau.getTaille() && tableau[x-2][y+2] == 0 && tableau[x-1][y+2] == 0){
               liste.add(x-2);
               liste.add(y+2);
             }
@@ -368,7 +367,7 @@ public abstract class Joueur {
             liste.add(y+4);
           }
           else if(tableau[x][y-2] != 0 && tableau[x][y-1] == 0 && ((tableau[x][y - 4] != 0 && tableau[x][y - 3] != 0) || tableau[x][y - 3] != 0)){
-            if((x+2) < this.plateau.getTaille() && tableau[x+2][y-2] == 0 && tableau[x+1][y-2] == 0){
+            if((x+2) < this.plateau.getTaille() && tableau[x+2][y-2] == 0 && tableau[x+2][y-1] == 0){
               liste.add(x+2);
               liste.add(y-2);
             }
