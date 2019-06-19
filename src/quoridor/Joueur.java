@@ -256,24 +256,26 @@ public abstract class Joueur {
                }
 
                if (canPlace) {
-                   if (coordonnee.getX2() == -1 && coordonnee.getY1()%2 != 0) {
-                       if (coordonnee.getX1() + 1 < this.plateau.getTaille() && coordonnee.getX1() + 2 < this.plateau.getTaille()) {
-                           this.plateau.setValue(coordonnee.getX1(), coordonnee.getY1(), 5);
-                           this.plateau.setValue(coordonnee.getX1() + 1, coordonnee.getY1(), 5);
-                           this.plateau.setValue(coordonnee.getX1() + 2, coordonnee.getY1(), 5);
-                       }
-                   } else if (coordonnee.getX2() == -2 && coordonnee.getX1()%2 != 0) {
-                       if (coordonnee.getY1() + 1 < this.plateau.getTaille() && coordonnee.getY1() + 2 < this.plateau.getTaille()) {
-                           this.plateau.setValue(coordonnee.getX1(), coordonnee.getY1(), 5);
-                           this.plateau.setValue(coordonnee.getX1(), coordonnee.getY1() + 1, 5);
-                           this.plateau.setValue(coordonnee.getX1(), coordonnee.getY1() + 2, 5);
-                       }
-                   }
                    boolean changed = false;
                    for (int i = 0; i < barrieres.size() && !changed; i++) {
                        if (barrieres.get(i).getCoordonnee().getX1() == -1) {
                            barrieres.get(i).setCoordonnee(coordonnee);
                            changed = true;
+                       }
+                   }
+                   if (changed) {
+                       if (coordonnee.getX2() == -1 && coordonnee.getY1()%2 != 0) {
+                           if (coordonnee.getX1() + 1 < this.plateau.getTaille() && coordonnee.getX1() + 2 < this.plateau.getTaille()) {
+                               this.plateau.setValue(coordonnee.getX1(), coordonnee.getY1(), 5);
+                               this.plateau.setValue(coordonnee.getX1() + 1, coordonnee.getY1(), 5);
+                               this.plateau.setValue(coordonnee.getX1() + 2, coordonnee.getY1(), 5);
+                           }
+                       } else if (coordonnee.getX2() == -2 && coordonnee.getX1()%2 != 0) {
+                           if (coordonnee.getY1() + 1 < this.plateau.getTaille() && coordonnee.getY1() + 2 < this.plateau.getTaille()) {
+                               this.plateau.setValue(coordonnee.getX1(), coordonnee.getY1(), 5);
+                               this.plateau.setValue(coordonnee.getX1(), coordonnee.getY1() + 1, 5);
+                               this.plateau.setValue(coordonnee.getX1(), coordonnee.getY1() + 2, 5);
+                           }
                        }
                    }
                } else

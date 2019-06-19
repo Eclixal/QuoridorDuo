@@ -3,13 +3,18 @@ package quoridor.ui.view;
 import quoridor.Plateau;
 import quoridor.Partie;
 import quoridor.Joueur;
+import quoridor.ui.MainFrame;
 import quoridor.ui.listener.PlateauListener;
 
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.util.ArrayList;
 import javax.swing.*;
 import javax.swing.table.TableColumn;
 import java.awt.*;
 import java.awt.Color;
+import java.util.Timer;
+import java.util.TimerTask;
 
 public class PlateauView extends JPanel {
 
@@ -19,7 +24,10 @@ public class PlateauView extends JPanel {
   private JTable table;
   private PlateauListener listener;
 
-  public PlateauView(Partie partie){
+  private MainFrame mainFrame;
+
+  public PlateauView(MainFrame mainFrame, Partie partie) {
+    this.mainFrame = mainFrame;
     this.plateau = partie.getPlateau();
     this.joueurs = partie.getJoueurs();
     this.tour = 0;
@@ -82,7 +90,13 @@ public class PlateauView extends JPanel {
         this.tour = 0;
       }
       if(this.joueurs.get(tour).isIA()){
-        this.tourIA();
+        java.util.Timer timer = new java.util.Timer();
+        timer.schedule(new TimerTask() {
+          @Override
+          public void run() {
+            tourIA();
+          }
+        }, 250);
       }
       else{
         this.listener = new PlateauListener(this, this.joueurs.get(tour));
@@ -91,12 +105,18 @@ public class PlateauView extends JPanel {
     }
   }
 
-  public void finJeu(){
-    System.out.println("fini");
-  }
-
   public void tourIA(){
     this.joueurs.get(tour).jeu(true, -1, -1);
     this.changerJoueur();
+  }
+
+
+  public MainFrame getMainFrame() {
+    return mainFrame;
+  }
+
+  public void finJeu() {
+    getMainFrame().setContentPane(new FinDePartie(mainFrame, this.joueurs.get(tour).getNom()));
+    getMainFrame().validate();
   }
 }

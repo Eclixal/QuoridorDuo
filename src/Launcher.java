@@ -7,6 +7,7 @@ import quoridor.ui.view.PlateauView;
 import javax.swing.*;
 import java.io.*;
 import java.util.Scanner;
+import java.util.TimerTask;
 
 /**
   * Cette classe permet de lancer l'application
@@ -49,7 +50,6 @@ public class Launcher {
           ex.printStackTrace();
         }
 
-        Partie partie = new Partie();
         MainFrame mainFrame = new MainFrame();
         mainFrame.setContentPane(new Menu(mainFrame));
         mainFrame.validate();

@@ -38,7 +38,7 @@ public class DeuxJoueursListener extends MouseAdapter {
                     partie = new Partie(Mode.II, deuxJoueursConfigurationView.getjTextFieldJ1().getText(), deuxJoueursConfigurationView.getjTextFieldJ2().getText(), Difficulte.valueOf(deuxJoueursConfigurationView.getjComboBoxDifficultyJ1().getSelectedItem().toString().toUpperCase()), Difficulte.valueOf(deuxJoueursConfigurationView.getjComboBoxDifficultyJ2().getSelectedItem().toString().toUpperCase()));
 
                 if (partie != null) {
-                    deuxJoueursConfigurationView.getMainFrame().setContentPane(new PlateauView(partie));
+                    deuxJoueursConfigurationView.getMainFrame().setContentPane(new PlateauView(deuxJoueursConfigurationView.getMainFrame(), partie));
                     deuxJoueursConfigurationView.getMainFrame().validate();
                 }
             }

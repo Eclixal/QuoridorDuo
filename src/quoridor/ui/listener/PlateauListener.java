@@ -21,7 +21,7 @@ public class PlateauListener extends MouseAdapter {
     int row = jTable.rowAtPoint(e.getPoint());
     int col = jTable.columnAtPoint(e.getPoint());
     String resultat = this.joueur.jeu(true, row, col);
-    if(resultat.equals("")){
+    if(resultat.isEmpty()){
       this.plateauView.changerJoueur();
     }
     else{

@@ -57,12 +57,8 @@ public class IA extends Joueur {
     }
 
     public String jeu(boolean gui, int x, int y) {
-//      try{
-//        Thread.sleep(1000);
-//      } catch(InterruptedException e){
-//        System.out.println(e.getMessage());
-//      }
-      if(this.getDifficulte() == Difficulte.FACILE){
+
+        if(this.getDifficulte() == Difficulte.FACILE){
         double i1 = Math.random() * 2;
         int i = (int) i1;
         boolean verif = false;
@@ -95,7 +91,6 @@ public class IA extends Joueur {
               else if(a%2 != 0 && b%2 ==0){
                 c = -2;
               }
-              System.out.println(a + " / " + b + " - " + c);
               if(this.placerBarriere(new Coordonnee(a,b,c,-1))){
                   trouve = true;
               }
