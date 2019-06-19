@@ -16,14 +16,12 @@ public class PlateauView extends JPanel {
   private Plateau plateau;
   private int tour;
   private JTable table;
+  private PlateauListener listener;
 
   public PlateauView(Partie partie){
     this.plateau = partie.getPlateau();
     this.joueurs = partie.getJoueurs();
     this.tour = 0;
-    this.plateau.setValue(3,4,5);
-    this.plateau.setValue(3,5,5);
-    this.plateau.setValue(3,6,5);
 
     this.setLayout(new GridBagLayout());
     GridBagConstraints constraints = new GridBagConstraints();
@@ -37,9 +35,11 @@ public class PlateauView extends JPanel {
 
     if(this.joueurs.get(0).isIA()){
       this.joueurs.get(0).jeu(true, -1, -1);
+      this.changerJoueur();
     }
     else{
-      this.table.addMouseListener(new PlateauListener(this, this.joueurs.get(0)));
+      this.listener = new PlateauListener(this, this.joueurs.get(0));
+      this.table.addMouseListener(this.listener);
     }
 
     this.table.setRowSelectionAllowed(false);
@@ -62,17 +62,34 @@ public class PlateauView extends JPanel {
   }
 
   public void changerJoueur(){
-    if(this.tour != 3){
-      this.tour++;
+    this.revalidate();
+    this.repaint();
+    if(!(this.joueurs.get(tour).isIA())){
+      this.table.removeMouseListener(this.listener);
+    }
+    if(this.joueurs.get(tour).getFin().getX1() == this.joueurs.get(tour).getPion().getCoordonnee().getX1() || this.joueurs.get(tour).getFin().getY1() == this.joueurs.get(tour).getPion().getCoordonnee().getY1()){
+      this.finJeu();
     }
     else{
-      this.tour = 0;
+
+      if(this.tour < this.joueurs.size()-1){
+        this.tour++;
+      }
+      else{
+        this.tour = 0;
+      }
+      if(this.joueurs.get(tour).isIA()){
+        this.joueurs.get(tour).jeu(true, -1, -1);
+        this.changerJoueur();
+      }
+      else{
+        this.listener = new PlateauListener(this, this.joueurs.get(tour));
+        this.table.addMouseListener(this.listener);
+      }
     }
-    if(this.joueurs.get(tour).isIA()){
-      this.joueurs.get(tour).jeu(true, -1, -1);
-    }
-    else{
-      this.table.addMouseListener(new PlateauListener(this, this.joueurs.get(tour)));
-    }
+  }
+
+  public void finJeu(){
+    System.out.println("fini");
   }
 }

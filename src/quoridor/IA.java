@@ -57,6 +57,11 @@ public class IA extends Joueur {
     }
 
     public String jeu(boolean gui, int x, int y) {
+      try{
+        Thread.sleep(1000);
+      } catch(InterruptedException e){
+        System.out.println(e.getMessage());
+      }
       if(this.getDifficulte() == Difficulte.FACILE){
         double i1 = Math.random() * 2;
         int i = (int) i1;

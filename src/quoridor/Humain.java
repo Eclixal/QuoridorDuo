@@ -80,7 +80,7 @@ public class Humain extends Joueur {
             ret = "Ce déplacement est impossible !";
           }
         }
-        else if((x%2 == 0 && y!=0) || (x%2 != 0 && y == 0)){
+        else if((x%2 == 0 && y%2 !=0) || (x%2 != 0 && y%2 == 0)){
           int z = 0;
           if(x%2 == 0 && y!= 0){
             z = -1;

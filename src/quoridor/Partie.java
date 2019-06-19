@@ -35,7 +35,7 @@ public class Partie {
     }
 
     public Partie(){
-      this.mode = Mode.HHHH;
+      this.mode = Mode.IIII;
       this.initialisation();
     }
 
@@ -320,7 +320,7 @@ public class Partie {
       boolean fin = false;
       int gagnant = 0;
       if (gui) {
-        
+
       } else {
           if(this.mode.toString().length() == 2){
               while(!fin){

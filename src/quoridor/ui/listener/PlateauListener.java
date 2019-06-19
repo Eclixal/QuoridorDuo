@@ -13,17 +13,19 @@ public class PlateauListener extends MouseAdapter {
 
   public PlateauListener(PlateauView plateauView, Joueur joueur){
     this.joueur = joueur;
+    this.plateauView = plateauView;
   }
 
   public void mouseClicked(MouseEvent e) {
     JTable jTable = (JTable) e.getSource();
     int row = jTable.rowAtPoint(e.getPoint());
     int col = jTable.columnAtPoint(e.getPoint());
-    if(this.joueur.jeu(true, row, col) == ""){
+    String resultat = this.joueur.jeu(true, row, col);
+    if(resultat.equals("")){
       this.plateauView.changerJoueur();
     }
     else{
-
+      System.out.println(resultat);
     }
   }
 }
