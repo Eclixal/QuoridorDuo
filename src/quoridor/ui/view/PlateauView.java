@@ -82,8 +82,7 @@ public class PlateauView extends JPanel {
         this.tour = 0;
       }
       if(this.joueurs.get(tour).isIA()){
-        this.joueurs.get(tour).jeu(true, -1, -1);
-        this.changerJoueur();
+        this.tourIA();
       }
       else{
         this.listener = new PlateauListener(this, this.joueurs.get(tour));
@@ -94,5 +93,10 @@ public class PlateauView extends JPanel {
 
   public void finJeu(){
     System.out.println("fini");
+  }
+
+  public void tourIA(){
+    this.joueurs.get(tour).jeu(true, -1, -1);
+    this.changerJoueur();
   }
 }

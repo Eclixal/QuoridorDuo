@@ -15,8 +15,9 @@ public class Partie {
     private ArrayList<Joueur> joueurs;
 
     /**
-      * Créé un nouvel objet Partie
+      * Créé un nouvel objet Partie avec un fichier de configuration
       * @param fileName le nom du fichier de configuration
+      * @param gui le booleen pour savoir si la partie se joue en mode graphique
       */
     public Partie(String fileName, boolean gui) {
         this.configuration(fileName);
@@ -24,6 +25,11 @@ public class Partie {
         this.start(0, gui);
     }
 
+    /**
+      * Créé un nouvel objet Partie avec un fichier de configuration
+      * @param fileName le nom du fichier de configuration
+      * @param gui le booleen pour savoir si la partie se joue en mode graphique
+      */
     public Partie(Mode mode, boolean gui) {
         this.mode = mode;
         this.initialisation("Joueur1", "Joueur2", "Joueur3", "Joueur4", Difficulte.FACILE, Difficulte.FACILE, Difficulte.FACILE, Difficulte.FACILE);
@@ -32,11 +38,6 @@ public class Partie {
 
     public Partie(boolean save, String saveFile, boolean gui) {
         this.charger(saveFile, gui);
-    }
-
-    public Partie(){
-      this.mode = Mode.HI;
-      this.initialisation("Joueur1", "Joueur2", "Joueur3", "Joueur4", Difficulte.FACILE, Difficulte.FACILE, Difficulte.FACILE, Difficulte.FACILE);
     }
 
     public Partie(Mode mode, String pseudo1, String pseudo2, Difficulte difficulte1, Difficulte difficulte2) {
