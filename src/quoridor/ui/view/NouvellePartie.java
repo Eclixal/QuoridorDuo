@@ -17,7 +17,6 @@ import java.io.IOException;
 public class NouvellePartie extends JPanel {
 
   private JButtonMenu retour;
-  private JButtonMenu jouer;
   private JLabel jLabel;
 
   private JButtonMenu jButtonMenu2J;
@@ -74,9 +73,13 @@ public class NouvellePartie extends JPanel {
       this.jButtonMenu4J.addMouseListener(new NouvellePartieListener(this));
 
       constraints1.gridy = 0;
-      constraints1.gridx = 1;
+      constraints1.gridx = 2;
 
       jPanel.add(this.jButtonMenu4J, constraints1);
+
+      constraints.gridy = 1;
+      constraints.gridx = 0;
+      this.add(jPanel, constraints);
 
       this.retour = new JButtonMenu("Retour");
       this.retour.setMargin(new Insets(20,30,20,30));
@@ -88,31 +91,9 @@ public class NouvellePartie extends JPanel {
       this.retour.setHoverBackgroundColor(Color.decode("#3d3d3d"));
       this.retour.setPressedBackgroundColor(Color.decode("#484848"));
 
-      constraints1.gridy = 1;
-      constraints1.gridx = 0;
-
-      jPanel.add(this.retour, constraints1);
-
-      this.jouer = new JButtonMenu("Jouer");
-      this.jouer.setMargin(new Insets(20,30,20,30));
-      this.jouer.setFont(new Font("Courier New", Font.BOLD, this.retour.getFont().getSize()));
-      this.jouer.setBackground(Color.decode("#252525"));
-      this.jouer.setForeground(Color.WHITE);
-      this.jouer.setBorderPainted(false);
-      this.jouer.setFocusPainted(false);
-      this.jouer.setHoverBackgroundColor(Color.decode("#3d3d3d"));
-      this.jouer.setPressedBackgroundColor(Color.decode("#484848"));
-
-      constraints1.insets = new Insets(10,50,10,50);
-
-      constraints1.gridx = 1;
-      constraints1.gridy = 1;
-
-      jPanel.add(this.jouer, constraints1);
-
-      constraints.gridy = 3;
+      constraints.gridy = 2;
       constraints.gridx = 0;
-      this.add(jPanel, constraints);
+      this.add(this.retour, constraints);
 
       music();
       this.setVisible(true);
@@ -124,6 +105,10 @@ public class NouvellePartie extends JPanel {
 
     public JButtonMenu getjButtonMenu4J() {
         return jButtonMenu4J;
+    }
+
+    public JButtonMenu getRetour() {
+        return retour;
     }
 
     private ContinuousAudioDataStream audioDataStream;

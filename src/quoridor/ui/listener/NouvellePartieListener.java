@@ -1,7 +1,9 @@
 package quoridor.ui.listener;
 
 import quoridor.ui.view.DeuxJoueursConfigurationView;
+import quoridor.ui.view.Menu;
 import quoridor.ui.view.NouvellePartie;
+import quoridor.ui.view.QuatreJoueursConfigurationView;
 import sun.audio.AudioPlayer;
 
 import javax.sound.sampled.AudioInputStream;
@@ -27,7 +29,13 @@ public class NouvellePartieListener extends MouseAdapter {
             nouvellePartie.getMainFrame().setContentPane(new DeuxJoueursConfigurationView(nouvellePartie.getMainFrame()));
             nouvellePartie.getMainFrame().validate();
         } else if (e.getSource() == this.nouvellePartie.getjButtonMenu4J()) {
-
+            AudioPlayer.player.stop(nouvellePartie.getAudioDataStream());
+            nouvellePartie.getMainFrame().setContentPane(new QuatreJoueursConfigurationView(nouvellePartie.getMainFrame()));
+            nouvellePartie.getMainFrame().validate();
+        } else if (e.getSource() == this.nouvellePartie.getRetour()) {
+            AudioPlayer.player.stop(nouvellePartie.getAudioDataStream());
+            nouvellePartie.getMainFrame().setContentPane(new Menu(nouvellePartie.getMainFrame()));
+            nouvellePartie.getMainFrame().validate();
         }
     }
 

@@ -1,6 +1,7 @@
 package quoridor.ui.listener;
 
 import quoridor.ui.view.DeuxJoueursConfigurationView;
+import quoridor.ui.view.QuatreJoueursConfigurationView;
 
 import javax.sound.sampled.AudioInputStream;
 import javax.sound.sampled.AudioSystem;
@@ -13,8 +14,14 @@ public class JComboListener implements ItemListener {
 
     private DeuxJoueursConfigurationView deuxJoueursConfigurationView;
 
+    private QuatreJoueursConfigurationView quatreJoueursConfigurationView;
+
     public JComboListener(DeuxJoueursConfigurationView deuxJoueursConfigurationView) {
         this.deuxJoueursConfigurationView = deuxJoueursConfigurationView;
+    }
+
+    public JComboListener(QuatreJoueursConfigurationView quatreJoueursConfigurationView) {
+        this.quatreJoueursConfigurationView = quatreJoueursConfigurationView;
     }
 
     @Override
@@ -22,6 +29,8 @@ public class JComboListener implements ItemListener {
         if (e.getStateChange() == ItemEvent.SELECTED) {
             if (deuxJoueursConfigurationView != null)
                 deuxJoueursConfigurationView.changeMode(e.getItem());
+            if (quatreJoueursConfigurationView != null)
+                quatreJoueursConfigurationView.changeMode(e.getItem());
         }
     }
 }
