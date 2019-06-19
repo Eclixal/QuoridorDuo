@@ -193,14 +193,18 @@ public abstract class Joueur {
             }
 
             if (coordonnee.getX2() == -1 && coordonnee.getY1()%2 != 0) {
-                if (coordonnee.getX1() + 1 < this.plateau.getTaille() && coordonnee.getX1() + 2 < this.plateau.getTaille()) {
+                if (coordonnee.getX1() + 1 < this.plateau.getTaille() && coordonnee.getX1() + 2 < this.plateau.getTaille()
+                    && tmp[coordonnee.getX1()][coordonnee.getX1()] == 0 &&  tmp[coordonnee.getX1() + 1][coordonnee.getY1()] == 0 &&
+                        tmp[coordonnee.getX1() + 2][coordonnee.getY1()] == 0) {
                     tmp[coordonnee.getX1()][coordonnee.getY1()] = 5;
                     tmp[coordonnee.getX1() + 1][coordonnee.getY1()] = 5;
                     tmp[coordonnee.getX1() + 2][coordonnee.getY1()] = 5;
                 } else
                     ret = false;
             } else if (coordonnee.getX2() == -2 && coordonnee.getX1()%2 != 0) {
-                if (coordonnee.getY1() + 1 < this.plateau.getTaille() && coordonnee.getY1() + 2 < this.plateau.getTaille()) {
+                if (coordonnee.getY1() + 1 < this.plateau.getTaille() && coordonnee.getY1() + 2 < this.plateau.getTaille()
+                    && tmp[coordonnee.getX1()][coordonnee.getY1()] == 0 && tmp[coordonnee.getX1()][coordonnee.getY1() + 1] == 0
+                        && tmp[coordonnee.getX1()][coordonnee.getY1() + 2] == 0) {
                     tmp[coordonnee.getX1()][coordonnee.getY1()] = 5;
                     tmp[coordonnee.getX1()][coordonnee.getY1() + 1] = 5;
                     tmp[coordonnee.getX1()][coordonnee.getY1() + 2] = 5;
