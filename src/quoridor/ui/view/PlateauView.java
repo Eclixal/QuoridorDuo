@@ -9,6 +9,7 @@ import java.util.ArrayList;
 import javax.swing.*;
 import javax.swing.table.TableColumn;
 import java.awt.*;
+import java.awt.Color;
 
 public class PlateauView extends JPanel {
 
@@ -51,12 +52,14 @@ public class PlateauView extends JPanel {
         column.setMaxWidth(50);
       }
       else{
-        table.setRowHeight(i,20);
+        table.setRowHeight(i,10);
         TableColumn column = this.table.getColumnModel().getColumn(i);
-        column.setMinWidth(20);
-        column.setMaxWidth(20);
+        column.setMinWidth(10);
+        column.setMaxWidth(10);
       }
     }
+    Color color = new Color(187, 120, 49, 255);
+    this.table.setGridColor(color);
 
     this.add(this.table, constraints);
   }
