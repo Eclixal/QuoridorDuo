@@ -20,13 +20,13 @@ public class Partie {
       */
     public Partie(String fileName, boolean gui) {
         this.configuration(fileName);
-        this.initialisation();
+        this.initialisation("Joueur1", "Joueur2", "Joueur3", "Joueur4", Difficulte.FACILE, Difficulte.FACILE, Difficulte.FACILE, Difficulte.FACILE);
         this.start(0, gui);
     }
 
     public Partie(Mode mode, boolean gui) {
         this.mode = mode;
-        this.initialisation();
+        this.initialisation("Joueur1", "Joueur2", "Joueur3", "Joueur4", Difficulte.FACILE, Difficulte.FACILE, Difficulte.FACILE, Difficulte.FACILE);
         this.start(0, gui);
     }
 
@@ -35,8 +35,13 @@ public class Partie {
     }
 
     public Partie(){
-      this.mode = Mode.HH;
-      this.initialisation();
+      this.mode = Mode.HI;
+      this.initialisation("Joueur1", "Joueur2", "Joueur3", "Joueur4", Difficulte.FACILE, Difficulte.FACILE, Difficulte.FACILE, Difficulte.FACILE);
+    }
+
+    public Partie(Mode mode, String pseudo1, String pseudo2, Difficulte difficulte1, Difficulte difficulte2) {
+        this.mode = mode;
+        this.initialisation(pseudo1, pseudo2, null, null, difficulte1, difficulte2, null, null);
     }
 
     /**
@@ -241,59 +246,59 @@ public class Partie {
     /**
       * Initialise les différents éléments constants de la partie
       */
-    private void initialisation() {
+    private void initialisation(String pseudo1, String pseudo2, String pseudo3, String pseudo4, Difficulte difficulte1, Difficulte difficulte2, Difficulte difficulte3, Difficulte difficulte4) {
         this.plateau = new Plateau(9, this);
         this.joueurs = new ArrayList<Joueur>();
 
         switch (this.mode) {
             case HH:
-                this.joueurs.add(new Humain("Joueur1", 1, "RED", null, new Pion("RED", new Coordonnee(0,(int) Math.round((double)plateau.getTaille()/2)-1,-1,-1)), plateau));
-                this.joueurs.add(new Humain("Joueur2", 2, "BLUE", null, new Pion("BLUE", new Coordonnee(plateau.getTaille()-1, (int) Math.round((double)plateau.getTaille()/2)-1,-1,-1)), plateau));
+                this.joueurs.add(new Humain(pseudo1, 1, "RED", null, new Pion("RED", new Coordonnee(0,(int) Math.round((double)plateau.getTaille()/2)-1,-1,-1)), plateau));
+                this.joueurs.add(new Humain(pseudo2, 2, "BLUE", null, new Pion("BLUE", new Coordonnee(plateau.getTaille()-1, (int) Math.round((double)plateau.getTaille()/2)-1,-1,-1)), plateau));
                 break;
 
             case HI:
-                this.joueurs.add(new Humain("Joueur1", 1, "RED", null, new Pion("RED", new Coordonnee(0,(int) Math.round((double)plateau.getTaille()/2)-1,-1,-1)), plateau));
-                this.joueurs.add(new IA("Joueur2", 2, "BLUE", null, new Pion("BLUE", new Coordonnee(plateau.getTaille()-1, (int) Math.round((double)plateau.getTaille()/2)-1,-1,-1)), plateau, Difficulte.FACILE));
+                this.joueurs.add(new Humain(pseudo1, 1, "RED", null, new Pion("RED", new Coordonnee(0,(int) Math.round((double)plateau.getTaille()/2)-1,-1,-1)), plateau));
+                this.joueurs.add(new IA(pseudo2, 2, "BLUE", null, new Pion("BLUE", new Coordonnee(plateau.getTaille()-1, (int) Math.round((double)plateau.getTaille()/2)-1,-1,-1)), plateau, difficulte2));
                 break;
 
             case II:
-                this.joueurs.add(new IA("Joueur1", 1, "RED", null, new Pion("RED", new Coordonnee(0,(int) Math.round((double)plateau.getTaille()/2)-1,-1,-1)), plateau, Difficulte.FACILE));
-                this.joueurs.add(new IA("Joueur2", 2, "BLUE", null, new Pion("BLUE", new Coordonnee(plateau.getTaille()-1, (int) Math.round((double)plateau.getTaille()/2)-1, -1, -1)), plateau, Difficulte.FACILE));
+                this.joueurs.add(new IA(pseudo1, 1, "RED", null, new Pion("RED", new Coordonnee(0,(int) Math.round((double)plateau.getTaille()/2)-1,-1,-1)), plateau, difficulte1));
+                this.joueurs.add(new IA(pseudo2, 2, "BLUE", null, new Pion("BLUE", new Coordonnee(plateau.getTaille()-1, (int) Math.round((double)plateau.getTaille()/2)-1, -1, -1)), plateau, difficulte2));
                 break;
 
             case HHHH:
-                this.joueurs.add(new Humain("Joueur1", 1, "RED", null, new Pion("RED", new Coordonnee(0,(int) Math.round((double)plateau.getTaille()/2)-1,-1,-1)), plateau));
-                this.joueurs.add(new Humain("Joueur2", 2, "BLUE", null, new Pion("BLUE", new Coordonnee(plateau.getTaille()-1, (int) Math.round((double)plateau.getTaille()/2)-1,-1,-1)), plateau));
-                this.joueurs.add(new Humain("Joueur3", 3, "GREEN", null, new Pion("GREEN", new Coordonnee((int) Math.round((double)plateau.getTaille()/2)-1, plateau.getTaille()-1,-1,-1)), plateau));
-                this.joueurs.add(new Humain("Joueur4", 4, "YELLOW", null, new Pion("YELLOW", new Coordonnee((int) Math.round((double)plateau.getTaille()/2)-1, 0,-1,-1)), plateau));
+                this.joueurs.add(new Humain(pseudo1, 1, "RED", null, new Pion("RED", new Coordonnee(0,(int) Math.round((double)plateau.getTaille()/2)-1,-1,-1)), plateau));
+                this.joueurs.add(new Humain(pseudo2, 2, "BLUE", null, new Pion("BLUE", new Coordonnee(plateau.getTaille()-1, (int) Math.round((double)plateau.getTaille()/2)-1,-1,-1)), plateau));
+                this.joueurs.add(new Humain(pseudo3, 3, "GREEN", null, new Pion("GREEN", new Coordonnee((int) Math.round((double)plateau.getTaille()/2)-1, plateau.getTaille()-1,-1,-1)), plateau));
+                this.joueurs.add(new Humain(pseudo4, 4, "YELLOW", null, new Pion("YELLOW", new Coordonnee((int) Math.round((double)plateau.getTaille()/2)-1, 0,-1,-1)), plateau));
                 break;
 
             case HHHI:
-                this.joueurs.add(new Humain("Joueur1", 1, "RED", null, new Pion("RED", new Coordonnee(0,(int) Math.round((double)plateau.getTaille()/2)-1,-1,-1)), plateau));
-                this.joueurs.add(new Humain("Joueur2", 2, "BLUE", null, new Pion("BLUE", new Coordonnee(plateau.getTaille()-1, (int) Math.round((double)plateau.getTaille()/2)-1,-1,-1)), plateau));
-                this.joueurs.add(new Humain("Joueur3", 3, "GREEN", null, new Pion("GREEN", new Coordonnee((int) Math.round((double)plateau.getTaille()/2)-1, plateau.getTaille()-1,-1,-1)), plateau));
-                this.joueurs.add(new IA("Joueur4", 4, "YELLOW", null, new Pion("YELLOW", new Coordonnee((int) Math.round((double)plateau.getTaille()/2)-1, 0,-1,-1)), plateau, Difficulte.FACILE));
+                this.joueurs.add(new Humain(pseudo1, 1, "RED", null, new Pion("RED", new Coordonnee(0,(int) Math.round((double)plateau.getTaille()/2)-1,-1,-1)), plateau));
+                this.joueurs.add(new Humain(pseudo2, 2, "BLUE", null, new Pion("BLUE", new Coordonnee(plateau.getTaille()-1, (int) Math.round((double)plateau.getTaille()/2)-1,-1,-1)), plateau));
+                this.joueurs.add(new Humain(pseudo3, 3, "GREEN", null, new Pion("GREEN", new Coordonnee((int) Math.round((double)plateau.getTaille()/2)-1, plateau.getTaille()-1,-1,-1)), plateau));
+                this.joueurs.add(new IA(pseudo4, 4, "YELLOW", null, new Pion("YELLOW", new Coordonnee((int) Math.round((double)plateau.getTaille()/2)-1, 0,-1,-1)), plateau, difficulte4));
                 break;
 
             case HHII:
-                this.joueurs.add(new Humain("Joueur1", 1, "RED", null, new Pion("RED", new Coordonnee(0,(int) Math.round((double)plateau.getTaille()/2)-1,-1,-1)), plateau));
-                this.joueurs.add(new Humain("Joueur2", 2, "BLUE", null, new Pion("BLUE", new Coordonnee(plateau.getTaille()-1, (int) Math.round((double)plateau.getTaille()/2)-1,-1,-1)), plateau));
-                this.joueurs.add(new IA("Joueur3", 3, "GREEN", null, new Pion("GREEN", new Coordonnee((int) Math.round((double)plateau.getTaille()/2)-1, plateau.getTaille()-1,-1,-1)), plateau, Difficulte.FACILE));
-                this.joueurs.add(new IA("Joueur4", 4, "YELLOW", null, new Pion("YELLOW", new Coordonnee((int) Math.round((double)plateau.getTaille()/2)-1, 0,-1,-1)), plateau, Difficulte.FACILE));
+                this.joueurs.add(new Humain(pseudo1, 1, "RED", null, new Pion("RED", new Coordonnee(0,(int) Math.round((double)plateau.getTaille()/2)-1,-1,-1)), plateau));
+                this.joueurs.add(new Humain(pseudo2, 2, "BLUE", null, new Pion("BLUE", new Coordonnee(plateau.getTaille()-1, (int) Math.round((double)plateau.getTaille()/2)-1,-1,-1)), plateau));
+                this.joueurs.add(new IA(pseudo3, 3, "GREEN", null, new Pion("GREEN", new Coordonnee((int) Math.round((double)plateau.getTaille()/2)-1, plateau.getTaille()-1,-1,-1)), plateau, difficulte3));
+                this.joueurs.add(new IA(pseudo4, 4, "YELLOW", null, new Pion("YELLOW", new Coordonnee((int) Math.round((double)plateau.getTaille()/2)-1, 0,-1,-1)), plateau, difficulte4));
                 break;
 
             case HIII:
-                this.joueurs.add(new Humain("Joueur1", 1, "RED", null, new Pion("RED", new Coordonnee(0,(int) Math.round((double)plateau.getTaille()/2)-1,-1,-1)), plateau));
-                this.joueurs.add(new IA("Joueur2", 2, "BLUE", null, new Pion("BLUE", new Coordonnee(plateau.getTaille()-1, (int) Math.round((double)plateau.getTaille()/2)-1,-1,-1)), plateau, Difficulte.FACILE));
-                this.joueurs.add(new IA("Joueur3", 3, "GREEN", null, new Pion("GREEN", new Coordonnee((int) Math.round((double)plateau.getTaille()/2)-1, plateau.getTaille()-1,-1,-1)), plateau, Difficulte.FACILE));
-                this.joueurs.add(new IA("Joueur4", 4, "YELLOW", null, new Pion("YELLOW", new Coordonnee((int) Math.round((double)plateau.getTaille()/2)-1, 0,-1,-1)), plateau, Difficulte.FACILE));
+                this.joueurs.add(new Humain(pseudo1, 1, "RED", null, new Pion("RED", new Coordonnee(0,(int) Math.round((double)plateau.getTaille()/2)-1,-1,-1)), plateau));
+                this.joueurs.add(new IA(pseudo2, 2, "BLUE", null, new Pion("BLUE", new Coordonnee(plateau.getTaille()-1, (int) Math.round((double)plateau.getTaille()/2)-1,-1,-1)), plateau, difficulte2));
+                this.joueurs.add(new IA(pseudo3, 3, "GREEN", null, new Pion("GREEN", new Coordonnee((int) Math.round((double)plateau.getTaille()/2)-1, plateau.getTaille()-1,-1,-1)), plateau, difficulte3));
+                this.joueurs.add(new IA(pseudo4, 4, "YELLOW", null, new Pion("YELLOW", new Coordonnee((int) Math.round((double)plateau.getTaille()/2)-1, 0,-1,-1)), plateau, difficulte4));
                 break;
 
             case IIII:
-                this.joueurs.add(new IA("Joueur1", 1, "RED", null, new Pion("RED", new Coordonnee(0,(int) Math.round((double)plateau.getTaille()/2)-1,-1,-1)), plateau, Difficulte.FACILE));
-                this.joueurs.add(new IA("Joueur2", 2, "BLUE", null, new Pion("BLUE", new Coordonnee(plateau.getTaille()-1, (int) Math.round((double)plateau.getTaille()/2)-1,-1,-1)), plateau, Difficulte.FACILE));
-                this.joueurs.add(new IA("Joueur3", 3, "GREEN", null, new Pion("GREEN", new Coordonnee((int) Math.round((double)plateau.getTaille()/2)-1, plateau.getTaille()-1,-1,-1)), plateau, Difficulte.FACILE));
-                this.joueurs.add(new IA("Joueur4", 4, "YELLOW", null, new Pion("YELLOW", new Coordonnee((int) Math.round((double)plateau.getTaille()/2)-1, 0,-1,-1)), plateau, Difficulte.FACILE));
+                this.joueurs.add(new IA(pseudo1, 1, "RED", null, new Pion("RED", new Coordonnee(0,(int) Math.round((double)plateau.getTaille()/2)-1,-1,-1)), plateau, difficulte1));
+                this.joueurs.add(new IA(pseudo2, 2, "BLUE", null, new Pion("BLUE", new Coordonnee(plateau.getTaille()-1, (int) Math.round((double)plateau.getTaille()/2)-1,-1,-1)), plateau, difficulte2));
+                this.joueurs.add(new IA(pseudo3, 3, "GREEN", null, new Pion("GREEN", new Coordonnee((int) Math.round((double)plateau.getTaille()/2)-1, plateau.getTaille()-1,-1,-1)), plateau, difficulte3));
+                this.joueurs.add(new IA(pseudo4, 4, "YELLOW", null, new Pion("YELLOW", new Coordonnee((int) Math.round((double)plateau.getTaille()/2)-1, 0,-1,-1)), plateau, difficulte4));
         }
     }
 

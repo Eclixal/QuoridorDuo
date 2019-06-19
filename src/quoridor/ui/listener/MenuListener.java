@@ -28,7 +28,7 @@ public class MenuListener extends MouseAdapter {
         playSound("sons/main_gui_click.wav");
         if (e.getSource() == menu.getNouvelle()) {
             AudioPlayer.player.stop(menu.getAudioDataStream());
-            menu.getMainFrame().setContentPane(new NouvellePartie());
+            menu.getMainFrame().setContentPane(new NouvellePartie(menu.getMainFrame()));
             menu.getMainFrame().validate();
         } else if (e.getSource() == menu.getCharger()) {
             SauvegardeFileChooser sauvegardeFileChooser = new SauvegardeFileChooser(menu);

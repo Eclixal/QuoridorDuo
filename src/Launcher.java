@@ -51,7 +51,7 @@ public class Launcher {
 
         Partie partie = new Partie();
         MainFrame mainFrame = new MainFrame();
-        mainFrame.setContentPane(new PlateauView(partie));
+        mainFrame.setContentPane(new Menu(mainFrame));
         mainFrame.validate();
         mainFrame.repaint();
       }
