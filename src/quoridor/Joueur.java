@@ -140,35 +140,47 @@ public abstract class Joueur {
      * Permet de savoir s'il existe un chemin pour gagner
      * @return true s'il existe la possibilité de placer un pion
      */
-    public boolean existWay(int x, int y, int[][] tmp) {
+    public boolean existWay(int x, int y, int[][] tmp, int j) {
         boolean exist = false;
         ArrayList<Integer> liste = getDeplacementPossibles(x, y, tmp);
 
         int i = 0;
         while(i < liste.size() && !exist) {
+            System.out.println(i);
             if(isValide(liste.get(i), liste.get(i+1), tmp)) {
-                numDeplacement++;
-                tmp[liste.get(i)][liste.get(i+1)] = numDeplacement;
+                plateau.getPartie().getJoueurs().get(j).setNumDeplacement(plateau.getPartie().getJoueurs().get(j).getNumDeplacement()+1);
+                tmp[liste.get(i)][liste.get(i+1)] = plateau.getPartie().getJoueurs().get(j).getNumDeplacement();
 
-                if (((getFin().getX1() != -1 && liste.get(i) == getFin().getX1()) || (getFin().getY1() != -1 && liste.get(i+1) == getFin().getY1())) || (getFin().getX1() != -1 && x == getFin().getX1() || getFin().getY1() != -1 && y == getFin().getY1())) {
+                if (((plateau.getPartie().getJoueurs().get(j).getFin().getX1() != -1 && liste.get(i) == plateau.getPartie().getJoueurs().get(j).getFin().getX1()) || (plateau.getPartie().getJoueurs().get(j).getFin().getY1() != -1 && liste.get(i+1) == plateau.getPartie().getJoueurs().get(j).getFin().getY1())) || (plateau.getPartie().getJoueurs().get(j).getFin().getX1() != -1 && x == plateau.getPartie().getJoueurs().get(j).getFin().getX1() || plateau.getPartie().getJoueurs().get(j).getFin().getY1() != -1 && y == plateau.getPartie().getJoueurs().get(j).getFin().getY1())) {
                     exist = true;
                 } else {
-                    if (existWay(liste.get(i), liste.get(i+1), tmp)) {
+                    if (existWay(liste.get(i), liste.get(i+1), tmp, j)) {
                         exist = true;
                     } else {
                         tmp[liste.get(i)][liste.get(i+1)] =  -1;
-                        numDeplacement--;
+                        plateau.getPartie().getJoueurs().get(j).setNumDeplacement(plateau.getPartie().getJoueurs().get(j).getNumDeplacement()-1);
                     }
                 }
             }
             i = i + 2;
         }
+
         return exist;
     }
 
+    public int getNumDeplacement() {
+        return numDeplacement;
+    }
+
+    public void setNumDeplacement(int numDeplacement) {
+        this.numDeplacement = numDeplacement;
+    }
+
+
+
     private boolean isValide(int x, int y, int[][] tmp) {
         boolean ret = false;
-        if (x >= 0 && x < this.plateau.getTaille() && y >= 0 && y < this.plateau.getTaille() && this.plateau.getValue(x, y) == 0 && tmp[x][y] == 0)
+        if (x >= 0 && x < this.plateau.getTaille() && y >= 0 && y < this.plateau.getTaille() && tmp[x][y] == 0)
             ret = true;
         return ret;
     }
@@ -194,8 +206,9 @@ public abstract class Joueur {
 
             if (coordonnee.getX2() == -1 && coordonnee.getY1()%2 != 0) {
                 if (coordonnee.getX1() + 1 < this.plateau.getTaille() && coordonnee.getX1() + 2 < this.plateau.getTaille()
-                    && tmp[coordonnee.getX1()][coordonnee.getX1()] == 0 &&  tmp[coordonnee.getX1() + 1][coordonnee.getY1()] == 0 &&
-                        tmp[coordonnee.getX1() + 2][coordonnee.getY1()] == 0) {
+                    && tmp[coordonnee.getX1()][coordonnee.getY1()] == 0
+                        && tmp[coordonnee.getX1() + 1][coordonnee.getY1()] == 0
+                        && tmp[coordonnee.getX1() + 2][coordonnee.getY1()] == 0) {
                     tmp[coordonnee.getX1()][coordonnee.getY1()] = 5;
                     tmp[coordonnee.getX1() + 1][coordonnee.getY1()] = 5;
                     tmp[coordonnee.getX1() + 2][coordonnee.getY1()] = 5;
@@ -203,7 +216,8 @@ public abstract class Joueur {
                     ret = false;
             } else if (coordonnee.getX2() == -2 && coordonnee.getX1()%2 != 0) {
                 if (coordonnee.getY1() + 1 < this.plateau.getTaille() && coordonnee.getY1() + 2 < this.plateau.getTaille()
-                    && tmp[coordonnee.getX1()][coordonnee.getY1()] == 0 && tmp[coordonnee.getX1()][coordonnee.getY1() + 1] == 0
+                    && tmp[coordonnee.getX1()][coordonnee.getY1()] == 0
+                        && tmp[coordonnee.getX1()][coordonnee.getY1() + 1] == 0
                         && tmp[coordonnee.getX1()][coordonnee.getY1() + 2] == 0) {
                     tmp[coordonnee.getX1()][coordonnee.getY1()] = 5;
                     tmp[coordonnee.getX1()][coordonnee.getY1() + 1] = 5;
@@ -217,19 +231,20 @@ public abstract class Joueur {
                boolean canPlace = true;
 
                for (int i = 0; i < plateau.getPartie().getJoueurs().size() && canPlace; i++) {
-                   numDeplacement = 1;
+                   plateau.getPartie().getJoueurs().get(i).setNumDeplacement(1);
+                   tmp = new int[plateau.getTaille()][plateau.getTaille()];
 
                    for (int x = 0; x < plateau.getDAMIER().length; x++)
                        for (int y = 0; y < plateau.getDAMIER()[x].length; y++)
                            tmp[x][y] = plateau.getDAMIER()[x][y];
 
-                   if (coordonnee.getX2() == -1 && coordonnee.getY1()%2 != 0) {
+                   if (coordonnee.getX2() == -1 && coordonnee.getY1() % 2 != 0) {
                        if (coordonnee.getX1() + 1 < this.plateau.getTaille() && coordonnee.getX1() + 2 < this.plateau.getTaille()) {
                            tmp[coordonnee.getX1()][coordonnee.getY1()] = 5;
                            tmp[coordonnee.getX1() + 1][coordonnee.getY1()] = 5;
                            tmp[coordonnee.getX1() + 2][coordonnee.getY1()] = 5;
                        }
-                   } else if (coordonnee.getX2() == -2 && coordonnee.getX1()%2 != 0) {
+                   } else if (coordonnee.getX2() == -2 && coordonnee.getX1() % 2 != 0) {
                        if (coordonnee.getY1() + 1 < this.plateau.getTaille() && coordonnee.getY1() + 2 < this.plateau.getTaille()) {
                            tmp[coordonnee.getX1()][coordonnee.getY1()] = 5;
                            tmp[coordonnee.getX1()][coordonnee.getY1() + 1] = 5;
@@ -237,7 +252,7 @@ public abstract class Joueur {
                        }
                    }
 
-                   if (!existWay(plateau.getPartie().getJoueurs().get(i).getPion().getCoordonnee().getX1(), plateau.getPartie().getJoueurs().get(i).getPion().getCoordonnee().getY1(), tmp))
+                   if (!existWay(plateau.getPartie().getJoueurs().get(i).getPion().getCoordonnee().getX1(), plateau.getPartie().getJoueurs().get(i).getPion().getCoordonnee().getY1(), tmp, i))
                        canPlace = false;
                }
 
