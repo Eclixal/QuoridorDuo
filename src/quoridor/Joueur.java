@@ -142,6 +142,13 @@ public abstract class Joueur {
      */
     public boolean existWay(int x, int y, int[][] tmp, int j) {
         boolean exist = false;
+        for(int i =0;i<this.plateau.getTaille();i++){
+          for(int k =0;k<this.plateau.getTaille();k++){
+            System.out.print(tmp[i][k]+"\t");
+          }
+          System.out.println();
+        }
+        System.out.println();
         ArrayList<Integer> liste = getDeplacementPossibles(x, y, tmp);
         int i = 0;
         while(i < liste.size() && !exist) {
@@ -292,20 +299,24 @@ public abstract class Joueur {
           if(tableau[x+2][y] == 0 && tableau[x+1][y] == 0){
               liste.add(x+2);
               liste.add(y);
+              System.out.println(1);
           }
           else if((x+4) < this.plateau.getTaille()){
               if(tableau[x+2][y] != 0 && tableau[x+1][y] == 0 && tableau[x+4][y] == 0 && tableau[x+3][y] == 0){
                   liste.add(x+4);
                   liste.add(y);
+                  System.out.println(2);
               }
               else if(tableau[x+2][y] != 0 && tableau[x+1][y] == 0 && ((tableau[x + 4][y] != 0 && tableau[x + 3][y] == 0) || tableau[x + 3][y] != 0)){
-                  if((y+2) < this.plateau.getTaille() && tableau[x+2][y+2] == 0 && tableau[x+1][y+1] == 0){
+                  if((y+2) < this.plateau.getTaille() && tableau[x+2][y+2] == 0 && tableau[x+1][y+1] == 0 && tableau[x][y+1] == 0 && tableau[x+2][y+1] == 0){
                       liste.add(x+2);
                       liste.add(y+2);
+                      System.out.println(3);
                   }
-                  if((y-2) >= 0 && tableau[x+2][y-2] == 0 && tableau[x+1][y-1] == 0){
+                  if((y-2) >= 0 && tableau[x+2][y-2] == 0 && tableau[x+1][y-1] == 0 && tableau[x][y-1] == 0 && tableau[x+2][y-1] == 0){
                       liste.add(x+2);
                       liste.add(y-2);
+                      System.out.println(4);
                   }
               }
           }
@@ -314,20 +325,24 @@ public abstract class Joueur {
           if(tableau[x][y+2] == 0 && tableau[x][y+1] == 0){
               liste.add(x);
               liste.add(y+2);
+              System.out.println(5);
           }
           else if((y+4) < this.plateau.getTaille()){
             if(tableau[x][y+2] != 0 && tableau[x][y+1] == 0 && tableau[x][y+4] == 0 && tableau[x][y+3] == 0){
               liste.add(x);
               liste.add(y+4);
+              System.out.println(6);
             }
             else if(tableau[x][y+2] != 0 && tableau[x][y+1] == 0 && ((tableau[x][y + 4] != 0 && tableau[x][y + 3] != 0) || tableau[x][y + 3] != 0)){
-              if((x+2) < this.plateau.getTaille() && tableau[x+2][y+2] == 0 && tableau[x+1][y+1] == 0){
+              if((x+2) < this.plateau.getTaille() && tableau[x+2][y+2] == 0 && tableau[x+1][y+1] == 0 && tableau[x+1][y] == 0 && tableau[x+1][y-2] == 0){
                 liste.add(x+2);
                 liste.add(y+2);
+                System.out.println(7);
               }
-              if((x-2) >= 0 && tableau[x-2][y+2] == 0 && tableau[x-1][y+1] == 0){
+              if((x-2) >= 0 && tableau[x-2][y+2] == 0 && tableau[x-1][y+1] == 0 && tableau[x-1][y] == 0 && tableau[x-1][x+1] == 0){
                 liste.add(x-2);
                 liste.add(y+2);
+                System.out.println(8);
               }
             }
           }
@@ -336,46 +351,55 @@ public abstract class Joueur {
         if(tableau[x-2][y] == 0 && tableau[x-1][y] == 0){
           liste.add(x-2);
           liste.add(y);
+          System.out.println(9);
         }
         else if((x-4) >= 0){
           if(tableau[x-2][y] != 0 && tableau[x-1][y] == 0 && tableau[x-4][y] == 0 && tableau[x-3][y] == 0){
             liste.add(x-4);
             liste.add(y);
+            System.out.println(10);
           }
           else if(tableau[x-2][y] != 0 && tableau[x-1][y] == 0 && ((tableau[x - 4][y] != 0 && tableau[x - 3][y] != 0) || tableau[x - 3][y] != 0)){
-            if((y+2) < this.plateau.getTaille() && tableau[x-2][y+2] == 0 && tableau[x-1][y+1] == 0){
+            if((y+2) < this.plateau.getTaille() && tableau[x-2][y+2] == 0 && tableau[x-1][y+1] == 0 && tableau[x][y+1] == 0 && tableau[x-2][y+1] == 0){
               liste.add(x-2);
               liste.add(y+2);
+              System.out.println(11);
             }
-            if((y-2) >= 0 && tableau[x-2][y-2] == 0 && tableau[x-1][y-1] == 0){
+            if((y-2) >= 0 && tableau[x-2][y-2] == 0 && tableau[x-1][y-1] == 0 && tableau[x][y-1] == 0 && tableau[x-2][y-1] == 0){
               liste.add(x-2);
               liste.add(y-2);
+              System.out.println(12);
             }
           }
         }
       }
-      if((y-1) >= 0 && (y-2) >= 0){
+      if((y-2) >= 0){
         if(tableau[x][y-2] == 0  && tableau[x][y-1] == 0){
           liste.add(x);
           liste.add(y-2);
+          System.out.println(13);
         }
         else if((y-4) >= 0){
           if(tableau[x][y-2] != 0 && tableau[x][y-1] == 0 && tableau[x][y-4] == 0 && tableau[x][y-3] == 0){
             liste.add(x);
             liste.add(y+4);
+            System.out.println(14);
           }
           else if(tableau[x][y-2] != 0 && tableau[x][y-1] == 0 && ((tableau[x][y - 4] != 0 && tableau[x][y - 3] != 0) || tableau[x][y - 3] != 0)){
-            if((x+2) < this.plateau.getTaille() && tableau[x+2][y-2] == 0 && tableau[x+1][y-1] == 0){
+            if((x+2) < this.plateau.getTaille() && tableau[x+2][y-2] == 0 && tableau[x+1][y-1] == 0 && tableau[x+1][y] == 0 && tableau[x+1][y-2] == 0){
               liste.add(x+2);
               liste.add(y-2);
+              System.out.println(15);
             }
-            if((x-2) >= 0 && tableau[x-2][y-2] == 0 && tableau[x-1][y-1] == 0){
+            if((x-2) >= 0 && tableau[x-2][y-2] == 0 && tableau[x-1][y-1] == 0 && tableau[x-1][y] == 0 && tableau[x-1][y-2] == 0){
               liste.add(x-2);
               liste.add(y-2);
+              System.out.println(16);
             }
           }
         }
       }
+      System.out.println("---");
       return liste;
       }
 
