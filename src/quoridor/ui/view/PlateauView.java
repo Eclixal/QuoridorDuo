@@ -71,7 +71,6 @@ public class PlateauView extends JPanel {
       this.finJeu();
     }
     else{
-
       if(this.tour < this.joueurs.size()-1){
         this.tour++;
       }

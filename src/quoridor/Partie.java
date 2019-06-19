@@ -35,7 +35,7 @@ public class Partie {
     }
 
     public Partie(){
-      this.mode = Mode.IIII;
+      this.mode = Mode.HHHH;
       this.initialisation();
     }
 

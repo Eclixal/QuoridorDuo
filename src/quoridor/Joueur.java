@@ -319,12 +319,12 @@ public abstract class Joueur {
             }
           }
         }
-      if((x-1) < this.plateau.getTaille() && (x-2) >= 0){
+      if((x-1) >= 0 && (x-2) >= 0){
         if(tableau[x-2][y] == 0 && tableau[x-1][y] == 0){
           liste.add(x-2);
           liste.add(y);
         }
-        else if((x-4) > 0){
+        else if((x-4) >= 0){
           if(tableau[x-2][y] != 0 && tableau[x-1][y] == 0 && tableau[x-4][y] == 0 && tableau[x-3][y] == 0){
             liste.add(x-4);
             liste.add(y);
@@ -341,12 +341,12 @@ public abstract class Joueur {
           }
         }
       }
-      if((y-1) < this.plateau.getTaille() && (y-2) >= 0){
+      if((y-1) >= 0 && (y-2) >= 0){
         if(tableau[x][y-2] == 0  && tableau[x][y-1] == 0){
           liste.add(x);
           liste.add(y-2);
         }
-        else if((y-4) > 0){
+        else if((y-4) >= 0){
           if(tableau[x][y-2] != 0 && tableau[x][y-1] == 0 && tableau[x][y-4] == 0 && tableau[x][y-3] == 0){
             liste.add(x);
             liste.add(y+4);
