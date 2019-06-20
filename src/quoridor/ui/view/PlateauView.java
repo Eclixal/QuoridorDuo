@@ -41,7 +41,7 @@ public class PlateauView extends JPanel {
 
     this.setLayout(new GridBagLayout());
     GridBagConstraints constraints = new GridBagConstraints();
-    constraints.insets = new Insets(30,30,30,30);
+    constraints.insets = new Insets(30,20,30,20);
 
     this.jButtonMenu = new JButtonMenu("Pause");
     this.jButtonMenu.setMargin(new Insets(20,30,20,30));
@@ -72,28 +72,36 @@ public class PlateauView extends JPanel {
 
     this.add(this.timer, constraints);
 
+    JPanel jPanel = new JPanel();
+    jPanel.setLayout(new GridBagLayout());
+    GridBagConstraints constraints1 = new GridBagConstraints();
+    constraints1.insets = new Insets(10,0,10,0);
+
     this.joueur = new JLabel("Tour : " + this.joueurs.get(tour).getNom(), new ImageIcon(new ImageIcon("images/Rond_" + this.joueurs.get(tour).getCouleur().toLowerCase() + ".png").getImage().getScaledInstance(40, 40, Image.SCALE_DEFAULT)), SwingConstants.CENTER);
-    this.joueur.setFont(new Font("Courier New", Font.BOLD, ((int)(this.timer.getFont().getSize()*1.5))));
+    this.joueur.setFont(new Font("Courier New", Font.BOLD, ((int)(this.joueur.getFont().getSize()*1.8))));
     this.joueur.setIconTextGap(20);
     this.joueur.setHorizontalAlignment(SwingConstants.LEFT);
     this.joueur.setVerticalAlignment(SwingConstants.CENTER);
     this.joueur.setComponentOrientation(ComponentOrientation.RIGHT_TO_LEFT);
 
-    constraints.anchor = GridBagConstraints.NORTH;
+    constraints1.anchor = GridBagConstraints.WEST;
+    constraints1.gridy = 0;
+    constraints1.gridx = 0;
 
+    jPanel.add(this.joueur, constraints1);
+
+    this.barriere = new JLabel("Il vous reste " + this.joueurs.get(tour).getBarrieres().stream().filter(barriere1 -> barriere1.getCoordonnee().getX1() == -1).count() + " barrière" + (this.joueurs.get(tour).getBarrieres().stream().filter(barriere1 -> barriere1.getCoordonnee().getX1() == -1).count() > 1 ? "s" :""));
+    this.barriere.setFont(new Font("Courier New", Font.BOLD, ((int)(this.barriere.getFont().getSize()*1.8))));
+
+    constraints1.gridy = 1;
+    constraints1.gridx = 0;
+
+    jPanel.add(this.barriere, constraints1);
+
+    constraints.anchor = GridBagConstraints.NORTH;
     constraints.gridy = 1;
     constraints.gridx = 0;
-
-    this.add(this.joueur, constraints);
-
-
-    this.barriere = new JLabel("Il vous reste # barrières");
-    this.barriere.setFont(new Font("Courier New", Font.BOLD, ((int)(this.barriere.getFont().getSize()*1.5))));
-
-    constraints.gridy = 2;
-    constraints.gridx = 0;
-
-    this.add(this.joueur, constraints);
+    this.add(jPanel, constraints);
 
     PlateauModel model = new PlateauModel(this.plateau.getDAMIER());
 
@@ -103,13 +111,13 @@ public class PlateauView extends JPanel {
     launch();
 
     this.table.setRowSelectionAllowed(false);
-    this.table.setRowHeight(50);
+    this.table.setRowHeight(70);
 
     for(int i = 0;i < this.plateau.getTaille();i++){
       if(i%2 == 0){
         TableColumn column = this.table.getColumnModel().getColumn(i);
-        column.setMinWidth(50);
-        column.setMaxWidth(50);
+        column.setMinWidth(70);
+        column.setMaxWidth(70);
       }
       else{
         table.setRowHeight(i,10);
@@ -143,11 +151,13 @@ public class PlateauView extends JPanel {
           this.tour++;
           this.joueur.setText("Tour : " + this.joueurs.get(tour).getNom());
           this.joueur.setIcon(new ImageIcon(new ImageIcon("images/Rond_" + this.joueurs.get(tour).getCouleur().toLowerCase() + ".png").getImage().getScaledInstance(40, 40, Image.SCALE_DEFAULT)));
+          this.barriere.setText("Il vous reste " + this.joueurs.get(tour).getBarrieres().stream().filter(barriere1 -> barriere1.getCoordonnee().getX1() == -1).count() + " barrière" + (this.joueurs.get(tour).getBarrieres().stream().filter(barriere1 -> barriere1.getCoordonnee().getX1() == -1).count() > 1 ? "s" :""));
         }
         else{
           this.tour = 0;
           this.joueur.setText("Tour : " + this.joueurs.get(tour).getNom());
           this.joueur.setIcon(new ImageIcon(new ImageIcon("images/Rond_" + this.joueurs.get(tour).getCouleur().toLowerCase() + ".png").getImage().getScaledInstance(40, 40, Image.SCALE_DEFAULT)));
+          this.barriere.setText("Il vous reste " + this.joueurs.get(tour).getBarrieres().stream().filter(barriere1 -> barriere1.getCoordonnee().getX1() == -1).count() + " barrière" + (this.joueurs.get(tour).getBarrieres().stream().filter(barriere1 -> barriere1.getCoordonnee().getX1() == -1).count() > 1 ? "s" :""));
         }
         if(this.joueurs.get(tour).isIA()){
           java.util.Timer timer = new java.util.Timer();

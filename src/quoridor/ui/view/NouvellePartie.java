@@ -90,6 +90,7 @@ public class NouvellePartie extends JPanel {
       this.retour.setFocusPainted(false);
       this.retour.setHoverBackgroundColor(Color.decode("#3d3d3d"));
       this.retour.setPressedBackgroundColor(Color.decode("#484848"));
+      this.retour.addMouseListener(new NouvellePartieListener(this));
 
       constraints.gridy = 2;
       constraints.gridx = 0;

@@ -11,8 +11,7 @@ import sun.audio.ContinuousAudioDataStream;
 import java.awt.*;
 import java.io.FileInputStream;
 import java.io.IOException;
-import javax.swing.JLabel;
-import javax.swing.JPanel;
+import javax.swing.*;
 import javax.swing.border.EmptyBorder;
 
 public class Menu extends JPanel {
@@ -31,6 +30,8 @@ public class Menu extends JPanel {
 
     GridBagConstraints constraints = new GridBagConstraints();
     constraints.insets = new Insets(10,10,10,10);
+
+
 
     this.label = new JLabel("Quoridor");
     this.label.setBorder(new EmptyBorder(10, 10, 100, 10));
@@ -116,6 +117,10 @@ public class Menu extends JPanel {
   public MainFrame getMainFrame() {
     return mainFrame;
   }
+
+//  protected void paintComponent(Graphics g) {
+//    g.drawImage(new ImageIcon("images/mdr.jpg").getImage(), 0, 0, null);
+//  }
 
   private ContinuousAudioDataStream audioDataStream;
   private void music() {

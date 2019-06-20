@@ -234,6 +234,7 @@ public class DeuxJoueursConfigurationView extends JPanel {
 
     public void changeMode(Object item) {
       if (item.equals("Humain VS IA")) {
+          this.jComboBoxDifficultyJ1.setVisible(false);
           this.jComboBoxDifficultyJ2.setVisible(true);
       } else if (item.equals("Humain VS Humain")) {
           this.jComboBoxDifficultyJ1.setVisible(false);

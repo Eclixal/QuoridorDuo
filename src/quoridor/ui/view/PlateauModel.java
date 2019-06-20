@@ -18,27 +18,27 @@ public class PlateauModel extends AbstractTableModel{
     int valeur = this.damier[r][c];
     if(valeur == 1){
       ImageIcon image = new ImageIcon("images/Rond_rouge.png");
-      ImageIcon icon = new ImageIcon(image.getImage().getScaledInstance(40, 40, Image.SCALE_DEFAULT));
+      ImageIcon icon = new ImageIcon(image.getImage().getScaledInstance(60, 60, Image.SCALE_DEFAULT));
       ret = icon;
     }
     else if(valeur == 2){
       ImageIcon image = new ImageIcon("images/Rond_bleu.png");
-      ImageIcon icon = new ImageIcon(image.getImage().getScaledInstance(40, 40, Image.SCALE_DEFAULT));
+      ImageIcon icon = new ImageIcon(image.getImage().getScaledInstance(60, 60, Image.SCALE_DEFAULT));
       ret = icon;
     }
     else if(valeur == 3){
       ImageIcon image = new ImageIcon("images/Rond_vert.png");
-      ImageIcon icon = new ImageIcon(image.getImage().getScaledInstance(40, 40, Image.SCALE_DEFAULT));
+      ImageIcon icon = new ImageIcon(image.getImage().getScaledInstance(60, 60, Image.SCALE_DEFAULT));
       ret = icon;
     }
     else if(valeur == 4){
       ImageIcon image = new ImageIcon("images/Rond_jaune.png");
-      ImageIcon icon = new ImageIcon(image.getImage().getScaledInstance(40, 40, Image.SCALE_DEFAULT));
+      ImageIcon icon = new ImageIcon(image.getImage().getScaledInstance(60, 60, Image.SCALE_DEFAULT));
       ret = icon;
     }
     else if(valeur == 5){
       ImageIcon image = new ImageIcon("images/Barriere.jpg");
-      ImageIcon icon = new ImageIcon(image.getImage().getScaledInstance(50, 50, Image.SCALE_DEFAULT));
+      ImageIcon icon = new ImageIcon(image.getImage().getScaledInstance(70, 70, Image.SCALE_DEFAULT));
       ret = icon;
     }
     else{

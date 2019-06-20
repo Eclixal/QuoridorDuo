@@ -2,6 +2,7 @@ package quoridor.ui.custom;
 
 import quoridor.Partie;
 import quoridor.ui.view.PlateauView;
+import sun.audio.AudioPlayer;
 
 import javax.swing.*;
 import java.awt.*;
@@ -23,7 +24,7 @@ public class SauvegardeFileChooser extends JFileChooser {
     public void approveSelection(){
         super.approveSelection();
         parent.remove(SauvegardeFileChooser.this);
-
+        AudioPlayer.player.stop(menu.getAudioDataStream());
         menu.getMainFrame().setContentPane(new PlateauView(menu.getMainFrame(), new Partie(getSelectedFile().getAbsolutePath())));
         menu.getMainFrame().validate();
     }
