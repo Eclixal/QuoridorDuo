@@ -38,6 +38,8 @@ public class PlateauView extends JPanel {
         this.joueurs = partie.getJoueurs();
         this.tour = partie.getStartTour();
 
+        this.setBackground(Color.decode("#b4e9e2"));
+
         this.pause = false;
 
         this.setLayout(new GridBagLayout());
@@ -46,13 +48,13 @@ public class PlateauView extends JPanel {
 
         this.jButtonMenu = new JButtonMenu("Pause");
         this.jButtonMenu.setMargin(new Insets(20,30,20,30));
-        this.jButtonMenu.setFont(new Font("Courier New", Font.BOLD, this.jButtonMenu.getFont().getSize()));
-        this.jButtonMenu.setBackground(Color.decode("#252525"));
-        this.jButtonMenu.setForeground(Color.WHITE);
+        this.jButtonMenu.setFont(new Font("Courier New", Font.BOLD, 19));
+        this.jButtonMenu.setBackground(Color.decode("#309286"));
+        this.jButtonMenu.setForeground(Color.decode("#ebefd0"));
         this.jButtonMenu.setBorderPainted(false);
         this.jButtonMenu.setFocusPainted(false);
-        this.jButtonMenu.setHoverBackgroundColor(Color.decode("#3d3d3d"));
-        this.jButtonMenu.setPressedBackgroundColor(Color.decode("#484848"));
+        this.jButtonMenu.setHoverBackgroundColor(Color.decode("#59a59b"));
+        this.jButtonMenu.setPressedBackgroundColor(Color.decode("#64afa5"));
         this.jButtonMenu.addMouseListener(new PlateauListener(this, this.joueurs.get(tour)));
 
         constraints.anchor = GridBagConstraints.NORTHWEST;
@@ -67,6 +69,7 @@ public class PlateauView extends JPanel {
 
         this.errorMessage = new JLabel();
         this.errorMessage.setFont(new Font("Courier New", Font.BOLD, ((int)(this.errorMessage.getFont().getSize()*1.5))));
+        this.errorMessage.setForeground(Color.decode("#309286"));
 
         constraints.gridy = 0;
         constraints.gridx = 1;
@@ -75,12 +78,14 @@ public class PlateauView extends JPanel {
 
         JPanel jPanel = new JPanel();
         jPanel.setLayout(new GridBagLayout());
+        jPanel.setBackground(Color.decode("#b4e9e2"));
         GridBagConstraints constraints1 = new GridBagConstraints();
         constraints1.insets = new Insets(10,0,10,0);
 
         this.joueur = new JLabel("Tour : " + this.joueurs.get(tour).getNom(), new ImageIcon(new ImageIcon("images/Rond_" + this.joueurs.get(tour).getCouleur().toLowerCase() + ".png").getImage().getScaledInstance(40, 40, Image.SCALE_DEFAULT)), SwingConstants.CENTER);
         this.joueur.setFont(new Font("Courier New", Font.BOLD, ((int)(this.joueur.getFont().getSize()*1.8))));
         this.joueur.setIconTextGap(20);
+        this.joueur.setForeground(Color.decode("#309286"));
         this.joueur.setHorizontalAlignment(SwingConstants.LEFT);
         this.joueur.setVerticalAlignment(SwingConstants.CENTER);
         this.joueur.setComponentOrientation(ComponentOrientation.RIGHT_TO_LEFT);
@@ -93,6 +98,7 @@ public class PlateauView extends JPanel {
 
         this.barriere = new JLabel("Il vous reste " + this.joueurs.get(tour).getBarrieres().stream().filter(barriere1 -> barriere1.getCoordonnee().getX1() == -1).count() + " barrière" + (this.joueurs.get(tour).getBarrieres().stream().filter(barriere1 -> barriere1.getCoordonnee().getX1() == -1).count() > 1 ? "s" :""));
         this.barriere.setFont(new Font("Courier New", Font.BOLD, ((int)(this.barriere.getFont().getSize()*1.8))));
+        this.barriere.setForeground(Color.decode("#309286"));
 
         constraints1.gridy = 1;
         constraints1.gridx = 0;
@@ -114,6 +120,8 @@ public class PlateauView extends JPanel {
         this.table.setRowSelectionAllowed(false);
         this.table.setRowHeight(50);
 
+
+
         for(int i = 0;i < this.plateau.getTaille();i++){
             if(i%2 == 0){
                 TableColumn column = this.table.getColumnModel().getColumn(i);
@@ -127,7 +135,7 @@ public class PlateauView extends JPanel {
                 column.setMaxWidth(10);
             }
         }
-        Color color = new Color(187, 120, 49, 255);
+        Color color = new Color(81, 164, 233, 255);
         this.table.setGridColor(color);
 
         constraints.gridy = 1;

@@ -27,6 +27,8 @@ public class PauseView extends JPanel {
         this.mainFrame = mainFrame;
         this.setLayout(new GridBagLayout());
 
+        this.setBackground(Color.decode("#b4e9e2"));
+
         GridBagConstraints constraints = new GridBagConstraints();
         constraints.insets = new Insets(10,10,10,10);
 
@@ -37,6 +39,7 @@ public class PauseView extends JPanel {
         this.jLabel = new JLabel("Pause");
         this.jLabel.setFont(new Font("Courier New", Font.BOLD, 120));
         this.jLabel.setBorder(new EmptyBorder(10, 10, 30, 10));
+        this.jLabel.setForeground(Color.decode("#309286"));
 
         this.add(this.jLabel,  constraints);
 
@@ -46,13 +49,13 @@ public class PauseView extends JPanel {
 
         this.jButtonReprendre = new JButtonMenu("Reprendre");
         this.jButtonReprendre.setMargin(new Insets(20,30,20,30));
-        this.jButtonReprendre.setFont(new Font("Courier New", Font.BOLD, this.jButtonReprendre.getFont().getSize()));
-        this.jButtonReprendre.setBackground(Color.decode("#252525"));
-        this.jButtonReprendre.setForeground(Color.WHITE);
+        this.jButtonReprendre.setFont(new Font("Courier New", Font.BOLD, 19));
+        this.jButtonReprendre.setBackground(Color.decode("#309286"));
+        this.jButtonReprendre.setForeground(Color.decode("#ebefd0"));
         this.jButtonReprendre.setBorderPainted(false);
         this.jButtonReprendre.setFocusPainted(false);
-        this.jButtonReprendre.setHoverBackgroundColor(Color.decode("#3d3d3d"));
-        this.jButtonReprendre.setPressedBackgroundColor(Color.decode("#484848"));
+        this.jButtonReprendre.setHoverBackgroundColor(Color.decode("#59a59b"));
+        this.jButtonReprendre.setPressedBackgroundColor(Color.decode("#64afa5"));
         this.jButtonReprendre.addMouseListener(new PauseListener(this, plateauView));
 
         constraints.gridy = 2;
@@ -61,13 +64,13 @@ public class PauseView extends JPanel {
 
         this.jButtonSauvegarder = new JButtonMenu("Sauvegarder et quitter");
         this.jButtonSauvegarder.setMargin(new Insets(20,30,20,30));
-        this.jButtonSauvegarder.setFont(new Font("Courier New", Font.BOLD, this.jButtonSauvegarder.getFont().getSize()));
-        this.jButtonSauvegarder.setBackground(Color.decode("#252525"));
-        this.jButtonSauvegarder.setForeground(Color.WHITE);
+        this.jButtonSauvegarder.setFont(new Font("Courier New", Font.BOLD, 19));
+        this.jButtonSauvegarder.setBackground(Color.decode("#309286"));
+        this.jButtonSauvegarder.setForeground(Color.decode("#ebefd0"));
         this.jButtonSauvegarder.setBorderPainted(false);
         this.jButtonSauvegarder.setFocusPainted(false);
-        this.jButtonSauvegarder.setHoverBackgroundColor(Color.decode("#3d3d3d"));
-        this.jButtonSauvegarder.setPressedBackgroundColor(Color.decode("#484848"));
+        this.jButtonSauvegarder.setHoverBackgroundColor(Color.decode("#59a59b"));
+        this.jButtonSauvegarder.setPressedBackgroundColor(Color.decode("#64afa5"));
         this.jButtonSauvegarder.addMouseListener(new PauseListener(this, plateauView));
 
         constraints.gridy = 3;
@@ -76,13 +79,13 @@ public class PauseView extends JPanel {
 
         this.jButtonAbandonner = new JButtonMenu("Abandonner");
         this.jButtonAbandonner.setMargin(new Insets(20,30,20,30));
-        this.jButtonAbandonner.setFont(new Font("Courier New", Font.BOLD, this.jButtonAbandonner.getFont().getSize()));
-        this.jButtonAbandonner.setBackground(Color.decode("#252525"));
-        this.jButtonAbandonner.setForeground(Color.WHITE);
+        this.jButtonAbandonner.setFont(new Font("Courier New", Font.BOLD, 19));
+        this.jButtonAbandonner.setBackground(Color.decode("#309286"));
+        this.jButtonAbandonner.setForeground(Color.decode("#ebefd0"));
         this.jButtonAbandonner.setBorderPainted(false);
         this.jButtonAbandonner.setFocusPainted(false);
-        this.jButtonAbandonner.setHoverBackgroundColor(Color.decode("#3d3d3d"));
-        this.jButtonAbandonner.setPressedBackgroundColor(Color.decode("#484848"));
+        this.jButtonAbandonner.setHoverBackgroundColor(Color.decode("#59a59b"));
+        this.jButtonAbandonner.setPressedBackgroundColor(Color.decode("#64afa5"));
         this.jButtonAbandonner.addMouseListener(new PauseListener(this, plateauView));
 
         constraints.gridy = 4;

@@ -26,6 +26,7 @@ public class FinDePartie extends JPanel {
     public FinDePartie(MainFrame mainFrame, String pseudo) {
         this.mainFrame = mainFrame;
         this.setLayout(new GridBagLayout());
+        this.setBackground(Color.decode("#b4e9e2"));
 
         GridBagConstraints constraints = new GridBagConstraints();
         constraints.insets = new Insets(10,10,10,10);
@@ -37,6 +38,7 @@ public class FinDePartie extends JPanel {
         this.jLabel = new JLabel("<html><center>Victoire de<br> " + pseudo + "</center></html>");
         this.jLabel.setFont(new Font("Courier New", Font.BOLD, 120));
         this.jLabel.setBorder(new EmptyBorder(10, 10, 30, 10));
+        this.jLabel.setForeground(Color.decode("#309286"));
 
         this.add(this.jLabel,  constraints);
 
@@ -46,13 +48,13 @@ public class FinDePartie extends JPanel {
 
         this.jButtonMenu = new JButtonMenu("Menu Principal");
         this.jButtonMenu.setMargin(new Insets(20,30,20,30));
-        this.jButtonMenu.setFont(new Font("Courier New", Font.BOLD, this.jButtonMenu.getFont().getSize()));
-        this.jButtonMenu.setBackground(Color.decode("#252525"));
-        this.jButtonMenu.setForeground(Color.WHITE);
+        this.jButtonMenu.setFont(new Font("Courier New", Font.BOLD, 19));
+        this.jButtonMenu.setBackground(Color.decode("#309286"));
+        this.jButtonMenu.setForeground(Color.decode("#ebefd0"));
         this.jButtonMenu.setBorderPainted(false);
         this.jButtonMenu.setFocusPainted(false);
-        this.jButtonMenu.setHoverBackgroundColor(Color.decode("#3d3d3d"));
-        this.jButtonMenu.setPressedBackgroundColor(Color.decode("#484848"));
+        this.jButtonMenu.setHoverBackgroundColor(Color.decode("#59a59b"));
+        this.jButtonMenu.setPressedBackgroundColor(Color.decode("#64afa5"));
         this.jButtonMenu.addMouseListener(new FinListener(this));
 
         this.add(this.jButtonMenu, constraints);

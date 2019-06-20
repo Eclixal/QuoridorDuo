@@ -40,6 +40,8 @@ public class QuatreJoueursConfigurationView extends JPanel {
       this.mainFrame = mainFrame;
       this.setLayout(new GridBagLayout());
 
+      this.setBackground(Color.decode("#b4e9e2"));
+
       GridBagConstraints constraints = new GridBagConstraints();
       constraints.insets = new Insets(10,10,10,10);
 
@@ -54,12 +56,18 @@ public class QuatreJoueursConfigurationView extends JPanel {
 
       JPanel jPanel = new JPanel();
       jPanel.setLayout(new GridBagLayout());
+      jPanel.setBackground(Color.decode("#b4e9e2"));
+
       GridBagConstraints constraints1 = new GridBagConstraints();
       constraints1.insets = new Insets(30,50,30,50);
 
       JPanel panelC = new JPanel();
       panelC.setLayout(new FlowLayout());
+      panelC.setBackground(Color.decode("#b4e9e2"));
+
       JLabel jLabel = new JLabel("Configuration : ");
+      jLabel.setFont(new Font("Courier New", Font.BOLD, 19));
+      jLabel.setForeground(Color.decode("#309286"));
       this.jComboBox = new JComboBox<>();
       this.jComboBox.addItem("Humain vs Humain vs Humain vs Humain");
       this.jComboBox.addItem("Humain vs Humain vs Humain vs IA");
@@ -78,17 +86,19 @@ public class QuatreJoueursConfigurationView extends JPanel {
 
       JPanel panelJ1 = new JPanel();
       panelJ1.setLayout(new GridBagLayout());
+      panelJ1.setBackground(Color.decode("#b4e9e2"));
       GridBagConstraints constraintsJ1 = new GridBagConstraints();
 
       constraintsJ1.fill = GridBagConstraints.HORIZONTAL;
       constraintsJ1.insets = new Insets(10,30,10,30);
 
       panelJ1.setPreferredSize(new Dimension(300,200));
-      Border lineborder = BorderFactory.createLineBorder(Color.decode("#252525"), 2);
+      Border lineborder = BorderFactory.createLineBorder(Color.decode("#309286"), 2);
       panelJ1.setBorder(lineborder);
 
       JLabel pseudoJ1 = new JLabel("Pseudo :");
       pseudoJ1.setFont(new Font("Courier New", Font.BOLD, pseudoJ1.getFont().getSize()*2));
+      pseudoJ1.setForeground(Color.decode("#309286"));
       constraintsJ1.gridy = 0;
       constraintsJ1.gridx = 1;
       panelJ1.add(pseudoJ1, constraintsJ1);
@@ -101,6 +111,8 @@ public class QuatreJoueursConfigurationView extends JPanel {
       this.jTextFieldJ1 = new JTextField("Joueur 1");
       this.jTextFieldJ1.setPreferredSize(new Dimension(this.getSize().width+50, this.getSize().height+40));
       this.jTextFieldJ1.setFont(new Font("Courier New", Font.BOLD, (int) (this.jTextFieldJ1.getFont().getSize()*1.2)));
+      this.jTextFieldJ1.setForeground(Color.decode("#ebefd0"));
+      this.jTextFieldJ1.setBackground(Color.decode("#309286"));
 
       constraintsJ1.gridy = 1;
       constraintsJ1.gridx = 1;
@@ -129,6 +141,8 @@ public class QuatreJoueursConfigurationView extends JPanel {
       panelJ2.setPreferredSize(new Dimension(300,200));
       panelJ2.setBorder(lineborder);
       panelJ2.setLayout(new GridBagLayout());
+      panelJ2.setBackground(Color.decode("#b4e9e2"));
+
       GridBagConstraints constraintsJ2 = new GridBagConstraints();
 
       constraintsJ2.fill = GridBagConstraints.HORIZONTAL;
@@ -136,6 +150,8 @@ public class QuatreJoueursConfigurationView extends JPanel {
 
       JLabel pseudoJ2 = new JLabel("Pseudo :");
       pseudoJ2.setFont(new Font("Courier New", Font.BOLD, pseudoJ2.getFont().getSize()*2));
+      pseudoJ2.setForeground(Color.decode("#309286"));
+
       constraintsJ2.gridy = 0;
       constraintsJ2.gridx = 1;
       panelJ2.add(pseudoJ2, constraintsJ2);
@@ -148,6 +164,8 @@ public class QuatreJoueursConfigurationView extends JPanel {
       this.jTextFieldJ2 = new JTextField("Joueur 2");
       this.jTextFieldJ2.setPreferredSize(new Dimension(this.getSize().width+50, this.getSize().height+40));
       this.jTextFieldJ2.setFont(new Font("Courier New", Font.BOLD, (int) (this.jTextFieldJ2.getFont().getSize()*1.2)));
+      this.jTextFieldJ2.setForeground(Color.decode("#ebefd0"));
+      this.jTextFieldJ2.setBackground(Color.decode("#309286"));
 
       constraintsJ2.gridy = 1;
       constraintsJ2.gridx = 1;
@@ -175,6 +193,8 @@ public class QuatreJoueursConfigurationView extends JPanel {
       panelJ3.setPreferredSize(new Dimension(300,200));
       panelJ3.setBorder(lineborder);
       panelJ3.setLayout(new GridBagLayout());
+      panelJ3.setBackground(Color.decode("#b4e9e2"));
+
       GridBagConstraints constraintsJ3 = new GridBagConstraints();
 
       constraintsJ3.fill = GridBagConstraints.HORIZONTAL;
@@ -182,6 +202,8 @@ public class QuatreJoueursConfigurationView extends JPanel {
 
       JLabel pseudoJ3 = new JLabel("Pseudo :");
       pseudoJ3.setFont(new Font("Courier New", Font.BOLD, pseudoJ3.getFont().getSize()*2));
+      pseudoJ3.setForeground(Color.decode("#309286"));
+
       constraintsJ3.gridy = 0;
       constraintsJ3.gridx = 1;
       panelJ3.add(pseudoJ3, constraintsJ3);
@@ -194,6 +216,8 @@ public class QuatreJoueursConfigurationView extends JPanel {
       this.jTextFieldJ3 = new JTextField("Joueur 3");
       this.jTextFieldJ3.setPreferredSize(new Dimension(this.getSize().width+50, this.getSize().height+40));
       this.jTextFieldJ3.setFont(new Font("Courier New", Font.BOLD, (int) (this.jTextFieldJ3.getFont().getSize()*1.2)));
+      this.jTextFieldJ3.setForeground(Color.decode("#ebefd0"));
+      this.jTextFieldJ3.setBackground(Color.decode("#309286"));
 
       constraintsJ3.gridy = 1;
       constraintsJ3.gridx = 1;
@@ -221,6 +245,8 @@ public class QuatreJoueursConfigurationView extends JPanel {
       panelJ4.setPreferredSize(new Dimension(300,200));
       panelJ4.setBorder(lineborder);
       panelJ4.setLayout(new GridBagLayout());
+      panelJ4.setBackground(Color.decode("#b4e9e2"));
+
       GridBagConstraints constraintsJ4 = new GridBagConstraints();
 
       constraintsJ4.fill = GridBagConstraints.HORIZONTAL;
@@ -228,6 +254,8 @@ public class QuatreJoueursConfigurationView extends JPanel {
 
       JLabel pseudoJ4 = new JLabel("Pseudo :");
       pseudoJ4.setFont(new Font("Courier New", Font.BOLD, pseudoJ4.getFont().getSize()*2));
+      pseudoJ4.setForeground(Color.decode("#309286"));
+
       constraintsJ4.gridy = 0;
       constraintsJ4.gridx = 1;
       panelJ4.add(pseudoJ4, constraintsJ4);
@@ -240,6 +268,8 @@ public class QuatreJoueursConfigurationView extends JPanel {
       this.jTextFieldJ4 = new JTextField("Joueur 4");
       this.jTextFieldJ4.setPreferredSize(new Dimension(this.getSize().width+50, this.getSize().height+40));
       this.jTextFieldJ4.setFont(new Font("Courier New", Font.BOLD, (int) (this.jTextFieldJ4.getFont().getSize()*1.2)));
+      this.jTextFieldJ4.setForeground(Color.decode("#ebefd0"));
+      this.jTextFieldJ4.setBackground(Color.decode("#309286"));
 
       constraintsJ4.gridy = 1;
       constraintsJ4.gridx = 1;
@@ -263,36 +293,38 @@ public class QuatreJoueursConfigurationView extends JPanel {
 
       jPanel.add(panelJ4, constraints1);
 
-      constraints1.insets = new Insets(10,0,10,0);
+      constraints1.insets = new Insets(10,10,10,10);
 
       this.jouer = new JButtonMenu("Jouer");
       this.jouer.setMargin(new Insets(30,30,30,30));
-      this.jouer.setFont(new Font("Courier New", Font.BOLD, this.jouer.getFont().getSize()));
-      this.jouer.setBackground(Color.decode("#252525"));
-      this.jouer.setForeground(Color.WHITE);
+      this.jouer.setFont(new Font("Courier New", Font.BOLD, 19));
+      this.jouer.setBackground(Color.decode("#309286"));
+      this.jouer.setForeground(Color.decode("#ebefd0"));
       this.jouer.setBorderPainted(false);
       this.jouer.setFocusPainted(false);
-      this.jouer.setHoverBackgroundColor(Color.decode("#3d3d3d"));
-      this.jouer.setPressedBackgroundColor(Color.decode("#484848"));
+      this.jouer.setHoverBackgroundColor(Color.decode("#59a59b"));
+      this.jouer.setPressedBackgroundColor(Color.decode("#64afa5"));
       this.jouer.addMouseListener(new QuatreJoueursListener(this));
 
-      constraints1.gridx = 1;
+      constraints1.fill = GridBagConstraints.HORIZONTAL;
+
+      constraints1.gridx = 0;
       constraints1.gridy = 1;
 
       jPanel.add(this.jouer, constraints1);
 
       this.retour = new JButtonMenu("Retour");
       this.retour.setMargin(new Insets(30,30,30,30));
-      this.retour.setFont(new Font("Courier New", Font.BOLD, this.retour.getFont().getSize()));
-      this.retour.setBackground(Color.decode("#252525"));
-      this.retour.setForeground(Color.WHITE);
+      this.retour.setFont(new Font("Courier New", Font.BOLD, 19));
+      this.retour.setBackground(Color.decode("#309286"));
+      this.retour.setForeground(Color.decode("#ebefd0"));
       this.retour.setBorderPainted(false);
       this.retour.setFocusPainted(false);
-      this.retour.setHoverBackgroundColor(Color.decode("#3d3d3d"));
-      this.retour.setPressedBackgroundColor(Color.decode("#484848"));
+      this.retour.setHoverBackgroundColor(Color.decode("#59a59b"));
+      this.retour.setPressedBackgroundColor(Color.decode("#64afa5"));
       this.retour.addMouseListener(new QuatreJoueursListener(this));
 
-      constraints1.gridx = 0;
+      constraints1.gridx = 1;
       constraints1.gridy = 1;
 
       jPanel.add(this.retour, constraints1);
