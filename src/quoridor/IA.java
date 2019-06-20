@@ -56,6 +56,13 @@ public class IA extends Joueur {
 
     }
 
+    /**
+      * Joue un tour pour un IA
+      * @param gui le booleen pour savoir si la partie se joue en mode graphique
+      * @param x la position x du deplacement que le joueur veut faire (utile que pour le mode graphique pour un humain)
+      * @param y la postion y du deplacement que le joueur veut faire (utile que pour le mode graphique pour un humain)
+      * @return un message s'il y a une erreur
+      */
     public String jeu(boolean gui, int x, int y) {
 
         if(this.getDifficulte() == Difficulte.FACILE){
@@ -101,6 +108,10 @@ public class IA extends Joueur {
       return "";
     }
 
+    /**
+      * Retourne si c'est un IA ou non
+      * @return Vrai si c'est un IA
+      */
     public boolean isIA(){
       return true;
     }
