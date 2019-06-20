@@ -26,8 +26,8 @@ public class Partie {
     }
 
     /**
-      * Créé un nouvel objet Partie avec un fichier de configuration
-      * @param mode Le mode de jeu
+      * Créé un nouvel objet Partie
+      * @param mode Le mode de jeu de la partie
       * @param gui le booleen pour savoir si la partie se joue en mode graphique
       */
     public Partie(Mode mode, boolean gui) {
@@ -36,15 +36,41 @@ public class Partie {
         this.start(0, gui);
     }
 
+    /**
+      * Créé un nouvel objet Partie avec un fichier de sauvegarde
+      * @param save le booleen qui gère si on utilise une sauvegarde
+      * @param saveFile le nom du fichier de configuration
+      * @param gui le booleen pour savoir si la partie se joue en mode graphique
+      */
     public Partie(boolean save, String saveFile, boolean gui) {
         this.charger(saveFile, gui);
     }
 
+    /**
+      * Créé un nouvel objet Partie
+      * @param mode le mode de jeu
+      * @param pseudo1 le nom du joueur 1
+      * @param pseudo2 le nom du joueur 2
+      * @param difficulte1 la difficulte de L'IA si le joueur 1 est un IA
+      * @param difficulte2 la difficulte de L'IA si le joueur 2 est un IA
+      */
     public Partie(Mode mode, String pseudo1, String pseudo2, Difficulte difficulte1, Difficulte difficulte2) {
         this.mode = mode;
         this.initialisation(pseudo1, pseudo2, null, null, difficulte1, difficulte2, null, null);
     }
 
+    /**
+      * Créé un nouvel objet Partie
+      * @param mode le mode de jeu
+      * @param pseudo1 le nom du joueur 1
+      * @param pseudo2 le nom du joueur 2
+      * @param pseudo3 le nom du joueur 3
+      * @param pseudo4 le nom du joueur 4
+      * @param difficulte1 la difficulte de L'IA si le joueur 1 est un IA
+      * @param difficulte2 la difficulte de L'IA si le joueur 2 est un IA
+      * @param difficulte3 la difficulte de L'IA si le joueur 3 est un IA
+      * @param difficulte4 la difficulte de L'IA si le joueur 4 est un IA
+      */
     public Partie(Mode mode, String pseudo1, String pseudo2, String pseudo3, String pseudo4, Difficulte difficulte1, Difficulte difficulte2, Difficulte difficulte3, Difficulte difficulte4) {
         this.mode = mode;
         this.initialisation(pseudo1, pseudo2, pseudo3, pseudo4, difficulte1, difficulte2, difficulte3, difficulte4);
@@ -62,10 +88,17 @@ public class Partie {
         return mode;
     }
 
-    public Plateau getPlateau(){ return this.plateau; }
+    /**
+      * Retourne le plateau
+      * @return l'objet plateau utilisé dans la partie
+      */
+    public Plateau getPlateau(){
+      return this.plateau;
+    }
 
     /**
       * Sauvegarde la partie
+      * @param joueurTo le joueur qui doit jouer lors du chargement de la sauvegarde
       */
     public void sauvegarder(int joueurTo, boolean gui) {
         try {
@@ -96,6 +129,7 @@ public class Partie {
     /**
       * Charge les données de sauvegarde contenues dans le fichier sélectionné
       * @param filename le fichier contenant les données à charger
+      * @param gui le booleen pour savoir si la partie se joue en mode graphique
       */
     public void charger(String filename, boolean gui) {
         try {
@@ -246,7 +280,14 @@ public class Partie {
         }
     }
 
-    private void loadBarrieres(DataInputStream in, String couleurJ111, ArrayList<Barriere> barrieresJ111) throws IOException {
+    /**
+      * Récupère les données des barrières dans le fichier de sauvegarde et les mets dans la liste de barrière du joueur
+      * @param in l'objet qui permet de lire le fichier
+      * @param couleur la couleur du joueur qui a posé la barrière
+      * @param barrieres la liste de barrière du joueur
+      * @throws IOException IOException
+      */
+    private void loadBarrieres(DataInputStream in, String couleur, ArrayList<Barriere> barrieres) throws IOException {
         for (int b = 0; b < 20/this.mode.name().length(); b++) {
             String[] barriereJ111 = in.readUTF().split("/");
             barrieresJ111.add(new Barriere(couleurJ111, new Coordonnee(Integer.parseInt(barriereJ111[0]), Integer.parseInt(barriereJ111[1]), Integer.parseInt(barriereJ111[2]), Integer.parseInt(barriereJ111[3]))));
@@ -255,6 +296,14 @@ public class Partie {
 
     /**
       * Initialise les différents éléments constants de la partie
+      * @param pseudo1 le nom du joueur 1
+      * @param pseudo2 le nom du joueur 2
+      * @param pseudo3 le nom du joueur 3
+      * @param pseudo4 le nom du joueur 4
+      * @param difficulte1 la difficulte de L'IA si le joueur 1 est un IA
+      * @param difficulte2 la difficulte de L'IA si le joueur 2 est un IA
+      * @param difficulte3 la difficulte de L'IA si le joueur 3 est un IA
+      * @param difficulte4 la difficulte de L'IA si le joueur 4 est un IA
       */
     private void initialisation(String pseudo1, String pseudo2, String pseudo3, String pseudo4, Difficulte difficulte1, Difficulte difficulte2, Difficulte difficulte3, Difficulte difficulte4) {
         this.plateau = new Plateau(9, this);
@@ -330,10 +379,15 @@ public class Partie {
 
     /**
       * Lance la partie
+      * @param j le premier joueur qui doit jouer (utile pour reprendre une partie)
+      * @param gui le booleen pour savoir si la partie se joue en mode graphique
       */
     public void start(int j, boolean gui) {
       boolean fin = false;
       int gagnant = 0;
+      if (gui) {
+
+      } else {
           if(this.mode.toString().length() == 2){
               while(!fin){
                   int i = j;
@@ -363,6 +417,7 @@ public class Partie {
                       i++;
                   }
               }
+          }
       }
     this.fin(gagnant);
   }
@@ -376,6 +431,9 @@ public class Partie {
       this.afficher();
     }
 
+    /**
+      * Affiche le plateau en mode texte
+      */
     public void afficher(){
       System.out.print("\t");
       for(int k = 0;k < this.plateau.getTaille();k++){
@@ -414,6 +472,10 @@ public class Partie {
       }
     }
 
+    /**
+      * Récupère la liste de joueurs
+      * @return la lsite de joueurss
+      */
     public ArrayList<Joueur> getJoueurs() {
         return joueurs;
     }

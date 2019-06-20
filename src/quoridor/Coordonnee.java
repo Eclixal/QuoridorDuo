@@ -12,14 +12,10 @@ public class Coordonnee {
 
     /**
       * Créé un nouvel objet Coordonnee. Si les coordonnées sont utilisées par un pion alors les valeurs de x2 et y2 seront initialisées à -1 et ne seront pas utilisées.
-      * @param x1 La première coordonnée x de l'objet
-      * Pour une barrière il s'agit de la coordonnée x de son point de départ
-      * @param y1 La première coordonnée y de l'objet
-      * Pour une barrière il s'agit de la coordonnée y de son point de départ
-      * @param x2 La seconde coordonnée x de l'objet
-      * Pour une barrière il s'agit de la coordonnée x de son point d'arrivée
-      * @param y2 La seconde coordonnée y de l'objet.
-      * Pour une barrière il s'agit de la coordonnée y de son point d'arrivée
+      * @param x1 La première coordonnée x de l'objet. Pour une barrière il s'agit de la coordonnée x de son point de départ
+      * @param y1 La première coordonnée y de l'objet. Pour une barrière il s'agit de la coordonnée y de son point de départ
+      * @param x2 La seconde coordonnée x de l'objet. Pour une barrière il s'agit de la coordonnée x de son point d'arrivée
+      * @param y2 La seconde coordonnée y de l'objet. Pour une barrière il s'agit de la coordonnée y de son point d'arrivée
       */
     public Coordonnee(int x1, int y1, int x2, int y2) {
         this.x1 = x1;

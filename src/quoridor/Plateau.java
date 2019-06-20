@@ -12,6 +12,7 @@ public class Plateau {
     /**
       * Créé un nouvel objet Plateau
       * @param taille la taille du plateau (longueur et largeur car le plateau est forcément un carré)
+      * @param partie la partie qui utilise ce plateau
       */
     public Plateau(int taille, Partie partie) {
         this.TAILLE = taille*2-1;
@@ -19,6 +20,10 @@ public class Plateau {
         this.DAMIER = new int[this.TAILLE][this.TAILLE];
     }
 
+    /**
+      * Retourne le partie qui utilise le plateau
+      * @return la partie
+      */
     public Partie getPartie() {
         return partie;
     }
@@ -32,24 +37,29 @@ public class Plateau {
     }
 
     /**
-      * Get the value in an index of the table.
-      * @param x The position x
-      * @param y The position y
-      * @return The value
+      * Retourne la valeur à l'index du tableau
+      * @param x La position x
+      * @param y La position y
+      * @return La valeur
       */
       public int getValue(int x, int y){
         return this.DAMIER[x][y];
       }
 
       /**
-        * Set a value in an index of the table.
-        * @param x The position x
-        * @param y The position y
+        * Definit une valeur à l'index du tableau
+        * @param x La position x
+        * @param y La position y
+        * @param value la valeur
         */
         public void setValue(int x, int y, int value) {
           this.DAMIER[x][y] = value;
         }
 
+        /**
+          * Retourne le tableau du plateau
+          * @return le tableau à deux dimensions du plateau
+          */
         public int[][] getDAMIER() {
             return DAMIER;
         }
