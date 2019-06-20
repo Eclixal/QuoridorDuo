@@ -31,11 +31,12 @@ public class Menu extends JPanel {
     GridBagConstraints constraints = new GridBagConstraints();
     constraints.insets = new Insets(10,10,10,10);
 
-
+    this.setBackground(Color.decode("#b4e9e2"));
 
     this.label = new JLabel("Quoridor");
     this.label.setBorder(new EmptyBorder(10, 10, 100, 10));
     this.label.setFont(new Font("Courier New", Font.BOLD, 120));
+    this.label.setForeground(Color.decode("#309286"));
 
     constraints.gridy = 0;
     constraints.gridx = 0;
@@ -46,13 +47,13 @@ public class Menu extends JPanel {
 
     this.nouvelle = new JButtonMenu("Nouvelle partie");
     this.nouvelle.setMargin(new Insets(10,10,10,10));
-    this.nouvelle.setFont(new Font("Courier New", Font.BOLD, this.nouvelle.getFont().getSize()));
-    this.nouvelle.setBackground(Color.decode("#252525"));
-    this.nouvelle.setForeground(Color.WHITE);
+    this.nouvelle.setFont(new Font("Courier New", Font.BOLD, 19));
+    this.nouvelle.setBackground(Color.decode("#309286"));
+    this.nouvelle.setForeground(Color.decode("#ebefd0"));
     this.nouvelle.setBorderPainted(false);
     this.nouvelle.setFocusPainted(false);
-    this.nouvelle.setHoverBackgroundColor(Color.decode("#3d3d3d"));
-    this.nouvelle.setPressedBackgroundColor(Color.decode("#484848"));
+    this.nouvelle.setHoverBackgroundColor(Color.decode("#59a59b"));
+    this.nouvelle.setPressedBackgroundColor(Color.decode("#64afa5"));
     this.nouvelle.addMouseListener(new MenuListener(this));
 
     constraints.gridx = 0;
@@ -62,13 +63,13 @@ public class Menu extends JPanel {
 
     this.charger = new JButtonMenu("Charger une partie");
     this.charger.setMargin(new Insets(10,10,10,10));
-    this.charger.setFont(new Font("Courier New", Font.BOLD, this.charger.getFont().getSize()));
+    this.charger.setFont(new Font("Courier New", Font.BOLD, 19));
     this.charger.setBorderPainted(false);
     this.charger.setFocusPainted(false);
-    this.charger.setBackground(Color.decode("#252525"));
-    this.charger.setForeground(Color.WHITE);
-    this.charger.setHoverBackgroundColor(Color.decode("#3d3d3d"));
-    this.charger.setPressedBackgroundColor(Color.decode("#484848"));
+    this.charger.setBackground(Color.decode("#309286"));
+    this.charger.setForeground(Color.decode("#ebefd0"));
+    this.charger.setHoverBackgroundColor(Color.decode("#59a59b"));
+    this.charger.setPressedBackgroundColor(Color.decode("#64afa5"));
     this.charger.addMouseListener(new MenuListener(this));
 
     constraints.gridx = 0;
@@ -78,13 +79,13 @@ public class Menu extends JPanel {
 
     this.quitter = new JButtonMenu("Quitter");
     this.quitter.setMargin(new Insets(10,10,10,10));
-    this.quitter.setFont(new Font("Courier New", Font.BOLD, this.quitter.getFont().getSize()));
+    this.quitter.setFont(new Font("Courier New", Font.BOLD, 19));
     this.quitter.setBorderPainted(false);
     this.quitter.setFocusPainted(false);
-    this.quitter.setBackground(Color.decode("#252525"));
-    this.quitter.setForeground(Color.WHITE);
-    this.quitter.setHoverBackgroundColor(Color.decode("#3d3d3d"));
-    this.quitter.setPressedBackgroundColor(Color.decode("#484848"));
+    this.quitter.setBackground(Color.decode("#309286"));
+    this.quitter.setForeground(Color.decode("#ebefd0"));
+    this.quitter.setHoverBackgroundColor(Color.decode("#59a59b"));
+    this.quitter.setPressedBackgroundColor(Color.decode("#64afa5"));
     this.quitter.addMouseListener(new MenuListener(this));
 
     constraints.insets = new Insets(40,10,10,10);
