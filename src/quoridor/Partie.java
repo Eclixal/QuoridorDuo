@@ -26,17 +26,6 @@ public class Partie {
     }
 
     /**
-      * Créé un nouvel objet Partie
-      * @param mode Le mode de jeu de la partie
-      * @param gui le booleen pour savoir si la partie se joue en mode graphique
-      */
-    public Partie(Mode mode, boolean gui) {
-        this.mode = mode;
-        this.initialisation("Joueur1", "Joueur2", "Joueur3", "Joueur4", Difficulte.FACILE, Difficulte.FACILE, Difficulte.FACILE, Difficulte.FACILE);
-        this.start(0, gui);
-    }
-
-    /**
       * Créé un nouvel objet Partie avec un fichier de sauvegarde
       * @param save le booleen qui gère si on utilise une sauvegarde
       * @param saveFile le nom du fichier de configuration
@@ -54,9 +43,12 @@ public class Partie {
       * @param difficulte1 la difficulte de L'IA si le joueur 1 est un IA
       * @param difficulte2 la difficulte de L'IA si le joueur 2 est un IA
       */
-    public Partie(Mode mode, String pseudo1, String pseudo2, Difficulte difficulte1, Difficulte difficulte2) {
+    public Partie(Mode mode, String pseudo1, String pseudo2, Difficulte difficulte1, Difficulte difficulte2, boolean gui) {
         this.mode = mode;
         this.initialisation(pseudo1, pseudo2, null, null, difficulte1, difficulte2, null, null);
+        if(!gui){
+          this.start(0,gui);
+        }
     }
 
     /**
@@ -71,9 +63,12 @@ public class Partie {
       * @param difficulte3 la difficulte de L'IA si le joueur 3 est un IA
       * @param difficulte4 la difficulte de L'IA si le joueur 4 est un IA
       */
-    public Partie(Mode mode, String pseudo1, String pseudo2, String pseudo3, String pseudo4, Difficulte difficulte1, Difficulte difficulte2, Difficulte difficulte3, Difficulte difficulte4) {
+    public Partie(Mode mode, String pseudo1, String pseudo2, String pseudo3, String pseudo4, Difficulte difficulte1, Difficulte difficulte2, Difficulte difficulte3, Difficulte difficulte4, boolean gui) {
         this.mode = mode;
         this.initialisation(pseudo1, pseudo2, pseudo3, pseudo4, difficulte1, difficulte2, difficulte3, difficulte4);
+        if(!gui){
+          this.start(0,gui);
+        }
     }
 
     public Partie(String fileName) {
