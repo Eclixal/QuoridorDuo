@@ -4,7 +4,6 @@ import javax.swing.*;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 
-import quoridor.ui.view.Menu;
 import quoridor.ui.view.PauseView;
 import quoridor.ui.view.PlateauView;
 import quoridor.Joueur;

@@ -5,12 +5,8 @@ import quoridor.Partie;
 import quoridor.Joueur;
 import quoridor.ui.MainFrame;
 import quoridor.ui.custom.JButtonMenu;
-import quoridor.ui.listener.PauseListener;
 import quoridor.ui.listener.PlateauListener;
 
-import java.awt.event.ActionEvent;
-import java.awt.event.KeyEvent;
-import java.awt.event.KeyListener;
 import java.util.ArrayList;
 import javax.swing.*;
 import javax.swing.table.TableColumn;
@@ -29,6 +25,7 @@ public class PlateauView extends JPanel {
   private JLabel timer;
   private JButtonMenu jButtonMenu;
   private JLabel joueur;
+  private JLabel barriere;
 
   private boolean pause;
 
@@ -85,6 +82,15 @@ public class PlateauView extends JPanel {
     constraints.anchor = GridBagConstraints.NORTH;
 
     constraints.gridy = 1;
+    constraints.gridx = 0;
+
+    this.add(this.joueur, constraints);
+
+
+    this.barriere = new JLabel("Il vous reste # barrières");
+    this.barriere.setFont(new Font("Courier New", Font.BOLD, ((int)(this.barriere.getFont().getSize()*1.5))));
+
+    constraints.gridy = 2;
     constraints.gridx = 0;
 
     this.add(this.joueur, constraints);

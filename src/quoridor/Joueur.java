@@ -147,29 +147,30 @@ public abstract class Joueur {
      * @return Vrai si le joueur peut finir le jeu
      */
     public boolean existWay(int x, int y, int[][] tmp, int j) {
-      boolean exist = false;
-      ArrayList<Integer> liste = getDeplacementPossibles(x, y, tmp);
-      int i = 0;
-      while(i < liste.size() && !liste.isEmpty() && !exist) {
-        if(isValide(liste.get(i), liste.get(i+1), tmp)) {
-          plateau.getPartie().getJoueurs().get(j).setNumDeplacement(plateau.getPartie().getJoueurs().get(j).getNumDeplacement()+1);
-          tmp[liste.get(i)][liste.get(i+1)] = plateau.getPartie().getJoueurs().get(j).getNumDeplacement();
-          if (((plateau.getPartie().getJoueurs().get(j).getFin().getX1() != -1 && liste.get(i) == plateau.getPartie().getJoueurs().get(j).getFin().getX1()) || (plateau.getPartie().getJoueurs().get(j).getFin().getY1() != -1 && liste.get(i+1) == plateau.getPartie().getJoueurs().get(j).getFin().getY1())) || (plateau.getPartie().getJoueurs().get(j).getFin().getX1() != -1 && x == plateau.getPartie().getJoueurs().get(j).getFin().getX1() || plateau.getPartie().getJoueurs().get(j).getFin().getY1() != -1 && y == plateau.getPartie().getJoueurs().get(j).getFin().getY1())) {
-            exist = true;
-          }
-          else{
-            if(existWay(liste.get(i), liste.get(i+1), tmp, j)) {
-              exist = true;
+        boolean exist = false;
+
+        ArrayList<Integer> liste = getDeplacementPossibles(x, y, tmp);
+        int i = 0;
+        while(i < liste.size() && !liste.isEmpty() && !exist) {
+            if(isValide(liste.get(i), liste.get(i+1), tmp)) {
+                plateau.getPartie().getJoueurs().get(j).setNumDeplacement(plateau.getPartie().getJoueurs().get(j).getNumDeplacement()+1);
+                tmp[liste.get(i)][liste.get(i+1)] = plateau.getPartie().getJoueurs().get(j).getNumDeplacement();
+
+                if (((plateau.getPartie().getJoueurs().get(j).getFin().getX1() != -1 && liste.get(i) == plateau.getPartie().getJoueurs().get(j).getFin().getX1()) || (plateau.getPartie().getJoueurs().get(j).getFin().getY1() != -1 && liste.get(i+1) == plateau.getPartie().getJoueurs().get(j).getFin().getY1())) || (plateau.getPartie().getJoueurs().get(j).getFin().getX1() != -1 && x == plateau.getPartie().getJoueurs().get(j).getFin().getX1() || plateau.getPartie().getJoueurs().get(j).getFin().getY1() != -1 && y == plateau.getPartie().getJoueurs().get(j).getFin().getY1())) {
+                    exist = true;
+                } else {
+                    if (existWay(liste.get(i), liste.get(i+1), tmp, j)) {
+                        exist = true;
+                    } else {
+                        tmp[liste.get(i)][liste.get(i+1)] =  -1;
+                        plateau.getPartie().getJoueurs().get(j).setNumDeplacement(plateau.getPartie().getJoueurs().get(j).getNumDeplacement()-1);
+                    }
+                }
             }
-            else{
-              tmp[liste.get(i)][liste.get(i+1)] =  -1;
-              plateau.getPartie().getJoueurs().get(j).setNumDeplacement(plateau.getPartie().getJoueurs().get(j).getNumDeplacement()-1);
-            }
-          }
+            i = i + 2;
         }
-        i = i + 2;
-      }
-      return exist;
+
+        return exist;
     }
 
     /**
@@ -213,90 +214,39 @@ public abstract class Joueur {
     /**
       * Place une barrière aux coordonnées sélectionnées s'il en reste une au joueur
       * @param coordonnee les coordonnées où placer la barrière
-      * @return Vrai si la barriere peut être placé
       */
     public boolean placerBarriere(Coordonnee coordonnee) {
-      boolean ret = true;
-      int[][] tmp = new int[plateau.getTaille()][plateau.getTaille()];
-      if(coordonnee.getX1() >= 0 && coordonnee.getX1() < this.plateau.getTaille() && coordonnee.getY1() >= 0 && coordonnee.getY1() < this.plateau.getTaille()) {
-        for (int x = 0; x < plateau.getDAMIER().length; x++) {
-          for (int y = 0; y < plateau.getDAMIER()[x].length; y++)
-            tmp[x][y] = plateau.getDAMIER()[x][y];
-          }
-          if (coordonnee.getX2() == -1 && coordonnee.getY1()%2 != 0) {
-            if (coordonnee.getX1() + 1 < this.plateau.getTaille() && coordonnee.getX1() + 2 < this.plateau.getTaille()
-            && tmp[coordonnee.getX1()][coordonnee.getY1()] == 0
-            && tmp[coordonnee.getX1() + 1][coordonnee.getY1()] == 0
-            && tmp[coordonnee.getX1() + 2][coordonnee.getY1()] == 0) {
-              tmp[coordonnee.getX1()][coordonnee.getY1()] = 5;
-              tmp[coordonnee.getX1() + 1][coordonnee.getY1()] = 5;
-              tmp[coordonnee.getX1() + 2][coordonnee.getY1()] = 5;
-            } else
-              ret = false;
-            } else if (coordonnee.getX2() == -2 && coordonnee.getX1()%2 != 0) {
-              if (coordonnee.getY1() + 1 < this.plateau.getTaille() && coordonnee.getY1() + 2 < this.plateau.getTaille()
-              && tmp[coordonnee.getX1()][coordonnee.getY1()] == 0
-              && tmp[coordonnee.getX1()][coordonnee.getY1() + 1] == 0
-              && tmp[coordonnee.getX1()][coordonnee.getY1() + 2] == 0) {
-                tmp[coordonnee.getX1()][coordonnee.getY1()] = 5;
-                tmp[coordonnee.getX1()][coordonnee.getY1() + 1] = 5;
-                tmp[coordonnee.getX1()][coordonnee.getY1() + 2] = 5;
-              } else
-                ret = false;
-            } else
-              ret = false;
-            if (ret) {
-            boolean canPlace = true;
-              for (int i = 0; i < plateau.getPartie().getJoueurs().size() && canPlace; i++) {
-                plateau.getPartie().getJoueurs().get(i).setNumDeplacement(1);
-                tmp = new int[plateau.getTaille()][plateau.getTaille()];
-                for (int x = 0; x < plateau.getDAMIER().length; x++)
-                  for (int y = 0; y < plateau.getDAMIER()[x].length; y++)
-                   tmp[x][y] = plateau.getDAMIER()[x][y];
-                if (coordonnee.getX2() == -1 && coordonnee.getY1() % 2 != 0) {
-                  if (coordonnee.getX1() + 1 < this.plateau.getTaille() && coordonnee.getX1() + 2 < this.plateau.getTaille()) {
+        boolean ret = true;
+        int[][] tmp = new int[plateau.getTaille()][plateau.getTaille()];
+
+        if(coordonnee.getX1() >= 0 && coordonnee.getX1() < this.plateau.getTaille() && coordonnee.getY1() >= 0 && coordonnee.getY1() < this.plateau.getTaille()) {
+
+            for (int x = 0; x < plateau.getDAMIER().length; x++) {
+                for (int y = 0; y < plateau.getDAMIER()[x].length; y++)
+                    tmp[x][y] = plateau.getDAMIER()[x][y];
+            }
+
+            if (coordonnee.getX2() == -1 && coordonnee.getY1()%2 != 0) {
+                if (coordonnee.getX1() + 1 < this.plateau.getTaille() && coordonnee.getX1() + 2 < this.plateau.getTaille()
+                    && tmp[coordonnee.getX1()][coordonnee.getY1()] == 0
+                        && tmp[coordonnee.getX1() + 1][coordonnee.getY1()] == 0
+                        && tmp[coordonnee.getX1() + 2][coordonnee.getY1()] == 0) {
                     tmp[coordonnee.getX1()][coordonnee.getY1()] = 5;
                     tmp[coordonnee.getX1() + 1][coordonnee.getY1()] = 5;
                     tmp[coordonnee.getX1() + 2][coordonnee.getY1()] = 5;
-                  }
-                }else if (coordonnee.getX2() == -2 && coordonnee.getX1() % 2 != 0) {
-                  if (coordonnee.getY1() + 1 < this.plateau.getTaille() && coordonnee.getY1() + 2 < this.plateau.getTaille()) {
+                } else
+                    ret = false;
+            } else if (coordonnee.getX2() == -2 && coordonnee.getX1()%2 != 0) {
+                if (coordonnee.getY1() + 1 < this.plateau.getTaille() && coordonnee.getY1() + 2 < this.plateau.getTaille()
+                    && tmp[coordonnee.getX1()][coordonnee.getY1()] == 0
+                        && tmp[coordonnee.getX1()][coordonnee.getY1() + 1] == 0
+                        && tmp[coordonnee.getX1()][coordonnee.getY1() + 2] == 0) {
                     tmp[coordonnee.getX1()][coordonnee.getY1()] = 5;
                     tmp[coordonnee.getX1()][coordonnee.getY1() + 1] = 5;
                     tmp[coordonnee.getX1()][coordonnee.getY1() + 2] = 5;
-                  }
-                }
-                if (!existWay(plateau.getPartie().getJoueurs().get(i).getPion().getCoordonnee().getX1(), plateau.getPartie().getJoueurs().get(i).getPion().getCoordonnee().getY1(), tmp, i))
-                  canPlace = false;
-                }
-                if (canPlace) {
-                  boolean changed = false;
-                  for (int i = 0; i < barrieres.size() && !changed; i++) {
-                    if (barrieres.get(i).getCoordonnee().getX1() == -1) {
-                      barrieres.get(i).setCoordonnee(coordonnee);
-                      changed = true;
-                    }
-                  }
-                  if (changed) {
-                    if (coordonnee.getX2() == -1 && coordonnee.getY1()%2 != 0) {
-                      if (coordonnee.getX1() + 1 < this.plateau.getTaille() && coordonnee.getX1() + 2 < this.plateau.getTaille()) {
-                        this.plateau.setValue(coordonnee.getX1(), coordonnee.getY1(), 5);
-                        this.plateau.setValue(coordonnee.getX1() + 1, coordonnee.getY1(), 5);
-                        this.plateau.setValue(coordonnee.getX1() + 2, coordonnee.getY1(), 5);
-                      }
-                    }else if (coordonnee.getX2() == -2 && coordonnee.getX1()%2 != 0)
-                      if (coordonnee.getY1() + 1 < this.plateau.getTaille() && coordonnee.getY1() + 2 < this.plateau.getTaille()) {
-                        this.plateau.setValue(coordonnee.getX1(), coordonnee.getY1(), 5);
-                        this.plateau.setValue(coordonnee.getX1(), coordonnee.getY1() + 1, 5);
-                        this.plateau.setValue(coordonnee.getX1(), coordonnee.getY1() + 2, 5);
-                      }
-                    }
-                  }
                 } else
-                  ret = false;
-                }
-                return ret;
-              }
+                    ret = false;
+            } else
                 ret = false;
 
            if (ret) {
@@ -350,8 +300,7 @@ public abstract class Joueur {
                                this.plateau.setValue(coordonnee.getX1(), coordonnee.getY1() + 2, 5);
                            }
                        }
-                   } else
-                       ret = false;
+                   }
                } else
                    ret = false;
            }
@@ -369,48 +318,25 @@ public abstract class Joueur {
     public ArrayList<Integer> getDeplacementPossibles(int x, int y, int[][] tableau) {
       ArrayList<Integer> liste = new ArrayList<Integer>();
       if((x+2) < this.plateau.getTaille()) {
-        if(tableau[x+2][y] == 0 && tableau[x+1][y] == 0){
-          liste.add(x+2);
-          liste.add(y);
-        }
-        else if((x+4) < this.plateau.getTaille()){
-          if(tableau[x+2][y] != 0 && tableau[x+1][y] == 0 && tableau[x+4][y] == 0 && tableau[x+3][y] == 0){
-            liste.add(x+4);
-            liste.add(y);
-          }
-          else if(tableau[x+2][y] != 0 && tableau[x+1][y] == 0 && ((tableau[x + 4][y] != 0 && tableau[x + 3][y] == 0) || tableau[x + 3][y] != 0)){
-            if((y+2) < this.plateau.getTaille() && tableau[x+2][y+2] == 0 && tableau[x+1][y+1] == 0 && tableau[x][y+1] == 0 && tableau[x+2][y+1] == 0){
+          if(tableau[x+2][y] == 0 && tableau[x+1][y] == 0){
               liste.add(x+2);
-              liste.add(y+2);
-            }
-            if((y-2) >= 0 && tableau[x+2][y-2] == 0 && tableau[x+1][y-1] == 0 && tableau[x][y-1] == 0 && tableau[x+2][y-1] == 0){
-              liste.add(x+2);
-              liste.add(y-2);
-            }
+              liste.add(y);
           }
-        }
-      }
-      if((y+2) < this.plateau.getTaille()){
-        if(tableau[x][y+2] == 0 && tableau[x][y+1] == 0){
-          liste.add(x);
-          liste.add(y+2);
-        }
-        else if((y+4) < this.plateau.getTaille()){
-          if(tableau[x][y+2] != 0 && tableau[x][y+1] == 0 && tableau[x][y+4] == 0 && tableau[x][y+3] == 0){
-            liste.add(x);
-            liste.add(y+4);
+          else if((x+4) < this.plateau.getTaille()){
+              if(tableau[x+2][y] != 0 && tableau[x+1][y] == 0 && tableau[x+4][y] == 0 && tableau[x+3][y] == 0){
+                  liste.add(x+4);
+                  liste.add(y);
+              } else if(tableau[x+2][y] != 0 && tableau[x+1][y] == 0 && (tableau[x + 4][y] != 0 || tableau[x + 3][y] != 0)){
+                  if((y+2) < this.plateau.getTaille() && tableau[x+2][y+2] == 0 && tableau[x+1][y+1] == 0 && tableau[x][y+1] == 0 && tableau[x+2][y+1] == 0){
+                      liste.add(x+2);
+                      liste.add(y+2);
+                  }
+                  if((y-2) >= 0 && tableau[x+2][y-2] == 0 && tableau[x+1][y-1] == 0 && tableau[x][y-1] == 0 && tableau[x+2][y-1] == 0){
+                      liste.add(x+2);
+                      liste.add(y-2);
+                  }
+              }
           }
-          else if(tableau[x][y+2] != 0 && tableau[x][y+1] == 0 && ((tableau[x][y + 4] != 0 && tableau[x][y + 3] != 0) || tableau[x][y + 3] != 0)){
-            if((x+2) < this.plateau.getTaille() && tableau[x+2][y+2] == 0 && tableau[x+1][y+1] == 0 && tableau[x+1][y] == 0 && tableau[x+1][y-2] == 0){
-              liste.add(x+2);
-              liste.add(y+2);
-            }
-            if((x-2) >= 0 && tableau[x-2][y+2] == 0 && tableau[x-1][y+1] == 0 && tableau[x-1][y] == 0 && tableau[x-1][x+1] == 0){
-              liste.add(x-2);
-              liste.add(y+2);
-            }
-          }
-        }
       }
         if((y+2) < this.plateau.getTaille()){
           if(tableau[x][y+2] == 0 && tableau[x][y+1] == 0){
@@ -444,7 +370,7 @@ public abstract class Joueur {
             liste.add(x-4);
             liste.add(y);
           }
-          else if(tableau[x-2][y] != 0 && tableau[x-1][y] == 0 && ((tableau[x - 4][y] != 0 && tableau[x - 3][y] != 0) || tableau[x - 3][y] != 0)){
+          else if(tableau[x-2][y] != 0 && tableau[x-1][y] == 0 && (tableau[x - 3][y] != 0)){
             if((y+2) < this.plateau.getTaille() && tableau[x-2][y+2] == 0 && tableau[x-1][y+1] == 0 && tableau[x][y+1] == 0 && tableau[x-2][y+1] == 0){
               liste.add(x-2);
               liste.add(y+2);
@@ -466,7 +392,7 @@ public abstract class Joueur {
             liste.add(x);
             liste.add(y+4);
           }
-          else if(tableau[x][y-2] != 0 && tableau[x][y-1] == 0 && ((tableau[x][y - 4] != 0 && tableau[x][y - 3] != 0) || tableau[x][y - 3] != 0)){
+          else if(tableau[x][y-2] != 0 && tableau[x][y-1] == 0 && (tableau[x][y - 3] != 0)){
             if((x+2) < this.plateau.getTaille() && tableau[x+2][y-2] == 0 && tableau[x+1][y-1] == 0 && tableau[x+1][y] == 0 && tableau[x+1][y-2] == 0){
               liste.add(x+2);
               liste.add(y-2);
@@ -479,20 +405,12 @@ public abstract class Joueur {
         }
       }
       return liste;
-    }
-
-      /**
-        * Joue un tour pour un joueur
-        * @param gui le booleen pour savoir si la partie se joue en mode graphique
-        * @param x la position x du deplacement que le joueur veut faire (utile que pour le mode graphique pour un humain)
-        * @param y la postion y du deplacement que le joueur veut faire (utile que pour le mode graphique pour un humain)
-        * @return un message s'il y a une erreur
-        */
-    public abstract String jeu(boolean gui, int x, int y);
+      }
 
     /**
-      * Retourne si c'est un IA ou non
-      * @return Vrai si c'est un IA
+      * Permet au joueur de jouer
       */
+    public abstract String jeu(boolean gui, int x, int y);
+
     public abstract boolean isIA();
 }

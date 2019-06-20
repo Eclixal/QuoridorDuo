@@ -289,8 +289,8 @@ public class Partie {
       */
     private void loadBarrieres(DataInputStream in, String couleur, ArrayList<Barriere> barrieres) throws IOException {
         for (int b = 0; b < 20/this.mode.name().length(); b++) {
-            String[] barriereJ111 = in.readUTF().split("/");
-            barrieresJ111.add(new Barriere(couleurJ111, new Coordonnee(Integer.parseInt(barriereJ111[0]), Integer.parseInt(barriereJ111[1]), Integer.parseInt(barriereJ111[2]), Integer.parseInt(barriereJ111[3]))));
+            String[] barriere = in.readUTF().split("/");
+            barrieres.add(new Barriere(couleur, new Coordonnee(Integer.parseInt(barriere[0]), Integer.parseInt(barriere[1]), Integer.parseInt(barriere[2]), Integer.parseInt(barriere[3]))));
         }
     }
 

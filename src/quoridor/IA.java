@@ -86,8 +86,8 @@ public class IA extends Joueur {
         else{
           boolean trouve = false;
           while(!trouve) {
-            double a1 = Math.random() * this.plateau.getTaille()-1;
-            double b1 = Math.random() * this.plateau.getTaille()-1;
+            double a1 = Math.random() * this.plateau.getTaille();
+            double b1 = Math.random() * this.plateau.getTaille();
             int a = (int) a1;
             int b = (int) b1;
             int c = 0;
