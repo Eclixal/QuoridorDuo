@@ -111,13 +111,13 @@ public class PlateauView extends JPanel {
     launch();
 
     this.table.setRowSelectionAllowed(false);
-    this.table.setRowHeight(70);
+    this.table.setRowHeight(50);
 
     for(int i = 0;i < this.plateau.getTaille();i++){
       if(i%2 == 0){
         TableColumn column = this.table.getColumnModel().getColumn(i);
-        column.setMinWidth(70);
-        column.setMaxWidth(70);
+        column.setMinWidth(50);
+        column.setMaxWidth(50);
       }
       else{
         table.setRowHeight(i,10);
