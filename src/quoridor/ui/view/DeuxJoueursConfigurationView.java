@@ -21,6 +21,7 @@ import java.io.IOException;
 public class DeuxJoueursConfigurationView extends JPanel {
 
   private JButtonMenu jouer;
+  private JButtonMenu retour;
   private JLabel jLabel;
 
   private JTextField jTextFieldJ1;
@@ -87,7 +88,7 @@ public class DeuxJoueursConfigurationView extends JPanel {
       constraintsJ1.gridx = 1;
       panelJ1.add(pseudoJ1, constraintsJ1);
 
-      JLabel avatarJ1 = new JLabel(new ImageIcon(new ImageIcon("../images/Rond_rouge.png").getImage().getScaledInstance(50, 50, Image.SCALE_DEFAULT)));
+      JLabel avatarJ1 = new JLabel(new ImageIcon(new ImageIcon("images/Rond_rouge.png").getImage().getScaledInstance(50, 50, Image.SCALE_DEFAULT)));
       constraintsJ1.gridy = 0;
       constraintsJ1.gridx = 0;
       panelJ1.add(avatarJ1, constraintsJ1);
@@ -115,7 +116,7 @@ public class DeuxJoueursConfigurationView extends JPanel {
       panelJ1.add(this.jComboBoxDifficultyJ1, constraintsJ1);
 
       constraints1.gridy = 0;
-      constraints1.gridx = 1;
+      constraints1.gridx = 2;
 
       jPanel.add(panelJ1, constraints1);
 
@@ -134,7 +135,7 @@ public class DeuxJoueursConfigurationView extends JPanel {
       constraintsJ2.gridx = 1;
       panelJ2.add(pseudoJ2, constraintsJ2);
 
-      JLabel avatarJ2 = new JLabel(new ImageIcon(new ImageIcon("../images/Rond_bleu.png").getImage().getScaledInstance(50, 50, Image.SCALE_DEFAULT)));
+      JLabel avatarJ2 = new JLabel(new ImageIcon(new ImageIcon("images/Rond_bleu.png").getImage().getScaledInstance(50, 50, Image.SCALE_DEFAULT)));
       constraintsJ2.gridy = 0;
       constraintsJ2.gridx = 0;
       panelJ2.add(avatarJ2, constraintsJ2);
@@ -161,12 +162,14 @@ public class DeuxJoueursConfigurationView extends JPanel {
       panelJ2.add(this.jComboBoxDifficultyJ2, constraintsJ2);
 
       constraints1.gridy = 1;
-      constraints1.gridx = 1;
+      constraints1.gridx = 2;
 
       jPanel.add(panelJ2, constraints1);
 
+      constraints1.insets = new Insets(10,0,10,0);
+
       this.jouer = new JButtonMenu("Jouer");
-      this.jouer.setMargin(new Insets(50,70,50,70));
+      this.jouer.setMargin(new Insets(30,30,30,30));
       this.jouer.setFont(new Font("Courier New", Font.BOLD, this.jouer.getFont().getSize()));
       this.jouer.setBackground(Color.decode("#252525"));
       this.jouer.setForeground(Color.WHITE);
@@ -176,15 +179,30 @@ public class DeuxJoueursConfigurationView extends JPanel {
       this.jouer.setPressedBackgroundColor(Color.decode("#484848"));
       this.jouer.addMouseListener(new DeuxJoueursListener(this));
 
-      constraints1.insets = new Insets(10,50,10,50);
-
-      constraints1.gridx = 0;
+      constraints1.gridx = 1;
       constraints1.gridy = 1;
 
       jPanel.add(this.jouer, constraints1);
 
+      this.retour = new JButtonMenu("Retour");
+      this.retour.setMargin(new Insets(30,30,30,30));
+      this.retour.setFont(new Font("Courier New", Font.BOLD, this.retour.getFont().getSize()));
+      this.retour.setBackground(Color.decode("#252525"));
+      this.retour.setForeground(Color.WHITE);
+      this.retour.setBorderPainted(false);
+      this.retour.setFocusPainted(false);
+      this.retour.setHoverBackgroundColor(Color.decode("#3d3d3d"));
+      this.retour.setPressedBackgroundColor(Color.decode("#484848"));
+      this.retour.addMouseListener(new DeuxJoueursListener(this));
+
+      constraints1.gridx = 0;
+      constraints1.gridy = 1;
+
+      jPanel.add(this.retour, constraints1);
+
       constraints.gridy = 3;
       constraints.gridx = 0;
+
       this.add(jPanel, constraints);
 
       music();
@@ -222,10 +240,14 @@ public class DeuxJoueursConfigurationView extends JPanel {
     private ContinuousAudioDataStream audioDataStream;
     private void music() {
         try {
-            AudioData data = new AudioStream(new FileInputStream("../sons/main_theme_menu1.wav")).getData();
+            AudioData data = new AudioStream(new FileInputStream("sons/main_theme_menu1.wav")).getData();
             audioDataStream = new ContinuousAudioDataStream(data);
             AudioPlayer.player.start(audioDataStream);
         } catch(IOException ignored) { }
+    }
+
+    public JButtonMenu getRetour() {
+        return retour;
     }
 
     public ContinuousAudioDataStream getAudioDataStream() {

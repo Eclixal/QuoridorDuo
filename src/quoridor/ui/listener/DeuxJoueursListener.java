@@ -4,6 +4,7 @@ import quoridor.Difficulte;
 import quoridor.Mode;
 import quoridor.Partie;
 import quoridor.ui.view.DeuxJoueursConfigurationView;
+import quoridor.ui.view.NouvellePartie;
 import quoridor.ui.view.PlateauView;
 import sun.audio.AudioPlayer;
 
@@ -24,7 +25,7 @@ public class DeuxJoueursListener extends MouseAdapter {
 
     @Override
     public void mouseClicked(MouseEvent e) {
-        playSound("../sons/main_gui_click.wav");
+        playSound("sons/main_gui_click.wav");
         if (e.getSource() == deuxJoueursConfigurationView.getJouer()) {
             if (!deuxJoueursConfigurationView.getjTextFieldJ1().getText().isEmpty() && !deuxJoueursConfigurationView.getjTextFieldJ2().getText().isEmpty()) {
                 AudioPlayer.player.stop(deuxJoueursConfigurationView.getAudioDataStream());
@@ -42,7 +43,11 @@ public class DeuxJoueursListener extends MouseAdapter {
                     deuxJoueursConfigurationView.getMainFrame().validate();
                 }
             }
+        } else if (e.getSource() == deuxJoueursConfigurationView.getRetour()) {
+            AudioPlayer.player.stop(deuxJoueursConfigurationView.getAudioDataStream());
 
+            deuxJoueursConfigurationView.getMainFrame().setContentPane(new NouvellePartie(deuxJoueursConfigurationView.getMainFrame()));
+            deuxJoueursConfigurationView.getMainFrame().validate();
         }
     }
 

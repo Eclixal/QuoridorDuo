@@ -115,7 +115,7 @@ public class NouvellePartie extends JPanel {
     private ContinuousAudioDataStream audioDataStream;
     private void music() {
         try {
-            AudioData data = new AudioStream(new FileInputStream("../sons/main_theme_menu1.wav")).getData();
+            AudioData data = new AudioStream(new FileInputStream("sons/main_theme_menu1.wav")).getData();
             audioDataStream = new ContinuousAudioDataStream(data);
             AudioPlayer.player.start(audioDataStream);
         } catch(IOException ignored) { }

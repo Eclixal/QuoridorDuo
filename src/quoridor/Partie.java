@@ -1,9 +1,8 @@
 package quoridor;
 
 import java.io.*;
-import java.util.ArrayList;
-import java.util.Random;
-import java.util.UUID;
+import java.text.SimpleDateFormat;
+import java.util.*;
 
 /**
   * Cette classe gère les différents aspect de la partie
@@ -13,6 +12,8 @@ public class Partie {
     private Mode mode;
     private Plateau plateau;
     private ArrayList<Joueur> joueurs;
+
+    private int tour = 0;
 
     /**
       * Créé un nouvel objet Partie avec un fichier de configuration
@@ -97,7 +98,7 @@ public class Partie {
       */
     public void sauvegarder(int joueurTo, boolean gui) {
         try {
-            DataOutputStream out = new DataOutputStream(new BufferedOutputStream(new FileOutputStream("sauvegarde_" + UUID.randomUUID().toString().split("-")[1] + ".bin")));
+            DataOutputStream out = new DataOutputStream(new BufferedOutputStream(new FileOutputStream("sauvegarde_" + new SimpleDateFormat("dd-MM-YYYY_HH_mm_ss").format(new Date()) + ".bin")));
 
             out.writeUTF(this.mode.name());
             out.writeInt(joueurTo);
@@ -135,6 +136,7 @@ public class Partie {
 
             this.mode = Mode.valueOf(in.readUTF());
             int joueurTo = in.readInt();
+            tour = joueurTo;
 
             switch (this.mode) {
                 case HH:
@@ -473,5 +475,9 @@ public class Partie {
       */
     public ArrayList<Joueur> getJoueurs() {
         return joueurs;
+    }
+
+    public int getStartTour() {
+        return this.tour;
     }
 }

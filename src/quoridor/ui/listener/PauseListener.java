@@ -28,7 +28,7 @@ public class PauseListener extends MouseAdapter {
 
     @Override
     public void mouseClicked(MouseEvent e) {
-        playSound("../sons/main_gui_click.wav");
+        playSound("sons/main_gui_click.wav");
         if (e.getSource() == pauseView.getjButtonReprendre()) {
             pauseView.getMainFrame().setContentPane(plateauView);
             pauseView.getMainFrame().validate();

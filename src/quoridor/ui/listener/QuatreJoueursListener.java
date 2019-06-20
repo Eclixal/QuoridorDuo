@@ -4,6 +4,7 @@ import quoridor.Difficulte;
 import quoridor.Mode;
 import quoridor.Partie;
 import quoridor.ui.view.DeuxJoueursConfigurationView;
+import quoridor.ui.view.NouvellePartie;
 import quoridor.ui.view.PlateauView;
 import quoridor.ui.view.QuatreJoueursConfigurationView;
 import sun.audio.AudioPlayer;
@@ -25,7 +26,7 @@ public class QuatreJoueursListener extends MouseAdapter {
 
     @Override
     public void mouseClicked(MouseEvent e) {
-        playSound("../sons/main_gui_click.wav");
+        playSound("sons/main_gui_click.wav");
         if (e.getSource() == quatreJoueursConfigurationView.getJouer()) {
             if (!quatreJoueursConfigurationView.getjTextFieldJ1().getText().isEmpty() && !quatreJoueursConfigurationView.getjTextFieldJ2().getText().isEmpty()
                && !quatreJoueursConfigurationView.getjTextFieldJ3().getText().isEmpty() && !quatreJoueursConfigurationView.getjTextFieldJ4().getText().isEmpty()) {
@@ -77,8 +78,12 @@ public class QuatreJoueursListener extends MouseAdapter {
                     quatreJoueursConfigurationView.getMainFrame().validate();
                 }
             }
-
+        } else if (e.getSource() == quatreJoueursConfigurationView.getRetour()) {
+            AudioPlayer.player.stop(quatreJoueursConfigurationView.getAudioDataStream());
+            quatreJoueursConfigurationView.getMainFrame().setContentPane(new NouvellePartie(quatreJoueursConfigurationView.getMainFrame()));
+            quatreJoueursConfigurationView.getMainFrame().validate();
         }
+
     }
 
     public void playSound(String soundName) {

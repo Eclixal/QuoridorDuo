@@ -3,6 +3,7 @@ package quoridor.ui.listener;
 import javax.swing.*;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import java.util.TimerTask;
 
 import quoridor.ui.view.PauseView;
 import quoridor.ui.view.PlateauView;
@@ -28,7 +29,14 @@ public class PlateauListener extends MouseAdapter {
         this.plateauView.changerJoueur();
       }
       else{
-        System.out.println(resultat);
+        this.plateauView.getErrorMessage().setText(resultat);
+        java.util.Timer timer = new java.util.Timer();
+        timer.schedule(new TimerTask() {
+          @Override
+          public void run() {
+            plateauView.getErrorMessage().setText("");
+          }
+        }, 1000);
       }
     } else if (e.getSource() == plateauView.getjButtonMenu()) {
       plateauView.setPause(true);
