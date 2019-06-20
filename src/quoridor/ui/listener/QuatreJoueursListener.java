@@ -25,7 +25,7 @@ public class QuatreJoueursListener extends MouseAdapter {
 
     @Override
     public void mouseClicked(MouseEvent e) {
-        playSound("sons/main_gui_click.wav");
+        playSound("../sons/main_gui_click.wav");
         if (e.getSource() == quatreJoueursConfigurationView.getJouer()) {
             if (!quatreJoueursConfigurationView.getjTextFieldJ1().getText().isEmpty() && !quatreJoueursConfigurationView.getjTextFieldJ2().getText().isEmpty()
                && !quatreJoueursConfigurationView.getjTextFieldJ3().getText().isEmpty() && !quatreJoueursConfigurationView.getjTextFieldJ4().getText().isEmpty()) {
@@ -37,35 +37,40 @@ public class QuatreJoueursListener extends MouseAdapter {
                             , null
                             , null
                             , null
-                            , null);
+                            , null
+                            ,true);
                 else if (quatreJoueursConfigurationView.getjComboBox().getSelectedItem().equals("Humain vs Humain vs Humain vs IA"))
                     partie = new Partie(Mode.HHHI, quatreJoueursConfigurationView.getjTextFieldJ1().getText(), quatreJoueursConfigurationView.getjTextFieldJ2().getText()
                             , quatreJoueursConfigurationView.getjTextFieldJ3().getText(), quatreJoueursConfigurationView.getjTextFieldJ4().getText()
                             , null
                             , null
                             , null
-                            , Difficulte.valueOf(quatreJoueursConfigurationView.getjComboBoxDifficultyJ4().getSelectedItem().toString().toUpperCase()));
+                            , Difficulte.valueOf(quatreJoueursConfigurationView.getjComboBoxDifficultyJ4().getSelectedItem().toString().toUpperCase())
+                            ,true);
                 else if (quatreJoueursConfigurationView.getjComboBox().getSelectedItem().equals("Humain vs Humain vs IA vs IA"))
                     partie = new Partie(Mode.HHII, quatreJoueursConfigurationView.getjTextFieldJ1().getText(), quatreJoueursConfigurationView.getjTextFieldJ2().getText()
                             , quatreJoueursConfigurationView.getjTextFieldJ3().getText(), quatreJoueursConfigurationView.getjTextFieldJ4().getText()
                             , null
                             , null
                             , Difficulte.valueOf(quatreJoueursConfigurationView.getjComboBoxDifficultyJ3().getSelectedItem().toString().toUpperCase())
-                            , Difficulte.valueOf(quatreJoueursConfigurationView.getjComboBoxDifficultyJ4().getSelectedItem().toString().toUpperCase()));
+                            , Difficulte.valueOf(quatreJoueursConfigurationView.getjComboBoxDifficultyJ4().getSelectedItem().toString().toUpperCase())
+                            ,true);
                 else if (quatreJoueursConfigurationView.getjComboBox().getSelectedItem().equals("Humain vs IA vs IA vs IA"))
                     partie = new Partie(Mode.HIII, quatreJoueursConfigurationView.getjTextFieldJ1().getText(), quatreJoueursConfigurationView.getjTextFieldJ2().getText()
                             , quatreJoueursConfigurationView.getjTextFieldJ3().getText(), quatreJoueursConfigurationView.getjTextFieldJ4().getText()
                             , null
                             , Difficulte.valueOf(quatreJoueursConfigurationView.getjComboBoxDifficultyJ2().getSelectedItem().toString().toUpperCase())
                             , Difficulte.valueOf(quatreJoueursConfigurationView.getjComboBoxDifficultyJ3().getSelectedItem().toString().toUpperCase())
-                            , Difficulte.valueOf(quatreJoueursConfigurationView.getjComboBoxDifficultyJ4().getSelectedItem().toString().toUpperCase()));
+                            , Difficulte.valueOf(quatreJoueursConfigurationView.getjComboBoxDifficultyJ4().getSelectedItem().toString().toUpperCase())
+                            ,true);
                 else if (quatreJoueursConfigurationView.getjComboBox().getSelectedItem().equals("IA vs IA vs IA vs IA"))
                     partie = new Partie(Mode.IIII, quatreJoueursConfigurationView.getjTextFieldJ1().getText(), quatreJoueursConfigurationView.getjTextFieldJ2().getText()
                             , quatreJoueursConfigurationView.getjTextFieldJ3().getText(), quatreJoueursConfigurationView.getjTextFieldJ4().getText()
                             , Difficulte.valueOf(quatreJoueursConfigurationView.getjComboBoxDifficultyJ1().getSelectedItem().toString().toUpperCase())
                             , Difficulte.valueOf(quatreJoueursConfigurationView.getjComboBoxDifficultyJ2().getSelectedItem().toString().toUpperCase())
                             , Difficulte.valueOf(quatreJoueursConfigurationView.getjComboBoxDifficultyJ3().getSelectedItem().toString().toUpperCase())
-                            , Difficulte.valueOf(quatreJoueursConfigurationView.getjComboBoxDifficultyJ4().getSelectedItem().toString().toUpperCase()));
+                            , Difficulte.valueOf(quatreJoueursConfigurationView.getjComboBoxDifficultyJ4().getSelectedItem().toString().toUpperCase())
+                            ,true);
 
                 if (partie != null) {
                     quatreJoueursConfigurationView.getMainFrame().setContentPane(new PlateauView(quatreJoueursConfigurationView.getMainFrame(), partie));

@@ -24,18 +24,18 @@ public class DeuxJoueursListener extends MouseAdapter {
 
     @Override
     public void mouseClicked(MouseEvent e) {
-        playSound("sons/main_gui_click.wav");
+        playSound("../sons/main_gui_click.wav");
         if (e.getSource() == deuxJoueursConfigurationView.getJouer()) {
             if (!deuxJoueursConfigurationView.getjTextFieldJ1().getText().isEmpty() && !deuxJoueursConfigurationView.getjTextFieldJ2().getText().isEmpty()) {
                 AudioPlayer.player.stop(deuxJoueursConfigurationView.getAudioDataStream());
 
                 Partie partie = null;
                 if (deuxJoueursConfigurationView.getjComboBox().getSelectedItem().equals("Humain VS Humain"))
-                    partie = new Partie(Mode.HH, deuxJoueursConfigurationView.getjTextFieldJ1().getText(), deuxJoueursConfigurationView.getjTextFieldJ2().getText(), null, null);
+                    partie = new Partie(Mode.HH, deuxJoueursConfigurationView.getjTextFieldJ1().getText(), deuxJoueursConfigurationView.getjTextFieldJ2().getText(), null, null, true);
                 else if (deuxJoueursConfigurationView.getjComboBox().getSelectedItem().equals("Humain VS IA"))
-                    partie = new Partie(Mode.HI, deuxJoueursConfigurationView.getjTextFieldJ1().getText(), deuxJoueursConfigurationView.getjTextFieldJ2().getText(), null, Difficulte.valueOf(deuxJoueursConfigurationView.getjComboBoxDifficultyJ2().getSelectedItem().toString().toUpperCase()));
+                    partie = new Partie(Mode.HI, deuxJoueursConfigurationView.getjTextFieldJ1().getText(), deuxJoueursConfigurationView.getjTextFieldJ2().getText(), null, Difficulte.valueOf(deuxJoueursConfigurationView.getjComboBoxDifficultyJ2().getSelectedItem().toString().toUpperCase()),true);
                 else if (deuxJoueursConfigurationView.getjComboBox().getSelectedItem().equals("IA VS IA"))
-                    partie = new Partie(Mode.II, deuxJoueursConfigurationView.getjTextFieldJ1().getText(), deuxJoueursConfigurationView.getjTextFieldJ2().getText(), Difficulte.valueOf(deuxJoueursConfigurationView.getjComboBoxDifficultyJ1().getSelectedItem().toString().toUpperCase()), Difficulte.valueOf(deuxJoueursConfigurationView.getjComboBoxDifficultyJ2().getSelectedItem().toString().toUpperCase()));
+                    partie = new Partie(Mode.II, deuxJoueursConfigurationView.getjTextFieldJ1().getText(), deuxJoueursConfigurationView.getjTextFieldJ2().getText(), Difficulte.valueOf(deuxJoueursConfigurationView.getjComboBoxDifficultyJ1().getSelectedItem().toString().toUpperCase()), Difficulte.valueOf(deuxJoueursConfigurationView.getjComboBoxDifficultyJ2().getSelectedItem().toString().toUpperCase()),true);
 
                 if (partie != null) {
                     deuxJoueursConfigurationView.getMainFrame().setContentPane(new PlateauView(deuxJoueursConfigurationView.getMainFrame(), partie));

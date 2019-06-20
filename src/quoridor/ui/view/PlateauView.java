@@ -142,12 +142,12 @@ public class PlateauView extends JPanel {
         if(this.tour < this.joueurs.size()-1){
           this.tour++;
           this.joueur.setText("Tour : " + this.joueurs.get(tour).getNom());
-          this.joueur.setIcon(new ImageIcon(new ImageIcon("images/Rond_" + this.joueurs.get(tour).getCouleur().toLowerCase() + ".png").getImage().getScaledInstance(40, 40, Image.SCALE_DEFAULT)));
+          this.joueur.setIcon(new ImageIcon(new ImageIcon("../images/Rond_" + this.joueurs.get(tour).getCouleur().toLowerCase() + ".png").getImage().getScaledInstance(40, 40, Image.SCALE_DEFAULT)));
         }
         else{
           this.tour = 0;
           this.joueur.setText("Tour : " + this.joueurs.get(tour).getNom());
-          this.joueur.setIcon(new ImageIcon(new ImageIcon("images/Rond_" + this.joueurs.get(tour).getCouleur().toLowerCase() + ".png").getImage().getScaledInstance(40, 40, Image.SCALE_DEFAULT)));
+          this.joueur.setIcon(new ImageIcon(new ImageIcon("../images/Rond_" + this.joueurs.get(tour).getCouleur().toLowerCase() + ".png").getImage().getScaledInstance(40, 40, Image.SCALE_DEFAULT)));
         }
         if(this.joueurs.get(tour).isIA()){
           java.util.Timer timer = new java.util.Timer();
