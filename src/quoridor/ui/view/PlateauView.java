@@ -22,7 +22,6 @@ public class PlateauView extends JPanel {
     private JTable table;
     private PlateauListener listener;
 
-    private JLabel timer;
     private JButtonMenu jButtonMenu;
     private JLabel joueur;
     private JLabel barriere;
@@ -66,13 +65,13 @@ public class PlateauView extends JPanel {
 
         constraints.anchor = GridBagConstraints.NORTHEAST;
 
-        this.timer = new JLabel("00:00");
-        this.timer.setFont(new Font("Courier New", Font.BOLD, ((int)(this.timer.getFont().getSize()*1.5))));
+        this.errorMessage = new JLabel();
+        this.errorMessage.setFont(new Font("Courier New", Font.BOLD, ((int)(this.errorMessage.getFont().getSize()*1.5))));
 
         constraints.gridy = 0;
         constraints.gridx = 1;
 
-        this.add(this.timer, constraints);
+        this.add(this.errorMessage, constraints);
 
         JPanel jPanel = new JPanel();
         jPanel.setLayout(new GridBagLayout());
@@ -104,14 +103,6 @@ public class PlateauView extends JPanel {
         constraints.gridy = 1;
         constraints.gridx = 0;
         this.add(jPanel, constraints);
-
-        this.errorMessage = new JLabel();
-        this.errorMessage.setFont(new Font("Courier New", Font.BOLD, ((int)(this.errorMessage.getFont().getSize()*1.5))));
-
-        constraints1.gridy = 2;
-        constraints1.gridx = 0;
-
-        jPanel.add(this.errorMessage, constraints1);
 
         PlateauModel model = new PlateauModel(this.plateau.getDAMIER());
 

@@ -36,7 +36,7 @@ public class PlateauListener extends MouseAdapter {
           public void run() {
             plateauView.getErrorMessage().setText("");
           }
-        }, 1000);
+        }, 2000);
       }
     } else if (e.getSource() == plateauView.getjButtonMenu()) {
       plateauView.setPause(true);
