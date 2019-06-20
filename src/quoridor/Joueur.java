@@ -54,11 +54,11 @@ public abstract class Joueur {
             }
         }
 
-        if (pion.getCoordonnee().getX1() == 0)
+        if (getNumero() == 1)
             this.fin = new Coordonnee(this.plateau.getTaille()-1, -1, -1, -1);
-        else if (pion.getCoordonnee().getX1() == this.plateau.getTaille()-1)
+        else if (getNumero() == 2)
             this.fin = new Coordonnee(0, -1, -1, -1);
-        else if (pion.getCoordonnee().getY1() == 0)
+        else if (getNumero() == 4)
             this.fin = new Coordonnee(-1, this.plateau.getTaille()-1, -1, -1);
         else
             this.fin = new Coordonnee(-1, 0, -1, -1);
@@ -277,7 +277,8 @@ public abstract class Joueur {
                                this.plateau.setValue(coordonnee.getX1(), coordonnee.getY1() + 2, 5);
                            }
                        }
-                   }
+                   } else
+                       ret = false;
                } else
                    ret = false;
            }
@@ -323,8 +324,8 @@ public abstract class Joueur {
               liste.add(x);
               liste.add(y+4);
             }
-            else if(tableau[x][y+2] != 0 && tableau[x][y+1] == 0 && ((tableau[x][y + 4] != 0 && tableau[x][y + 3] != 0) || tableau[x][y + 3] != 0)){
-              if((x+2) < this.plateau.getTaille() && tableau[x+2][y+2] == 0 && tableau[x+1][y+1] == 0 && tableau[x+1][y] == 0 && tableau[x+1][y-2] == 0){
+            else if(tableau[x][y+2] != 0 && tableau[x][y+1] == 0 && (tableau[x][y + 3] != 0)){
+              if((x+2) < this.plateau.getTaille() && tableau[x+2][y+2] == 0 && tableau[x+1][y+1] == 0 && tableau[x+1][y] == 0 && tableau[x+1][y+2] == 0) {
                 liste.add(x+2);
                 liste.add(y+2);
               }

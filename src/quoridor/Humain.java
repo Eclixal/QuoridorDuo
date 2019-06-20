@@ -66,7 +66,7 @@ public class Humain extends Joueur {
           }
         }
         else if(choix.equals("3")){
-          this.plateau.getPartie().sauvegarder(getNumero()-1);
+          this.plateau.getPartie().sauvegarder(getNumero()-1, false);
         }
         else{
           System.out.println("Numéro de choix impossible !");

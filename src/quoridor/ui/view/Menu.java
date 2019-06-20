@@ -123,6 +123,8 @@ public class Menu extends JPanel {
       AudioData data = new AudioStream(new FileInputStream("sons/main_theme_menu2.wav")).getData();
       audioDataStream = new ContinuousAudioDataStream(data);
       AudioPlayer.player.start(audioDataStream);
+
+
     } catch(IOException ignored) { }
   }
 

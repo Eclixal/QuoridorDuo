@@ -1,5 +1,8 @@
 package quoridor.ui.custom;
 
+import quoridor.Partie;
+import quoridor.ui.view.PlateauView;
+
 import javax.swing.*;
 import java.awt.*;
 import java.io.File;
@@ -19,20 +22,15 @@ public class SauvegardeFileChooser extends JFileChooser {
     @Override
     public void approveSelection(){
         super.approveSelection();
-        System.out.println(getSelectedFile().getAbsolutePath());
         parent.remove(SauvegardeFileChooser.this);
 
-        menu.getNouvelle().setVisible(true);
-        menu.getCharger().setVisible(true);
-
-        parent.revalidate();
-        parent.repaint();
+        menu.getMainFrame().setContentPane(new PlateauView(menu.getMainFrame(), new Partie(getSelectedFile().getAbsolutePath())));
+        menu.getMainFrame().validate();
     }
 
     @Override
     public void cancelSelection(){
         super.cancelSelection();
-        System.out.println("Annuler");
         parent.remove(SauvegardeFileChooser.this);
 
         menu.getNouvelle().setVisible(true);
