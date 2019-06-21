@@ -16,9 +16,7 @@ public class Partie {
 
     /**
       * Créé un nouvel objet Partie avec un fichier de sauvegarde
-      * @param save le booleen qui gère si on utilise une sauvegarde
       * @param saveFile le nom du fichier de configuration
-      * @param gui le booleen pour savoir si la partie se joue en mode graphique
       */
     public Partie(String saveFile) {
         this.tour = this.charger(saveFile);
@@ -101,7 +99,7 @@ public class Partie {
     /**
       * Charge les données de sauvegarde contenues dans le fichier sélectionné
       * @param filename le fichier contenant les données à charger
-      * @param gui le booleen pour savoir si la partie se joue en mode graphique
+      * @return l'index du joueur qui doit jouer
       */
     public int charger(String filename) {
       int ret = 0;
@@ -350,9 +348,11 @@ public class Partie {
     }
 
     /**
-      * Lance la partie
+      * Lance un tour d'un joueur
       * @param j le premier joueur qui doit jouer (utile pour reprendre une partie)
-      * @param gui le booleen pour savoir si la partie se joue en mode graphique
+      * @param x la position x
+      * @param y la position y
+      * @return gagné si le joueur qui vient de jouer a gagné, un message d'erreur si ce n'est pas possible, sinon une chaine vide
       */
   public String jouer(int j, int x, int y) {
     boolean fin = false;

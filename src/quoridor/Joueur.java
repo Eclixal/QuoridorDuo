@@ -214,6 +214,7 @@ public abstract class Joueur {
     /**
       * Place une barrière aux coordonnées sélectionnées s'il en reste une au joueur
       * @param coordonnee les coordonnées où placer la barrière
+      * @return vrai si la barriere peut être placé
       */
     public boolean placerBarriere(Coordonnee coordonnee) {
         boolean ret = true;
@@ -409,6 +410,9 @@ public abstract class Joueur {
 
     /**
       * Permet au joueur de jouer
+      * @param x la position x
+      * @param y la position y
+      * @return un message d'erreur s'il y a une erreur
       */
     public abstract String jeu(int x, int y);
 
