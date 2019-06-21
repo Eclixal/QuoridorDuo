@@ -20,7 +20,6 @@ public class SauvegardeFileChooser extends JFileChooser {
         setApproveButtonText("Charger une sauvegarde");
     }
 
-    @Override
     public void approveSelection(){
         super.approveSelection();
         parent.remove(SauvegardeFileChooser.this);
@@ -29,7 +28,6 @@ public class SauvegardeFileChooser extends JFileChooser {
         menu.getMainFrame().validate();
     }
 
-    @Override
     public void cancelSelection(){
         super.cancelSelection();
         parent.remove(SauvegardeFileChooser.this);
@@ -41,7 +39,6 @@ public class SauvegardeFileChooser extends JFileChooser {
         parent.repaint();
     }
 
-    @Override
     public void show(){
         rescanCurrentDirectory();
 
@@ -57,7 +54,6 @@ public class SauvegardeFileChooser extends JFileChooser {
         repaint();
     }
 
-    @Override
     public Dimension getMaximumSize(){
         return new Dimension(500,300);
     }

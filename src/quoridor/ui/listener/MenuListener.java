@@ -23,7 +23,6 @@ public class MenuListener extends MouseAdapter {
         this.menu = menu;
     }
 
-    @Override
     public void mouseClicked(MouseEvent e) {
         playSound("../sons/main_gui_click.wav");
         if (e.getSource() == menu.getNouvelle()) {

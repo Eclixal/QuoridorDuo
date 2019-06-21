@@ -63,16 +63,7 @@ public class IA extends Joueur {
       * @param y la postion y du deplacement que le joueur veut faire (utile que pour le mode graphique pour un humain)
       * @return un message s'il y a une erreur
       */
-    public String jeu(boolean gui, int x, int y) {
-
-      if(!gui){
-        try{
-          Thread.sleep(1000);
-        } catch(InterruptedException e){
-          System.out.println(e.getMessage());
-        }
-      }
-
+    public String jeu(int x, int y) {
         if(this.getDifficulte() == Difficulte.FACILE){
         double i1 = Math.random() * 2;
         int i = (int) i1;

@@ -12,19 +12,7 @@ public class Partie {
     private Mode mode;
     private Plateau plateau;
     private ArrayList<Joueur> joueurs;
-
-    private int tour = 0;
-
-    /**
-      * Créé un nouvel objet Partie avec un fichier de configuration
-      * @param fileName le nom du fichier de configuration
-      * @param gui le booleen pour savoir si la partie se joue en mode graphique
-      */
-    public Partie(String fileName, boolean gui) {
-        this.configuration(fileName);
-        this.initialisation("Joueur1", "Joueur2", "Joueur3", "Joueur4", Difficulte.FACILE, Difficulte.FACILE, Difficulte.FACILE, Difficulte.FACILE);
-        this.start(0, gui);
-    }
+    private int tour;
 
     /**
       * Créé un nouvel objet Partie avec un fichier de sauvegarde
@@ -32,8 +20,8 @@ public class Partie {
       * @param saveFile le nom du fichier de configuration
       * @param gui le booleen pour savoir si la partie se joue en mode graphique
       */
-    public Partie(boolean save, String saveFile, boolean gui) {
-        this.charger(saveFile, gui);
+    public Partie(String saveFile) {
+        this.tour = this.charger(saveFile);
     }
 
     /**
@@ -44,12 +32,9 @@ public class Partie {
       * @param difficulte1 la difficulte de L'IA si le joueur 1 est un IA
       * @param difficulte2 la difficulte de L'IA si le joueur 2 est un IA
       */
-    public Partie(Mode mode, String pseudo1, String pseudo2, Difficulte difficulte1, Difficulte difficulte2, boolean gui) {
+    public Partie(Mode mode, String pseudo1, String pseudo2, Difficulte difficulte1, Difficulte difficulte2) {
         this.mode = mode;
         this.initialisation(pseudo1, pseudo2, null, null, difficulte1, difficulte2, null, null);
-        if(!gui){
-          this.start(0,gui);
-        }
     }
 
     /**
@@ -64,16 +49,9 @@ public class Partie {
       * @param difficulte3 la difficulte de L'IA si le joueur 3 est un IA
       * @param difficulte4 la difficulte de L'IA si le joueur 4 est un IA
       */
-    public Partie(Mode mode, String pseudo1, String pseudo2, String pseudo3, String pseudo4, Difficulte difficulte1, Difficulte difficulte2, Difficulte difficulte3, Difficulte difficulte4, boolean gui) {
+    public Partie(Mode mode, String pseudo1, String pseudo2, String pseudo3, String pseudo4, Difficulte difficulte1, Difficulte difficulte2, Difficulte difficulte3, Difficulte difficulte4) {
         this.mode = mode;
         this.initialisation(pseudo1, pseudo2, pseudo3, pseudo4, difficulte1, difficulte2, difficulte3, difficulte4);
-        if(!gui){
-          this.start(0,gui);
-        }
-    }
-
-    public Partie(String fileName) {
-        this.charger(fileName, true);
     }
 
     /**
@@ -96,7 +74,7 @@ public class Partie {
       * Sauvegarde la partie
       * @param joueurTo le joueur qui doit jouer lors du chargement de la sauvegarde
       */
-    public void sauvegarder(int joueurTo, boolean gui) {
+    public void sauvegarder(int joueurTo) {
         try {
             DataOutputStream out = new DataOutputStream(new BufferedOutputStream(new FileOutputStream("sauvegarde_" + new SimpleDateFormat("dd-MM-YYYY_HH_mm_ss").format(new Date()) + ".bin")));
 
@@ -118,8 +96,6 @@ public class Partie {
         } catch (IOException e) {
             e.printStackTrace();
         }
-        if (!gui)
-            System.exit(0);
     }
 
     /**
@@ -127,7 +103,8 @@ public class Partie {
       * @param filename le fichier contenant les données à charger
       * @param gui le booleen pour savoir si la partie se joue en mode graphique
       */
-    public void charger(String filename, boolean gui) {
+    public int charger(String filename) {
+      int ret = 0;
         try {
             this.plateau = new Plateau(9, this);
             this.joueurs = new ArrayList<>();
@@ -136,7 +113,7 @@ public class Partie {
 
             this.mode = Mode.valueOf(in.readUTF());
             int joueurTo = in.readInt();
-            tour = joueurTo;
+            ret = joueurTo;
 
             switch (this.mode) {
                 case HH:
@@ -268,13 +245,11 @@ public class Partie {
                     break;
             }
             in.close();
-
-            if (!gui)
-                this.start(joueurTo, gui);
-
         } catch (IOException e) {
             e.printStackTrace();
         }
+
+        return ret;
     }
 
     /**
@@ -379,54 +354,16 @@ public class Partie {
       * @param j le premier joueur qui doit jouer (utile pour reprendre une partie)
       * @param gui le booleen pour savoir si la partie se joue en mode graphique
       */
-    public void start(int j, boolean gui) {
-      boolean fin = false;
-      int gagnant = 0;
-      if (gui) {
-
-      } else {
-          if(this.mode.toString().length() == 2){
-              while(!fin){
-                  int i = j;
-                  while(i < 2 && !fin) {
-                      this.afficher();
-                      Coordonnee finC = this.joueurs.get(i).getFin();
-                      this.joueurs.get(i).jeu(gui,-1,-1);
-                      if(finC.getX1() == this.joueurs.get(i).getPion().getCoordonnee().getX1() || finC.getY1() == this.joueurs.get(i).getPion().getCoordonnee().getY1()){
-                          fin = true;
-                          gagnant = i;
-                      }
-                      i++;
-                  }
-              }
-          }
-          else{
-              while(!fin){
-                  int i = j;
-                  while(i < 4 && !fin) {
-                      this.afficher();
-                      Coordonnee finC = this.joueurs.get(i).getFin();
-                      this.joueurs.get(i).jeu(gui,-1,-1);
-                      if(finC.getX1() == this.joueurs.get(i).getPion().getCoordonnee().getX1() || finC.getY1() == this.joueurs.get(i).getPion().getCoordonnee().getY1()){
-                          fin = true;
-                          gagnant = i;
-                      }
-                      i++;
-                  }
-              }
-          }
-      }
-    this.fin(gagnant);
-  }
-
-    /**
-      * Termine la partie
-      * @param gagnant L'indice du gagnant dans la liste joueurs
-      */
-    public void fin(int gagnant) {
-      System.out.println("Le joueur "+this.joueurs.get(gagnant).getNom()+" a gagné !");
-      this.afficher();
+  public String jouer(int j, int x, int y) {
+    boolean fin = false;
+    Coordonnee finC = this.joueurs.get(j).getFin();
+    String message = this.joueurs.get(j).jeu(x,y);
+    if(finC.getX1() == this.joueurs.get(j).getPion().getCoordonnee().getX1() || finC.getY1() == this.joueurs.get(j).getPion().getCoordonnee().getY1()){
+      fin = true;
+      message = "gagné";
     }
+    return message;
+  }
 
     /**
       * Affiche le plateau en mode texte
@@ -477,7 +414,7 @@ public class Partie {
         return joueurs;
     }
 
-    public int getStartTour() {
-        return this.tour;
+    public int getTour(){
+      return this.tour;
     }
 }

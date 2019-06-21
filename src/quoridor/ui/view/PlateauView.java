@@ -12,6 +12,8 @@ import javax.swing.*;
 import javax.swing.table.TableColumn;
 import java.awt.*;
 import java.awt.Color;
+import javax.swing.border.Border;
+import javax.swing.border.EmptyBorder;
 import java.util.TimerTask;
 
 public class PlateauView extends JPanel {
@@ -19,6 +21,7 @@ public class PlateauView extends JPanel {
     private ArrayList<Joueur> joueurs;
     private Plateau plateau;
     private int tour;
+    private Partie partie;
     private JTable table;
     private PlateauListener listener;
 
@@ -33,10 +36,11 @@ public class PlateauView extends JPanel {
     private MainFrame mainFrame;
 
     public PlateauView(MainFrame mainFrame, Partie partie) {
+        this.partie = partie;
         this.mainFrame = mainFrame;
         this.plateau = partie.getPlateau();
         this.joueurs = partie.getJoueurs();
-        this.tour = partie.getStartTour();
+        this.tour = partie.getTour();
 
         this.setBackground(Color.decode("#b4e9e2"));
 
@@ -55,7 +59,7 @@ public class PlateauView extends JPanel {
         this.jButtonMenu.setFocusPainted(false);
         this.jButtonMenu.setHoverBackgroundColor(Color.decode("#59a59b"));
         this.jButtonMenu.setPressedBackgroundColor(Color.decode("#64afa5"));
-        this.jButtonMenu.addMouseListener(new PlateauListener(this, this.joueurs.get(tour)));
+        this.jButtonMenu.addMouseListener(new PlateauListener(this, this.partie, this.tour));
 
         constraints.anchor = GridBagConstraints.NORTHWEST;
         constraints.gridy = 0;
@@ -118,15 +122,15 @@ public class PlateauView extends JPanel {
         launch();
 
         this.table.setRowSelectionAllowed(false);
-        this.table.setRowHeight(50);
+        this.table.setRowHeight(60);
 
 
 
         for(int i = 0;i < this.plateau.getTaille();i++){
             if(i%2 == 0){
                 TableColumn column = this.table.getColumnModel().getColumn(i);
-                column.setMinWidth(50);
-                column.setMaxWidth(50);
+                column.setMinWidth(60);
+                column.setMaxWidth(60);
             }
             else{
                 table.setRowHeight(i,10);
@@ -138,24 +142,28 @@ public class PlateauView extends JPanel {
         Color color = new Color(81, 164, 233, 255);
         this.table.setGridColor(color);
 
+        this.table.setBackground(Color.decode("#ddf0ee"));
+
+        Border lineborder = BorderFactory.createLineBorder(Color.decode("#309286"), 3);
+        this.table.setBorder(lineborder);
+
         constraints.gridy = 1;
         constraints.gridx = 1;
 
         this.add(this.table, constraints);
     }
 
-    public void changerJoueur(){
-        this.revalidate();
-        this.repaint();
+    public void tourIA(){
+        this.partie.jouer(tour, -1, -1);
+        this.changerJoueur();
+    }
 
-        if (!pause) {
-            if(!(this.joueurs.get(tour).isIA())){
-                this.table.removeMouseListener(this.listener);
-            }
 
-            if(this.joueurs.get(tour).getFin().getX1() == this.joueurs.get(tour).getPion().getCoordonnee().getX1() || this.joueurs.get(tour).getFin().getY1() == this.joueurs.get(tour).getPion().getCoordonnee().getY1()){
-                this.finJeu();
-            } else{
+      public void changerJoueur(){
+          if (!pause) {
+              if(!(this.joueurs.get(tour).isIA())){
+                  this.table.removeMouseListener(this.listener);
+              }
                 if(this.tour < this.joueurs.size()-1){
                     this.tour++;
                     this.joueur.setText("Tour : " + this.joueurs.get(tour).getNom());
@@ -169,25 +177,18 @@ public class PlateauView extends JPanel {
                     this.barriere.setText("Il vous reste " + this.joueurs.get(tour).getBarrieres().stream().filter(barriere1 -> barriere1.getCoordonnee().getX1() == -1).count() + " barrière" + (this.joueurs.get(tour).getBarrieres().stream().filter(barriere1 -> barriere1.getCoordonnee().getX1() == -1).count() > 1 ? "s" :" "));
                 }
                 if(this.joueurs.get(tour).isIA()){
-                    java.util.Timer timer = new java.util.Timer();
+                  java.util.Timer timer = new java.util.Timer();
                     timer.schedule(new TimerTask() {
-                        @Override
                         public void run() {
-                            tourIA();
+                          tourIA();
                         }
                     }, 250);
                 }
                 else{
-                    this.listener = new PlateauListener(this, this.joueurs.get(tour));
+                    this.listener = new PlateauListener(this, this.partie, this.tour);
                     this.table.addMouseListener(this.listener);
                 }
-            }
-        }
-    }
-
-    public void tourIA(){
-        this.joueurs.get(tour).jeu(true, -1, -1);
-        this.changerJoueur();
+      }
     }
 
     public JTable getTable() {
@@ -208,10 +209,10 @@ public class PlateauView extends JPanel {
 
     public void launch() {
         if (this.joueurs.get(tour).isIA()) {
-            this.joueurs.get(tour).jeu(true, -1, -1);
+            this.partie.jouer(tour, -1, -1);
             this.changerJoueur();
         } else {
-            this.listener = new PlateauListener(this, this.joueurs.get(tour));
+            this.listener = new PlateauListener(this, this.partie, this.tour);
             this.table.addMouseListener(this.listener);
         }
     }

@@ -26,7 +26,6 @@ public class PauseListener extends MouseAdapter {
         this.plateauView = plateauView;
     }
 
-    @Override
     public void mouseClicked(MouseEvent e) {
         playSound("../sons/main_gui_click.wav");
         if (e.getSource() == pauseView.getjButtonReprendre()) {
@@ -34,7 +33,7 @@ public class PauseListener extends MouseAdapter {
             pauseView.getMainFrame().validate();
             plateauView.setPause(false);
         } if (e.getSource() == pauseView.getjButtonSauvegarder()) {
-            pauseView.getPlateauView().getPlateau().getPartie().sauvegarder(pauseView.getPlateauView().getTour(), true);
+            pauseView.getPlateauView().getPlateau().getPartie().sauvegarder(pauseView.getPlateauView().getTour());
             pauseView.getMainFrame().setContentPane(new Menu(pauseView.getMainFrame()));
             pauseView.getMainFrame().validate();
         } if (e.getSource() == pauseView.getjButtonAbandonner()) {
