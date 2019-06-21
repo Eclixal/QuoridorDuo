@@ -26,7 +26,7 @@ public class QuatreJoueursListener extends MouseAdapter {
 
     @Override
     public void mouseClicked(MouseEvent e) {
-        playSound("sons/main_gui_click.wav");
+        playSound("../sons/main_gui_click.wav");
         if (e.getSource() == quatreJoueursConfigurationView.getJouer()) {
             if (!quatreJoueursConfigurationView.getjTextFieldJ1().getText().isEmpty() && !quatreJoueursConfigurationView.getjTextFieldJ2().getText().isEmpty()
                && !quatreJoueursConfigurationView.getjTextFieldJ3().getText().isEmpty() && !quatreJoueursConfigurationView.getjTextFieldJ4().getText().isEmpty()) {

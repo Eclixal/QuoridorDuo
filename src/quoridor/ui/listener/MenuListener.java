@@ -25,7 +25,7 @@ public class MenuListener extends MouseAdapter {
 
     @Override
     public void mouseClicked(MouseEvent e) {
-        playSound("sons/main_gui_click.wav");
+        playSound("../sons/main_gui_click.wav");
         if (e.getSource() == menu.getNouvelle()) {
             AudioPlayer.player.stop(menu.getAudioDataStream());
             menu.getMainFrame().setContentPane(new NouvellePartie(menu.getMainFrame()));

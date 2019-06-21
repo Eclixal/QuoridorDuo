@@ -64,7 +64,7 @@ public class DeuxJoueursConfigurationView extends JPanel {
       panelC.setBackground(Color.decode("#b4e9e2"));
 
       JLabel jLabel = new JLabel("Configuration : ");
-      jLabel.setFont(new Font("Courier New", Font.BOLD, 19));
+      jLabel.setFont(new Font("Courier New", Font.BOLD, 23));
       jLabel.setForeground(Color.decode("#309286"));
 
       this.jComboBox = new JComboBox<>();
@@ -100,14 +100,14 @@ public class DeuxJoueursConfigurationView extends JPanel {
       panelJ1.add(pseudoJ1, constraintsJ1);
       pseudoJ1.setForeground(Color.decode("#309286"));
 
-      JLabel avatarJ1 = new JLabel(new ImageIcon(new ImageIcon("images/Rond_rouge.png").getImage().getScaledInstance(50, 50, Image.SCALE_DEFAULT)));
+      JLabel avatarJ1 = new JLabel(new ImageIcon(new ImageIcon("../images/Rond_rouge.png").getImage().getScaledInstance(50, 50, Image.SCALE_DEFAULT)));
       constraintsJ1.gridy = 0;
       constraintsJ1.gridx = 0;
       panelJ1.add(avatarJ1, constraintsJ1);
 
       this.jTextFieldJ1 = new JTextField("Joueur 1");
       this.jTextFieldJ1.setPreferredSize(new Dimension(this.getSize().width+50, this.getSize().height+40));
-      this.jTextFieldJ1.setFont(new Font("Courier New", Font.BOLD, (int) (this.jTextFieldJ1.getFont().getSize()*1.2)));
+      this.jTextFieldJ1.setFont(new Font("Courier New", Font.BOLD, 16));
       this.jTextFieldJ1.setForeground(Color.decode("#ebefd0"));
       this.jTextFieldJ1.setBackground(Color.decode("#309286"));
 
@@ -152,14 +152,14 @@ public class DeuxJoueursConfigurationView extends JPanel {
       constraintsJ2.gridx = 1;
       panelJ2.add(pseudoJ2, constraintsJ2);
 
-      JLabel avatarJ2 = new JLabel(new ImageIcon(new ImageIcon("images/Rond_bleu.png").getImage().getScaledInstance(50, 50, Image.SCALE_DEFAULT)));
+      JLabel avatarJ2 = new JLabel(new ImageIcon(new ImageIcon("../images/Rond_bleu.png").getImage().getScaledInstance(50, 50, Image.SCALE_DEFAULT)));
       constraintsJ2.gridy = 0;
       constraintsJ2.gridx = 0;
       panelJ2.add(avatarJ2, constraintsJ2);
 
       this.jTextFieldJ2 = new JTextField("Joueur 2");
       this.jTextFieldJ2.setPreferredSize(new Dimension(this.getSize().width+50, this.getSize().height+40));
-      this.jTextFieldJ2.setFont(new Font("Courier New", Font.BOLD, (int) (this.jTextFieldJ2.getFont().getSize()*1.2)));
+      this.jTextFieldJ2.setFont(new Font("Courier New", Font.BOLD, 16));
       this.jTextFieldJ2.setForeground(Color.decode("#ebefd0"));
       this.jTextFieldJ2.setBackground(Color.decode("#309286"));
 
@@ -261,7 +261,7 @@ public class DeuxJoueursConfigurationView extends JPanel {
     private ContinuousAudioDataStream audioDataStream;
     private void music() {
         try {
-            AudioData data = new AudioStream(new FileInputStream("sons/main_theme_menu1.wav")).getData();
+            AudioData data = new AudioStream(new FileInputStream("../sons/main_theme_menu1.wav")).getData();
             audioDataStream = new ContinuousAudioDataStream(data);
             AudioPlayer.player.start(audioDataStream);
         } catch(IOException ignored) { }

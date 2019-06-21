@@ -48,6 +48,7 @@ public class QuatreJoueursConfigurationView extends JPanel {
       this.jLabel = new JLabel("Mode 4 joueurs");
       this.jLabel.setBorder(new EmptyBorder(10, 10, 50, 10));
       this.jLabel.setFont(new Font("Courier New", Font.BOLD, 80));
+      this.jLabel.setForeground(Color.decode("#309286"));
 
       constraints.gridy = 0;
       constraints.gridx = 0;
@@ -66,7 +67,7 @@ public class QuatreJoueursConfigurationView extends JPanel {
       panelC.setBackground(Color.decode("#b4e9e2"));
 
       JLabel jLabel = new JLabel("Configuration : ");
-      jLabel.setFont(new Font("Courier New", Font.BOLD, 19));
+      jLabel.setFont(new Font("Courier New", Font.BOLD, 23));
       jLabel.setForeground(Color.decode("#309286"));
       this.jComboBox = new JComboBox<>();
       this.jComboBox.addItem("Humain vs Humain vs Humain vs Humain");
@@ -103,14 +104,14 @@ public class QuatreJoueursConfigurationView extends JPanel {
       constraintsJ1.gridx = 1;
       panelJ1.add(pseudoJ1, constraintsJ1);
 
-      JLabel avatarJ1 = new JLabel(new ImageIcon(new ImageIcon("images/Rond_rouge.png").getImage().getScaledInstance(50, 50, Image.SCALE_DEFAULT)));
+      JLabel avatarJ1 = new JLabel(new ImageIcon(new ImageIcon("../images/Rond_rouge.png").getImage().getScaledInstance(50, 50, Image.SCALE_DEFAULT)));
       constraintsJ1.gridy = 0;
       constraintsJ1.gridx = 0;
       panelJ1.add(avatarJ1, constraintsJ1);
 
       this.jTextFieldJ1 = new JTextField("Joueur 1");
       this.jTextFieldJ1.setPreferredSize(new Dimension(this.getSize().width+50, this.getSize().height+40));
-      this.jTextFieldJ1.setFont(new Font("Courier New", Font.BOLD, (int) (this.jTextFieldJ1.getFont().getSize()*1.2)));
+      this.jTextFieldJ1.setFont(new Font("Courier New", Font.BOLD, 16));
       this.jTextFieldJ1.setForeground(Color.decode("#ebefd0"));
       this.jTextFieldJ1.setBackground(Color.decode("#309286"));
 
@@ -156,14 +157,14 @@ public class QuatreJoueursConfigurationView extends JPanel {
       constraintsJ2.gridx = 1;
       panelJ2.add(pseudoJ2, constraintsJ2);
 
-      JLabel avatarJ2 = new JLabel(new ImageIcon(new ImageIcon("images/Rond_bleu.png").getImage().getScaledInstance(50, 50, Image.SCALE_DEFAULT)));
+      JLabel avatarJ2 = new JLabel(new ImageIcon(new ImageIcon("../images/Rond_bleu.png").getImage().getScaledInstance(50, 50, Image.SCALE_DEFAULT)));
       constraintsJ2.gridy = 0;
       constraintsJ2.gridx = 0;
       panelJ2.add(avatarJ2, constraintsJ2);
 
       this.jTextFieldJ2 = new JTextField("Joueur 2");
       this.jTextFieldJ2.setPreferredSize(new Dimension(this.getSize().width+50, this.getSize().height+40));
-      this.jTextFieldJ2.setFont(new Font("Courier New", Font.BOLD, (int) (this.jTextFieldJ2.getFont().getSize()*1.2)));
+      this.jTextFieldJ2.setFont(new Font("Courier New", Font.BOLD, 16));
       this.jTextFieldJ2.setForeground(Color.decode("#ebefd0"));
       this.jTextFieldJ2.setBackground(Color.decode("#309286"));
 
@@ -208,14 +209,14 @@ public class QuatreJoueursConfigurationView extends JPanel {
       constraintsJ3.gridx = 1;
       panelJ3.add(pseudoJ3, constraintsJ3);
 
-      JLabel avatarJ3 = new JLabel(new ImageIcon(new ImageIcon("images/Rond_vert.png").getImage().getScaledInstance(50, 50, Image.SCALE_DEFAULT)));
+      JLabel avatarJ3 = new JLabel(new ImageIcon(new ImageIcon("../images/Rond_vert.png").getImage().getScaledInstance(50, 50, Image.SCALE_DEFAULT)));
       constraintsJ3.gridy = 0;
       constraintsJ3.gridx = 0;
       panelJ3.add(avatarJ3, constraintsJ3);
 
       this.jTextFieldJ3 = new JTextField("Joueur 3");
       this.jTextFieldJ3.setPreferredSize(new Dimension(this.getSize().width+50, this.getSize().height+40));
-      this.jTextFieldJ3.setFont(new Font("Courier New", Font.BOLD, (int) (this.jTextFieldJ3.getFont().getSize()*1.2)));
+      this.jTextFieldJ3.setFont(new Font("Courier New", Font.BOLD, 16));
       this.jTextFieldJ3.setForeground(Color.decode("#ebefd0"));
       this.jTextFieldJ3.setBackground(Color.decode("#309286"));
 
@@ -260,14 +261,14 @@ public class QuatreJoueursConfigurationView extends JPanel {
       constraintsJ4.gridx = 1;
       panelJ4.add(pseudoJ4, constraintsJ4);
 
-      JLabel avatarJ4 = new JLabel(new ImageIcon(new ImageIcon("images/Rond_jaune.png").getImage().getScaledInstance(50, 50, Image.SCALE_DEFAULT)));
+      JLabel avatarJ4 = new JLabel(new ImageIcon(new ImageIcon("../images/Rond_jaune.png").getImage().getScaledInstance(50, 50, Image.SCALE_DEFAULT)));
       constraintsJ4.gridy = 0;
       constraintsJ4.gridx = 0;
       panelJ4.add(avatarJ4, constraintsJ4);
 
       this.jTextFieldJ4 = new JTextField("Joueur 4");
       this.jTextFieldJ4.setPreferredSize(new Dimension(this.getSize().width+50, this.getSize().height+40));
-      this.jTextFieldJ4.setFont(new Font("Courier New", Font.BOLD, (int) (this.jTextFieldJ4.getFont().getSize()*1.2)));
+      this.jTextFieldJ4.setFont(new Font("Courier New", Font.BOLD, 16));
       this.jTextFieldJ4.setForeground(Color.decode("#ebefd0"));
       this.jTextFieldJ4.setBackground(Color.decode("#309286"));
 
@@ -384,7 +385,7 @@ public class QuatreJoueursConfigurationView extends JPanel {
     private ContinuousAudioDataStream audioDataStream;
     private void music() {
         try {
-            AudioData data = new AudioStream(new FileInputStream("sons/main_theme_menu1.wav")).getData();
+            AudioData data = new AudioStream(new FileInputStream("../sons/main_theme_menu1.wav")).getData();
             audioDataStream = new ContinuousAudioDataStream(data);
             AudioPlayer.player.start(audioDataStream);
         } catch(IOException ignored) { }

@@ -25,7 +25,7 @@ public class DeuxJoueursListener extends MouseAdapter {
 
     @Override
     public void mouseClicked(MouseEvent e) {
-        playSound("sons/main_gui_click.wav");
+        playSound("../sons/main_gui_click.wav");
         if (e.getSource() == deuxJoueursConfigurationView.getJouer()) {
             if (!deuxJoueursConfigurationView.getjTextFieldJ1().getText().isEmpty() && !deuxJoueursConfigurationView.getjTextFieldJ2().getText().isEmpty()) {
                 AudioPlayer.player.stop(deuxJoueursConfigurationView.getAudioDataStream());
