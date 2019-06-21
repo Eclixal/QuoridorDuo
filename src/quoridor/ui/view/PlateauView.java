@@ -161,6 +161,8 @@ public class PlateauView extends JPanel {
 
       public void changerJoueur(){
           if (!pause) {
+            this.revalidate();
+            this.repaint();
               if(!(this.joueurs.get(tour).isIA())){
                   this.table.removeMouseListener(this.listener);
               }
@@ -182,7 +184,7 @@ public class PlateauView extends JPanel {
                         public void run() {
                           tourIA();
                         }
-                    }, 250);
+                    }, 1000);
                 }
                 else{
                     this.listener = new PlateauListener(this, this.partie, this.tour);

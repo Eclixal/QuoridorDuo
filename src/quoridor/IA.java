@@ -58,8 +58,8 @@ public class IA extends Joueur {
 
     /**
       * Joue un tour pour un IA
-      * @param x la position x du deplacement que le joueur veut faire (utile que pour le mode graphique pour un humain)
-      * @param y la postion y du deplacement que le joueur veut faire (utile que pour le mode graphique pour un humain)
+      * @param x la position x du deplacement que le joueur veut faire (utile que pour un humain)
+      * @param y la postion y du deplacement que le joueur veut faire (utile que pour un humain)
       * @return un message s'il y a une erreur
       */
     public String jeu(int x, int y) {

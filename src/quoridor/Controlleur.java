@@ -146,41 +146,44 @@ public class Controlleur {
         } catch(InterruptedException e){
           System.out.println(e.getMessage());
         }
-      }
-      nomGagnant = this.partie.getJoueurs().get(tour).getNom();
-      Scanner scanner = new Scanner(System.in);
-      System.out.println("Joueur "+nomGagnant+" : 1 - Déplacer le pion | 2 - Placer une barrière | 3 - Sauvegarder et quitter");
-      String choix = scanner.nextLine();
-      int x = 0;
-      int y = 0;
-      if(choix.equals("1")){
-        System.out.print("Position vertical : ");
-        x = Integer.parseInt(scanner.nextLine());
-        System.out.print("Position horizontal :");
-        y = Integer.parseInt(scanner.nextLine());
-      }
-      else if(choix.equals("2")){
-        System.out.print("Position vertical de la première case de la barrière : ");
-        x = Integer.parseInt(scanner.nextLine());
-        System.out.print("Position horizontal de la première case de la barrière :");
-        y = Integer.parseInt(scanner.nextLine());
-      }
-      else if(choix.equals("3")){
-        this.partie.sauvegarder(tour);
-        System.exit(0);
+        this.partie.jouer(tour, -1, -1);
       }
       else{
-        message = "Numéro de choix impossible !";
-      }
-      message = this.partie.jouer(tour, x, y);
-      if(message.equals("")){
-        tour++;
-      }
-      else if(message.equals("gagné")){
-        fin = true;
-      }
-      else{
-        System.out.println(message);
+        nomGagnant = this.partie.getJoueurs().get(tour).getNom();
+        Scanner scanner = new Scanner(System.in);
+        System.out.println("Joueur "+nomGagnant+" : 1 - Déplacer le pion | 2 - Placer une barrière | 3 - Sauvegarder et quitter");
+        String choix = scanner.nextLine();
+        int x = 0;
+        int y = 0;
+        if(choix.equals("1")){
+          System.out.print("Position vertical : ");
+          x = Integer.parseInt(scanner.nextLine());
+          System.out.print("Position horizontal :");
+          y = Integer.parseInt(scanner.nextLine());
+        }
+        else if(choix.equals("2")){
+          System.out.print("Position vertical de la première case de la barrière : ");
+          x = Integer.parseInt(scanner.nextLine());
+          System.out.print("Position horizontal de la première case de la barrière :");
+          y = Integer.parseInt(scanner.nextLine());
+        }
+        else if(choix.equals("3")){
+          this.partie.sauvegarder(tour);
+          System.exit(0);
+        }
+        else{
+          message = "Numéro de choix impossible !";
+        }
+        message = this.partie.jouer(tour, x, y);
+        if(message.equals("")){
+          tour++;
+        }
+        else if(message.equals("gagné")){
+          fin = true;
+        }
+        else{
+          System.out.println(message);
+        }
       }
     }
     return nomGagnant;

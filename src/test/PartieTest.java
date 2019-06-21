@@ -10,7 +10,7 @@ public class PartieTest {
 
     @Test()
     public void test() {
-        Partie partie = new Partie("data/config.dat", false);
+        Partie partie = new Partie("data/config.dat");
         assertEquals(Mode.HH, partie.getMode());
 
     }
