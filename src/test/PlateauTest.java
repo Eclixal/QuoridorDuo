@@ -9,8 +9,8 @@ public class PlateauTest {
 
     @Test()
     public void testPlateau() {
-        Plateau plateau = new Plateau(10, null);
-        assertEquals(10, plateau.getTaille());
+        Plateau plateau = new Plateau(9, null);
+        assertEquals(9, plateau.getTaille());
     }
 
 }

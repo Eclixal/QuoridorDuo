@@ -52,6 +52,10 @@ public class Partie {
         this.initialisation(pseudo1, pseudo2, pseudo3, pseudo4, difficulte1, difficulte2, difficulte3, difficulte4);
     }
 
+    public Partie(Mode mode) {
+        this.mode = mode;
+    }
+
     /**
       * Retourne le mode de jeu utilisé
       * @return le mode de jeu utilisé

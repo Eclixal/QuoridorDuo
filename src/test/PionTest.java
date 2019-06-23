@@ -10,7 +10,7 @@ public class PionTest {
 
     @Test()
     public void testPion() {
-        Pion pion = new Pion("red", new Coordonnee(2,1, -1, -1));
+        Pion pion = new Pion("ROUGE", new Coordonnee(2,1, -1, -1));
 
         assertNotNull(pion.getCoordonnee());
         assertNotNull(pion.getCouleur());
