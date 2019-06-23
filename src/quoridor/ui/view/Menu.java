@@ -14,15 +14,23 @@ import java.io.IOException;
 import javax.swing.*;
 import javax.swing.border.EmptyBorder;
 
+/**
+  * Gère le menu du mode graphique
+  */
 public class Menu extends JPanel {
 
   private JLabel label;
   private JButtonMenu nouvelle;
   private JButtonMenu charger;
   private JButtonMenu quitter;
+  private ContinuousAudioDataStream audioDataStream;
 
   private MainFrame mainFrame;
 
+/**
+  * Affiche le menu grâce au MainFrame
+  * @param mainFrame Le frame principal qui gère tous les conposants
+  */
   public Menu(MainFrame mainFrame) {
     this.mainFrame = mainFrame;
 
@@ -99,31 +107,49 @@ public class Menu extends JPanel {
     this.setVisible(true);
   }
 
+/**
+  * Renvoie le JPanel du menu
+  * @return Le panel
+  */
   public JPanel getjPanel() {
     return this;
   }
 
+/**
+  * Renvoie le bouton charger
+  * @return le bouton
+  */
   public JButtonMenu getCharger() {
     return charger;
   }
 
+/**
+  * Renvoie le bouton nouvelle partie
+  * @return le bouton
+  */
   public JButtonMenu getNouvelle() {
     return nouvelle;
   }
 
+/**
+  * Renvoie le bouton quitter
+  * @return le bouton
+  */
   public JButtonMenu getQuitter() {
     return quitter;
   }
 
+/**
+  * Renvoie le frame principal
+  * @return le frame
+  */
   public MainFrame getMainFrame() {
     return mainFrame;
   }
 
-//  protected void paintComponent(Graphics g) {
-//    g.drawImage(new ImageIcon("images/mdr.jpg").getImage(), 0, 0, null);
-//  }
-
-  private ContinuousAudioDataStream audioDataStream;
+/**
+  * Met la musique du menu
+  */
   private void music() {
     try {
       AudioData data = new AudioStream(new FileInputStream("sons/main_theme_menu2.wav")).getData();
@@ -134,6 +160,10 @@ public class Menu extends JPanel {
     } catch(IOException ignored) { }
   }
 
+/**
+  * Renvoie la musique qui doit continuer
+  * @return la musique
+  */
   public ContinuousAudioDataStream getAudioDataStream() {
     return audioDataStream;
   }

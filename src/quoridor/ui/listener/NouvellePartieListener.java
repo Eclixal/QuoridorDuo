@@ -13,15 +13,25 @@ import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.io.File;
 
+/**
+  * Gère les actions des boutons de la fenêtre nouvelle partie
+  */
 public class NouvellePartieListener extends MouseAdapter {
 
     private NouvellePartie nouvellePartie;
 
+/**
+  * Initialise l'écouteur de nouvelle partie
+  * @param nouvellePartie La fenêtre qui doit être géré
+  */
     public NouvellePartieListener(NouvellePartie nouvellePartie) {
         this.nouvellePartie = nouvellePartie;
     }
 
-    @Override
+/**
+  * Gère quand on clique sur un bouton
+  * @param e L'événement
+  */
     public void mouseClicked(MouseEvent e) {
         playSound("sons/main_gui_click.wav");
         if (e.getSource() == this.nouvellePartie.getjButtonMenu2J()) {
@@ -39,6 +49,10 @@ public class NouvellePartieListener extends MouseAdapter {
         }
     }
 
+/**
+  * Gère le son du menu pour ne pas qu'elle s'arrête
+  * @param soundName le nom de la musique
+  */
     public void playSound(String soundName) {
         try {
             AudioInputStream audioInputStream = AudioSystem.getAudioInputStream(new File(soundName).getAbsoluteFile());

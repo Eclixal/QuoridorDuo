@@ -10,6 +10,9 @@ import javax.swing.*;
 import javax.swing.border.EmptyBorder;
 import java.awt.*;
 
+/**
+  * Gère l'affichage du menu pause
+  */
 public class PauseView extends JPanel {
 
     private MainFrame mainFrame;
@@ -22,6 +25,11 @@ public class PauseView extends JPanel {
 
     private PlateauView plateauView;
 
+/**
+  * Affiche le menu pause
+  * @param mainFrame la frame principale
+  * @param plateauView la frame du plateau
+  */
     public PauseView(MainFrame mainFrame, PlateauView plateauView) {
         this.plateauView = plateauView;
         this.mainFrame = mainFrame;
@@ -95,22 +103,42 @@ public class PauseView extends JPanel {
         this.setVisible(true);
     }
 
+/**
+  * Renvoie le bouton abandonner
+  * @return le bouton
+  */
     public JButtonMenu getjButtonAbandonner() {
         return jButtonAbandonner;
     }
 
+/**
+  * Renvoie le bouton reprendre
+  * @return le bouton
+  */
     public JButtonMenu getjButtonReprendre() {
         return jButtonReprendre;
     }
 
+/**
+  * Renvoie le bouton sauvegarder
+  * @return le bouton
+  */
     public JButtonMenu getjButtonSauvegarder() {
         return jButtonSauvegarder;
     }
 
+/**
+  * Renvoie la frame du plateau
+  * @return la frame
+  */
     public PlateauView getPlateauView() {
         return plateauView;
     }
 
+/**
+  * Renvoie la frame principale
+  * @return la frame
+  */
     public MainFrame getMainFrame() {
         return mainFrame;
     }

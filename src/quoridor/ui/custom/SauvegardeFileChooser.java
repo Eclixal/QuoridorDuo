@@ -1,6 +1,7 @@
 package quoridor.ui.custom;
 
 import quoridor.Partie;
+import quoridor.ui.view.Menu;
 import quoridor.ui.view.PlateauView;
 import sun.audio.AudioPlayer;
 
@@ -8,18 +9,28 @@ import javax.swing.*;
 import java.awt.*;
 import java.io.File;
 
+/**
+  * Crée un espace de choix de fichier customisé
+  */
 public class SauvegardeFileChooser extends JFileChooser {
 
     private Container parent;
     private quoridor.ui.view.Menu menu;
 
-    public SauvegardeFileChooser(quoridor.ui.view.Menu menu){
+/**
+  * Crée une nouvelle zone de choix de fichier
+  * @param menu Le menu du jeu en mode graphique
+  */
+    public SauvegardeFileChooser(Menu menu){
         super(new File("./"));
         this.parent = menu.getjPanel();
         this.menu = menu;
         setApproveButtonText("Charger une sauvegarde");
     }
 
+/**
+  * Vérifie que le fichier choisi est bien un fichier de sauvegarde
+  */
     public void approveSelection(){
         super.approveSelection();
         parent.remove(SauvegardeFileChooser.this);
@@ -28,6 +39,9 @@ public class SauvegardeFileChooser extends JFileChooser {
         menu.getMainFrame().validate();
     }
 
+/**
+  * Enlève le choix de fichier du menu si on appuie sur annuler
+  */
     public void cancelSelection(){
         super.cancelSelection();
         parent.remove(SauvegardeFileChooser.this);
@@ -39,6 +53,9 @@ public class SauvegardeFileChooser extends JFileChooser {
         parent.repaint();
     }
 
+/**
+  * Afficher le choix de fichier de sauvegarde dans le menu
+  */
     public void show(){
         rescanCurrentDirectory();
 
@@ -54,6 +71,10 @@ public class SauvegardeFileChooser extends JFileChooser {
         repaint();
     }
 
+/**
+  * Renvoie la dimension maximale de la zone de coix de fichier
+  * @return La dimension
+  */
     public Dimension getMaximumSize(){
         return new Dimension(500,300);
     }

@@ -16,15 +16,25 @@ import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.io.File;
 
+/**
+  * Gère l'écouteur du menu du mode quatre joueurs
+  */
 public class QuatreJoueursListener extends MouseAdapter {
 
     private QuatreJoueursConfigurationView quatreJoueursConfigurationView;
 
+/**
+  * Initialise l'écouteur
+  * @param quatreJoueursConfigurationView la fenêtre qui doit être géré
+  */
     public QuatreJoueursListener(QuatreJoueursConfigurationView quatreJoueursConfigurationView) {
         this.quatreJoueursConfigurationView = quatreJoueursConfigurationView;
     }
 
-    @Override
+    /**
+      * Gère les actions quand on clique sur le menu
+      * @param e l'événement
+      */
     public void mouseClicked(MouseEvent e) {
         playSound("sons/main_gui_click.wav");
         if (e.getSource() == quatreJoueursConfigurationView.getJouer()) {
@@ -81,6 +91,10 @@ public class QuatreJoueursListener extends MouseAdapter {
 
     }
 
+    /**
+      * Gère le son du menu pour ne pas qu'elle s'arrête
+      * @param soundName le nom de la musique
+      */
     public void playSound(String soundName) {
         try {
             AudioInputStream audioInputStream = AudioSystem.getAudioInputStream(new File(soundName).getAbsoluteFile());

@@ -16,6 +16,9 @@ import javax.swing.border.Border;
 import javax.swing.border.EmptyBorder;
 import java.util.TimerTask;
 
+/**
+  * Gère la fenêtre du plateau
+  */
 public class PlateauView extends JPanel {
 
     private ArrayList<Joueur> joueurs;
@@ -35,6 +38,11 @@ public class PlateauView extends JPanel {
 
     private MainFrame mainFrame;
 
+/**
+  * Affiche la fenêtre du plateau de jeu
+  * @param mainFrame la frame principale
+  * @param partie la partie qui doit être afficher
+  */
     public PlateauView(MainFrame mainFrame, Partie partie) {
         this.partie = partie;
         this.mainFrame = mainFrame;
@@ -153,12 +161,17 @@ public class PlateauView extends JPanel {
         this.add(this.table, constraints);
     }
 
+/**
+  * Joue le tour d'un IA
+  */
     public void tourIA(){
         this.partie.jouer(tour, -1, -1);
         this.changerJoueur();
     }
 
-
+/**
+  * S'occupe de faire les modifications quand le tour d'un joueur change
+  */
       public void changerJoueur(){
           if (!pause) {
             this.revalidate();
@@ -193,22 +206,41 @@ public class PlateauView extends JPanel {
       }
     }
 
+/**
+  * Renvoie le tableau du plateau
+  * @return le tableau
+  */
     public JTable getTable() {
         return table;
     }
 
+/**
+  * Renvoie le bouton du menu pause
+  * @return le bouton
+  */
     public JButtonMenu getjButtonMenu() {
         return jButtonMenu;
     }
 
+/**
+  * Renvoie le plateau
+  * @return le plateau
+  */
     public Plateau getPlateau() {
         return plateau;
     }
 
+/**
+  * Renvoie l'indice du jeueur qui doit jouer
+  * @return l'indice
+  */
     public int getTour() {
         return tour;
     }
 
+/**
+  * Initialise le démarage d'une partie
+  */
     public void launch() {
         if (this.joueurs.get(tour).isIA()) {
             this.partie.jouer(tour, -1, -1);
@@ -219,20 +251,35 @@ public class PlateauView extends JPanel {
         }
     }
 
+/**
+  * Renvoie le message d'erreur
+  * @return le message d'erreur
+  */
     public JLabel getErrorMessage() {
         return errorMessage;
     }
 
+/**
+  * Met le jeu en pause ou le remet en route
+  * @param pause vrai pour mettre une pause
+  */
     public void setPause(boolean pause) {
         this.pause = pause;
         if (!pause)
             launch();
     }
 
+/**
+  * Renvoie la frame principale
+  * @return la frame
+  */
     public MainFrame getMainFrame() {
         return mainFrame;
     }
 
+/**
+  * Défini se qui se passe quand un joueur a gagné
+  */
     public void finJeu() {
         getMainFrame().setContentPane(new FinDePartie(mainFrame, this.joueurs.get(tour).getNom()));
         getMainFrame().validate();

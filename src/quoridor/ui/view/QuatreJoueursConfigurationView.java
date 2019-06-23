@@ -17,6 +17,9 @@ import java.awt.*;
 import java.io.FileInputStream;
 import java.io.IOException;
 
+/**
+  * Gère le menu de partie en mode quatre joueurs
+  */
 public class QuatreJoueursConfigurationView extends JPanel {
 
   private JButtonMenu jouer;
@@ -24,18 +27,24 @@ public class QuatreJoueursConfigurationView extends JPanel {
   private JButtonMenu retour;
 
   private JTextField jTextFieldJ1;
-    private JTextField jTextFieldJ2;
-    private JTextField jTextFieldJ3;
-    private JTextField jTextFieldJ4;
+  private JTextField jTextFieldJ2;
+  private JTextField jTextFieldJ3;
+  private JTextField jTextFieldJ4;
+
+  private ContinuousAudioDataStream audioDataStream;
 
   private JComboBox<String> jComboBox;
-    private JComboBox<String> jComboBoxDifficultyJ1;
-    private JComboBox<String> jComboBoxDifficultyJ2;
-    private JComboBox<String> jComboBoxDifficultyJ3;
-    private JComboBox<String> jComboBoxDifficultyJ4;
+  private JComboBox<String> jComboBoxDifficultyJ1;
+  private JComboBox<String> jComboBoxDifficultyJ2;
+  private JComboBox<String> jComboBoxDifficultyJ3;
+  private JComboBox<String> jComboBoxDifficultyJ4;
 
   private MainFrame mainFrame;
 
+/**
+  * Affiche le menu du mode quatre joueurs
+  * @param mainFrame la fenêtre principal
+  */
   public QuatreJoueursConfigurationView(MainFrame mainFrame) {
       this.mainFrame = mainFrame;
       this.setLayout(new GridBagLayout());
@@ -336,51 +345,97 @@ public class QuatreJoueursConfigurationView extends JPanel {
       this.setVisible(true);
   }
 
+/**
+  * Renvoie le bouton jouer
+  * @return le bouton jouer
+  */
     public JButtonMenu getJouer() {
         return jouer;
     }
 
+/**
+  * Renvoie la zone de texte du joueur 1
+  * @return la zone de texte
+  */
     public JTextField getjTextFieldJ1() {
         return jTextFieldJ1;
     }
 
+/**
+  * Renvoie la zone de texte du joueur 2
+  * @return la zone de texte
+  */
     public JTextField getjTextFieldJ2() {
         return jTextFieldJ2;
     }
 
+/**
+  * Renvoie la zone de texte du joueur 3
+  * @return la zone de texte
+  */
     public JTextField getjTextFieldJ3() {
         return jTextFieldJ3;
     }
 
+/**
+  * Renvoie la zone de texte du joueur 4
+  * @return la zone de texte
+  */
     public JTextField getjTextFieldJ4() {
         return jTextFieldJ4;
     }
 
+/**
+  * Revoir la comboBox
+  * @return la comboBox
+  */
     public JComboBox<String> getjComboBox() {
         return jComboBox;
     }
 
+/**
+  * Revoir la comboBox de difficulté du joueur 1
+  * @return la comboBox
+  */
     public JComboBox<String> getjComboBoxDifficultyJ1() {
         return jComboBoxDifficultyJ1;
     }
 
+/**
+  * Revoir la comboBox de difficulté du joueur 2
+  * @return la comboBox
+  */
     public JComboBox<String> getjComboBoxDifficultyJ2() {
         return jComboBoxDifficultyJ2;
     }
 
+/**
+  * Revoir la comboBox de difficulté du joueur 3
+  * @return la comboBox
+  */
     public JComboBox<String> getjComboBoxDifficultyJ3() {
         return jComboBoxDifficultyJ3;
     }
 
+/**
+  * Revoir la comboBox de difficulté du joueur 4
+  * @return la comboBox
+  */
     public JComboBox<String> getjComboBoxDifficultyJ4() {
         return jComboBoxDifficultyJ4;
     }
 
+/**
+  * Renvoie la frame principale
+  * @return la frame
+  */
     public MainFrame getMainFrame() {
         return mainFrame;
     }
 
-    private ContinuousAudioDataStream audioDataStream;
+/**
+  * Gère la musique du menu
+  */
     private void music() {
         try {
             AudioData data = new AudioStream(new FileInputStream("sons/main_theme_menu1.wav")).getData();
@@ -389,14 +444,26 @@ public class QuatreJoueursConfigurationView extends JPanel {
         } catch(IOException ignored) { }
     }
 
+/**
+  * Renvoie le bouton retour
+  * @return le bouton
+  */
     public JButtonMenu getRetour() {
         return retour;
     }
 
+/**
+  * Renvoie la musique qui doit continuer
+  * @return la musique
+  */
     public ContinuousAudioDataStream getAudioDataStream() {
         return audioDataStream;
     }
 
+    /**
+      * Gère l'affichage des comboBox de diificulte s'il y a un ou des IA
+      * @param item la liste qui doit être rempli dans la combobox
+      */
     public void changeMode(Object item) {
       if (item.equals("Humain vs Humain vs Humain vs Humain")) {
           this.jComboBoxDifficultyJ1.setVisible(false);

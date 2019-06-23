@@ -16,16 +16,28 @@ import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.io.File;
 
+/**
+  * Gère les actions du menu pause
+  */
 public class PauseListener extends MouseAdapter {
 
     private PauseView pauseView;
     private PlateauView plateauView;
 
+/**
+  * Initailise l'écouteur
+  * @param pauseView la frame du menu pause
+  * @param plateauView la frame du plateau
+  */
     public PauseListener(PauseView pauseView, PlateauView plateauView) {
         this.pauseView = pauseView;
         this.plateauView = plateauView;
     }
 
+/**
+  * Gère quand on clique
+  * @param e l'événement
+  */
     public void mouseClicked(MouseEvent e) {
         playSound("sons/main_gui_click.wav");
         if (e.getSource() == pauseView.getjButtonReprendre()) {
@@ -42,6 +54,10 @@ public class PauseListener extends MouseAdapter {
         }
     }
 
+/**
+  * Joue le musique si on retourne au menu principal
+  * @param soundName le nom de la musique
+  */
     public void playSound(String soundName) {
         try {
             AudioInputStream audioInputStream = AudioSystem.getAudioInputStream(new File(soundName).getAbsoluteFile());

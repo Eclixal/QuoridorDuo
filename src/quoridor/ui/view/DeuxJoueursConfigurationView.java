@@ -18,6 +18,9 @@ import java.awt.*;
 import java.io.FileInputStream;
 import java.io.IOException;
 
+/**
+  * Gère le menu de partie en mode deux joueurs
+  */
 public class DeuxJoueursConfigurationView extends JPanel {
 
   private JButtonMenu jouer;
@@ -27,12 +30,18 @@ public class DeuxJoueursConfigurationView extends JPanel {
   private JTextField jTextFieldJ1;
   private JTextField jTextFieldJ2;
 
+  private ContinuousAudioDataStream audioDataStream;
+
   private JComboBox<String> jComboBox;
     private JComboBox<String> jComboBoxDifficultyJ1;
     private JComboBox<String> jComboBoxDifficultyJ2;
 
   private MainFrame mainFrame;
 
+/**
+  * Affiche le menu du mode quatre joueurs
+  * @param mainFrame la fenêtre principal
+  */
   public DeuxJoueursConfigurationView(MainFrame mainFrame) {
       this.mainFrame = mainFrame;
       this.setLayout(new GridBagLayout());
@@ -230,51 +239,93 @@ public class DeuxJoueursConfigurationView extends JPanel {
       this.setVisible(true);
   }
 
-    public JButtonMenu getJouer() {
-        return jouer;
-    }
+  /**
+    * Renvoie le bouton jouer
+    * @return le bouton jouer
+    */
+      public JButtonMenu getJouer() {
+          return jouer;
+      }
 
-    public JTextField getjTextFieldJ1() {
-        return jTextFieldJ1;
-    }
+  /**
+    * Renvoie la zone de texte du joueur 1
+    * @return la zone de texte
+    */
+      public JTextField getjTextFieldJ1() {
+          return jTextFieldJ1;
+      }
 
-    public JTextField getjTextFieldJ2() {
-        return jTextFieldJ2;
-    }
+  /**
+    * Renvoie la zone de texte du joueur 2
+    * @return la zone de texte
+    */
+      public JTextField getjTextFieldJ2() {
+          return jTextFieldJ2;
+      }
 
-    public JComboBox<String> getjComboBox() {
-        return jComboBox;
-    }
+      /**
+        * Revoir la comboBox
+        * @return la comboBox
+        */
+          public JComboBox<String> getjComboBox() {
+              return jComboBox;
+          }
 
-    public JComboBox<String> getjComboBoxDifficultyJ1() {
-        return jComboBoxDifficultyJ1;
-    }
+      /**
+        * Revoir la comboBox de difficulté du joueur 1
+        * @return la comboBox
+        */
+          public JComboBox<String> getjComboBoxDifficultyJ1() {
+              return jComboBoxDifficultyJ1;
+          }
 
-    public JComboBox<String> getjComboBoxDifficultyJ2() {
-        return jComboBoxDifficultyJ2;
-    }
+      /**
+        * Revoir la comboBox de difficulté du joueur 2
+        * @return la comboBox
+        */
+          public JComboBox<String> getjComboBoxDifficultyJ2() {
+              return jComboBoxDifficultyJ2;
+          }
 
+/**
+  * Revoir la comboBox de difficulté du joueur 3
+  * @return la comboBox
+  */
     public MainFrame getMainFrame() {
         return mainFrame;
     }
 
-    private ContinuousAudioDataStream audioDataStream;
-    private void music() {
-        try {
-            AudioData data = new AudioStream(new FileInputStream("sons/main_theme_menu1.wav")).getData();
-            audioDataStream = new ContinuousAudioDataStream(data);
-            AudioPlayer.player.start(audioDataStream);
-        } catch(IOException ignored) { }
-    }
+    /**
+      * Gère la musique du menu
+      */
+        private void music() {
+            try {
+                AudioData data = new AudioStream(new FileInputStream("sons/main_theme_menu1.wav")).getData();
+                audioDataStream = new ContinuousAudioDataStream(data);
+                AudioPlayer.player.start(audioDataStream);
+            } catch(IOException ignored) { }
+        }
 
-    public JButtonMenu getRetour() {
-        return retour;
-    }
+    /**
+      * Renvoie le bouton retour
+      * @return le bouton
+      */
+        public JButtonMenu getRetour() {
+            return retour;
+        }
 
-    public ContinuousAudioDataStream getAudioDataStream() {
-        return audioDataStream;
-    }
+    /**
+      * Renvoie la musique qui doit continuer
+      * @return la musique
+      */
+        public ContinuousAudioDataStream getAudioDataStream() {
+            return audioDataStream;
+        }
 
+/**
+  * Gère l'affichage des comboBox de diificulte s'il y a un ou des IA
+  * @param item la liste qui doit être rempli dans la combobox
+  */
     public void changeMode(Object item) {
       if (item.equals("Humain VS IA")) {
           this.jComboBoxDifficultyJ1.setVisible(false);

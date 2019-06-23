@@ -15,6 +15,9 @@ import java.awt.*;
 import java.io.FileInputStream;
 import java.io.IOException;
 
+/**
+  * Gère la frame de fin de partie
+  */
 public class FinDePartie extends JPanel {
 
     private MainFrame mainFrame;
@@ -23,6 +26,11 @@ public class FinDePartie extends JPanel {
 
     private JButtonMenu jButtonMenu;
 
+/**
+  * Affiche la fin de partie
+  * @param mainFrame la frame principale
+  * @param pseudo le pseudo du joueur qui a gagné
+  */
     public FinDePartie(MainFrame mainFrame, String pseudo) {
         this.mainFrame = mainFrame;
         this.setLayout(new GridBagLayout());
@@ -62,10 +70,18 @@ public class FinDePartie extends JPanel {
         this.setVisible(true);
     }
 
+/**
+  * Renvoie le bouton de retour au menu
+  * @return le bouton
+  */
     public JButtonMenu getjButtonMenu() {
         return jButtonMenu;
     }
 
+/**
+  * Renvoie la frame principale
+  * @return la frame
+  */
     public MainFrame getMainFrame() {
         return mainFrame;
     }

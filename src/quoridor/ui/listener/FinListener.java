@@ -14,15 +14,25 @@ import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.io.File;
 
+/**
+  * Gère les actions de la frame de fin de partie
+  */
 public class FinListener extends MouseAdapter {
 
     private FinDePartie finDePartie;
 
+/**
+  * Initialise l'écouteur
+  * @param finDePartie la frame de fin de partie
+  */
     public FinListener(FinDePartie finDePartie) {
         this.finDePartie = finDePartie;
     }
 
-    @Override
+/**
+  * Gère quand on clique
+  * @param e l'événement
+  */
     public void mouseClicked(MouseEvent e) {
         playSound("sons/main_gui_click.wav");
         if (e.getSource() == finDePartie.getjButtonMenu()) {
@@ -31,6 +41,10 @@ public class FinListener extends MouseAdapter {
         }
     }
 
+/**
+  * Joue la musique quand on revient au menu principal
+  * @param soundName le nom de la musique
+  */
     public void playSound(String soundName) {
         try {
             AudioInputStream audioInputStream = AudioSystem.getAudioInputStream(new File(soundName).getAbsoluteFile());

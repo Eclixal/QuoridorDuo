@@ -14,6 +14,9 @@ import java.awt.*;
 import java.io.FileInputStream;
 import java.io.IOException;
 
+/**
+  * Gère la fenêtre d'une nouvelle partie
+  */
 public class NouvellePartie extends JPanel {
 
   private JButtonMenu retour;
@@ -22,8 +25,14 @@ public class NouvellePartie extends JPanel {
   private JButtonMenu jButtonMenu2J;
   private JButtonMenu jButtonMenu4J;
 
+  private ContinuousAudioDataStream audioDataStream;
+
   private MainFrame mainFrame;
 
+/**
+  * Affiche la fenêtre d'une nouvelle partie
+  * @param mainFrame Le frame principal qui gère tous les conposants
+  */
   public NouvellePartie(MainFrame mainFrame) {
       this.mainFrame = mainFrame;
       this.setLayout(new GridBagLayout());
@@ -107,19 +116,33 @@ public class NouvellePartie extends JPanel {
       this.setVisible(true);
   }
 
+/**
+  * Renvoie le bouton deux joueurs
+  * @return Le bouton
+  */
     public JButtonMenu getjButtonMenu2J() {
         return jButtonMenu2J;
     }
 
+/**
+  * Renvoie le bouton quatre joueurs
+  * @return Le bouton
+  */
     public JButtonMenu getjButtonMenu4J() {
         return jButtonMenu4J;
     }
 
+/**
+  * Renvoie le bouton retour
+  * @return Le bouton
+  */
     public JButtonMenu getRetour() {
         return retour;
     }
 
-    private ContinuousAudioDataStream audioDataStream;
+/**
+  * Gère la musique de la fenêtre nouvelle partie
+  */
     private void music() {
         try {
             AudioData data = new AudioStream(new FileInputStream("sons/main_theme_menu1.wav")).getData();
@@ -128,10 +151,18 @@ public class NouvellePartie extends JPanel {
         } catch(IOException ignored) { }
     }
 
+/**
+  * Renvoie la musique qui doit continuer
+  * @return la musique
+  */
     public ContinuousAudioDataStream getAudioDataStream() {
         return audioDataStream;
     }
 
+/**
+  * Renvoie la fenêtre principal du mode graphique
+  * @return la frame
+  */
     public MainFrame getMainFrame() {
         return mainFrame;
     }

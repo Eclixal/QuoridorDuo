@@ -10,18 +10,31 @@ import quoridor.ui.view.PauseView;
 import quoridor.ui.view.PlateauView;
 import quoridor.Joueur;
 
+/**
+  * Gère les actions dans la frame du plateau
+  */
 public class PlateauListener extends MouseAdapter {
 
   private Partie partie;
   private PlateauView plateauView;
   private int tour;
 
+/**
+  * Initialise l'écouteur
+  * @param plateauView la frame du plateau
+  * @param partie la partie
+  * @param tour le numéro du joueur qui doit jouer
+  */
   public PlateauListener(PlateauView plateauView, Partie partie, int tour){
     this.partie = partie;
     this.plateauView = plateauView;
     this.tour = tour;
   }
 
+/**
+  * Gère quand on clique
+  * @param e l'événement
+  */
   public void mouseClicked(MouseEvent e) {
     if (e.getSource() == plateauView.getTable()) {
       JTable jTable = (JTable) e.getSource();

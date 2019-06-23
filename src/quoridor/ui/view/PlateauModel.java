@@ -5,14 +5,26 @@ import javax.swing.ImageIcon;
 import javax.swing.JPanel;
 import java.awt.Image;
 
+/**
+  * Gère la dimensions et les composants du tableau (plateau)
+  */
 public class PlateauModel extends AbstractTableModel{
 
   private int[][] damier;
 
+/**
+  * Initialise le tableau
+  * @param damier le plteau du jeu
+  */
   public PlateauModel(int[][] damier){
     this.damier = damier;
   }
 
+/**
+  * Renvoie la valeur de la case aux coordonnées données
+  * @param r la ligne
+  * @param c la colonne
+  */
   public Object getValueAt(int r, int c){
     Object ret = new Object();
     int valeur = this.damier[r][c];
@@ -48,14 +60,23 @@ public class PlateauModel extends AbstractTableModel{
     return ret;
   }
 
+/**
+  * Renvoie le nombre de colonne
+  */
   public int getColumnCount(){
     return this.damier.length;
   }
 
+/**
+  * Renvoie  le nombre de ligne
+  */
   public int getRowCount(){
     return this.damier.length;
   }
 
+/**
+  * Renvoie le type de classe dans la colonne du tableau
+  */
   public Class getColumnClass(int c) {
       return this.getValueAt(0,c).getClass();
    }
