@@ -92,7 +92,7 @@ public class QuatreJoueursConfigurationView extends JPanel {
       constraintsJ1.fill = GridBagConstraints.HORIZONTAL;
       constraintsJ1.insets = new Insets(10,30,10,30);
 
-      panelJ1.setPreferredSize(new Dimension(200,200));
+      panelJ1.setPreferredSize(new Dimension(250,200));
       Border lineborder = BorderFactory.createLineBorder(Color.decode("#309286"), 2);
       panelJ1.setBorder(lineborder);
 
@@ -138,7 +138,7 @@ public class QuatreJoueursConfigurationView extends JPanel {
       jPanel.add(panelJ1, constraints1);
 
       JPanel panelJ2 = new JPanel();
-      panelJ2.setPreferredSize(new Dimension(200,200));
+      panelJ2.setPreferredSize(new Dimension(250,200));
       panelJ2.setBorder(lineborder);
       panelJ2.setLayout(new GridBagLayout());
       panelJ2.setBackground(Color.decode("#b4e9e2"));
@@ -190,7 +190,7 @@ public class QuatreJoueursConfigurationView extends JPanel {
       jPanel.add(panelJ2, constraints1);
 
       JPanel panelJ3 = new JPanel();
-      panelJ3.setPreferredSize(new Dimension(200,200));
+      panelJ3.setPreferredSize(new Dimension(250,200));
       panelJ3.setBorder(lineborder);
       panelJ3.setLayout(new GridBagLayout());
       panelJ3.setBackground(Color.decode("#b4e9e2"));
@@ -242,7 +242,7 @@ public class QuatreJoueursConfigurationView extends JPanel {
       jPanel.add(panelJ3, constraints1);
 
       JPanel panelJ4 = new JPanel();
-      panelJ4.setPreferredSize(new Dimension(200,200));
+      panelJ4.setPreferredSize(new Dimension(250,200));
       panelJ4.setBorder(lineborder);
       panelJ4.setLayout(new GridBagLayout());
       panelJ4.setBackground(Color.decode("#b4e9e2"));
