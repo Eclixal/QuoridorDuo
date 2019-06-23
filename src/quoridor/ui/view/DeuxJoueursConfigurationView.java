@@ -100,7 +100,7 @@ public class DeuxJoueursConfigurationView extends JPanel {
       panelJ1.add(pseudoJ1, constraintsJ1);
       pseudoJ1.setForeground(Color.decode("#309286"));
 
-      JLabel avatarJ1 = new JLabel(new ImageIcon(new ImageIcon("../images/Rond_rouge.png").getImage().getScaledInstance(50, 50, Image.SCALE_DEFAULT)));
+      JLabel avatarJ1 = new JLabel(new ImageIcon(new ImageIcon("images/Rond_rouge.png").getImage().getScaledInstance(50, 50, Image.SCALE_DEFAULT)));
       constraintsJ1.gridy = 0;
       constraintsJ1.gridx = 0;
       panelJ1.add(avatarJ1, constraintsJ1);
@@ -152,7 +152,7 @@ public class DeuxJoueursConfigurationView extends JPanel {
       constraintsJ2.gridx = 1;
       panelJ2.add(pseudoJ2, constraintsJ2);
 
-      JLabel avatarJ2 = new JLabel(new ImageIcon(new ImageIcon("../images/Rond_bleu.png").getImage().getScaledInstance(50, 50, Image.SCALE_DEFAULT)));
+      JLabel avatarJ2 = new JLabel(new ImageIcon(new ImageIcon("images/Rond_bleu.png").getImage().getScaledInstance(50, 50, Image.SCALE_DEFAULT)));
       constraintsJ2.gridy = 0;
       constraintsJ2.gridx = 0;
       panelJ2.add(avatarJ2, constraintsJ2);
@@ -198,7 +198,6 @@ public class DeuxJoueursConfigurationView extends JPanel {
       this.jouer.setPressedBackgroundColor(Color.decode("#64afa5"));
       this.jouer.addMouseListener(new DeuxJoueursListener(this));
 
-      constraints1.fill = GridBagConstraints.HORIZONTAL;
 
       constraints1.gridx = 0;
       constraints1.gridy = 1;
@@ -215,6 +214,7 @@ public class DeuxJoueursConfigurationView extends JPanel {
       this.retour.setHoverBackgroundColor(Color.decode("#59a59b"));
       this.retour.setPressedBackgroundColor(Color.decode("#64afa5"));
       this.retour.addMouseListener(new DeuxJoueursListener(this));
+
 
       constraints1.gridx = 1;
       constraints1.gridy = 1;
@@ -261,7 +261,7 @@ public class DeuxJoueursConfigurationView extends JPanel {
     private ContinuousAudioDataStream audioDataStream;
     private void music() {
         try {
-            AudioData data = new AudioStream(new FileInputStream("../sons/main_theme_menu1.wav")).getData();
+            AudioData data = new AudioStream(new FileInputStream("sons/main_theme_menu1.wav")).getData();
             audioDataStream = new ContinuousAudioDataStream(data);
             AudioPlayer.player.start(audioDataStream);
         } catch(IOException ignored) { }

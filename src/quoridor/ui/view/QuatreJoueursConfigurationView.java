@@ -41,7 +41,6 @@ public class QuatreJoueursConfigurationView extends JPanel {
       this.setLayout(new GridBagLayout());
 
       this.setBackground(Color.decode("#b4e9e2"));
-
       GridBagConstraints constraints = new GridBagConstraints();
       constraints.insets = new Insets(10,10,10,10);
 
@@ -67,7 +66,7 @@ public class QuatreJoueursConfigurationView extends JPanel {
       panelC.setBackground(Color.decode("#b4e9e2"));
 
       JLabel jLabel = new JLabel("Configuration : ");
-      jLabel.setFont(new Font("Courier New", Font.BOLD, 23));
+      jLabel.setFont(new Font("Courier New", Font.BOLD, 19));
       jLabel.setForeground(Color.decode("#309286"));
       this.jComboBox = new JComboBox<>();
       this.jComboBox.addItem("Humain vs Humain vs Humain vs Humain");
@@ -93,7 +92,7 @@ public class QuatreJoueursConfigurationView extends JPanel {
       constraintsJ1.fill = GridBagConstraints.HORIZONTAL;
       constraintsJ1.insets = new Insets(10,30,10,30);
 
-      panelJ1.setPreferredSize(new Dimension(300,200));
+      panelJ1.setPreferredSize(new Dimension(200,200));
       Border lineborder = BorderFactory.createLineBorder(Color.decode("#309286"), 2);
       panelJ1.setBorder(lineborder);
 
@@ -104,7 +103,7 @@ public class QuatreJoueursConfigurationView extends JPanel {
       constraintsJ1.gridx = 1;
       panelJ1.add(pseudoJ1, constraintsJ1);
 
-      JLabel avatarJ1 = new JLabel(new ImageIcon(new ImageIcon("../images/Rond_rouge.png").getImage().getScaledInstance(50, 50, Image.SCALE_DEFAULT)));
+      JLabel avatarJ1 = new JLabel(new ImageIcon(new ImageIcon("images/Rond_rouge.png").getImage().getScaledInstance(50, 50, Image.SCALE_DEFAULT)));
       constraintsJ1.gridy = 0;
       constraintsJ1.gridx = 0;
       panelJ1.add(avatarJ1, constraintsJ1);
@@ -134,12 +133,12 @@ public class QuatreJoueursConfigurationView extends JPanel {
       panelJ1.add(this.jComboBoxDifficultyJ1, constraintsJ1);
 
       constraints1.gridy = 0;
-      constraints1.gridx = 2;
+      constraints1.gridx = 1;
 
       jPanel.add(panelJ1, constraints1);
 
       JPanel panelJ2 = new JPanel();
-      panelJ2.setPreferredSize(new Dimension(300,200));
+      panelJ2.setPreferredSize(new Dimension(200,200));
       panelJ2.setBorder(lineborder);
       panelJ2.setLayout(new GridBagLayout());
       panelJ2.setBackground(Color.decode("#b4e9e2"));
@@ -147,7 +146,7 @@ public class QuatreJoueursConfigurationView extends JPanel {
       GridBagConstraints constraintsJ2 = new GridBagConstraints();
 
       constraintsJ2.fill = GridBagConstraints.HORIZONTAL;
-      constraintsJ2.insets = new Insets(5,20,5,20);
+      constraintsJ2.insets = new Insets(10,30,10,30);
 
       JLabel pseudoJ2 = new JLabel("Pseudo :");
       pseudoJ2.setFont(new Font("Courier New", Font.BOLD, pseudoJ2.getFont().getSize()*2));
@@ -157,7 +156,7 @@ public class QuatreJoueursConfigurationView extends JPanel {
       constraintsJ2.gridx = 1;
       panelJ2.add(pseudoJ2, constraintsJ2);
 
-      JLabel avatarJ2 = new JLabel(new ImageIcon(new ImageIcon("../images/Rond_bleu.png").getImage().getScaledInstance(50, 50, Image.SCALE_DEFAULT)));
+      JLabel avatarJ2 = new JLabel(new ImageIcon(new ImageIcon("images/Rond_bleu.png").getImage().getScaledInstance(50, 50, Image.SCALE_DEFAULT)));
       constraintsJ2.gridy = 0;
       constraintsJ2.gridx = 0;
       panelJ2.add(avatarJ2, constraintsJ2);
@@ -186,12 +185,12 @@ public class QuatreJoueursConfigurationView extends JPanel {
       panelJ2.add(this.jComboBoxDifficultyJ2, constraintsJ2);
 
       constraints1.gridy = 1;
-      constraints1.gridx = 2;
+      constraints1.gridx = 1;
 
       jPanel.add(panelJ2, constraints1);
 
       JPanel panelJ3 = new JPanel();
-      panelJ3.setPreferredSize(new Dimension(300,200));
+      panelJ3.setPreferredSize(new Dimension(200,200));
       panelJ3.setBorder(lineborder);
       panelJ3.setLayout(new GridBagLayout());
       panelJ3.setBackground(Color.decode("#b4e9e2"));
@@ -199,7 +198,7 @@ public class QuatreJoueursConfigurationView extends JPanel {
       GridBagConstraints constraintsJ3 = new GridBagConstraints();
 
       constraintsJ3.fill = GridBagConstraints.HORIZONTAL;
-      constraintsJ3.insets = new Insets(5,20,5,20);
+      constraintsJ3.insets = new Insets(10,30,10,30);
 
       JLabel pseudoJ3 = new JLabel("Pseudo :");
       pseudoJ3.setFont(new Font("Courier New", Font.BOLD, pseudoJ3.getFont().getSize()*2));
@@ -209,7 +208,7 @@ public class QuatreJoueursConfigurationView extends JPanel {
       constraintsJ3.gridx = 1;
       panelJ3.add(pseudoJ3, constraintsJ3);
 
-      JLabel avatarJ3 = new JLabel(new ImageIcon(new ImageIcon("../images/Rond_vert.png").getImage().getScaledInstance(50, 50, Image.SCALE_DEFAULT)));
+      JLabel avatarJ3 = new JLabel(new ImageIcon(new ImageIcon("images/Rond_vert.png").getImage().getScaledInstance(50, 50, Image.SCALE_DEFAULT)));
       constraintsJ3.gridy = 0;
       constraintsJ3.gridx = 0;
       panelJ3.add(avatarJ3, constraintsJ3);
@@ -238,12 +237,12 @@ public class QuatreJoueursConfigurationView extends JPanel {
       panelJ3.add(this.jComboBoxDifficultyJ3, constraintsJ3);
 
       constraints1.gridy = 0;
-      constraints1.gridx = 3;
+      constraints1.gridx = 2;
 
       jPanel.add(panelJ3, constraints1);
 
       JPanel panelJ4 = new JPanel();
-      panelJ4.setPreferredSize(new Dimension(300,200));
+      panelJ4.setPreferredSize(new Dimension(200,200));
       panelJ4.setBorder(lineborder);
       panelJ4.setLayout(new GridBagLayout());
       panelJ4.setBackground(Color.decode("#b4e9e2"));
@@ -251,7 +250,7 @@ public class QuatreJoueursConfigurationView extends JPanel {
       GridBagConstraints constraintsJ4 = new GridBagConstraints();
 
       constraintsJ4.fill = GridBagConstraints.HORIZONTAL;
-      constraintsJ4.insets = new Insets(5,20,5,20);
+      constraintsJ4.insets = new Insets(10,30,10,30);
 
       JLabel pseudoJ4 = new JLabel("Pseudo :");
       pseudoJ4.setFont(new Font("Courier New", Font.BOLD, pseudoJ4.getFont().getSize()*2));
@@ -261,7 +260,7 @@ public class QuatreJoueursConfigurationView extends JPanel {
       constraintsJ4.gridx = 1;
       panelJ4.add(pseudoJ4, constraintsJ4);
 
-      JLabel avatarJ4 = new JLabel(new ImageIcon(new ImageIcon("../images/Rond_jaune.png").getImage().getScaledInstance(50, 50, Image.SCALE_DEFAULT)));
+      JLabel avatarJ4 = new JLabel(new ImageIcon(new ImageIcon("images/Rond_jaune.png").getImage().getScaledInstance(50, 50, Image.SCALE_DEFAULT)));
       constraintsJ4.gridy = 0;
       constraintsJ4.gridx = 0;
       panelJ4.add(avatarJ4, constraintsJ4);
@@ -290,7 +289,7 @@ public class QuatreJoueursConfigurationView extends JPanel {
       panelJ4.add(this.jComboBoxDifficultyJ4, constraintsJ4);
 
       constraints1.gridy = 1;
-      constraints1.gridx = 3;
+      constraints1.gridx = 2;
 
       jPanel.add(panelJ4, constraints1);
 
@@ -307,7 +306,6 @@ public class QuatreJoueursConfigurationView extends JPanel {
       this.jouer.setPressedBackgroundColor(Color.decode("#64afa5"));
       this.jouer.addMouseListener(new QuatreJoueursListener(this));
 
-      constraints1.fill = GridBagConstraints.HORIZONTAL;
 
       constraints1.gridx = 0;
       constraints1.gridy = 1;
@@ -325,8 +323,8 @@ public class QuatreJoueursConfigurationView extends JPanel {
       this.retour.setPressedBackgroundColor(Color.decode("#64afa5"));
       this.retour.addMouseListener(new QuatreJoueursListener(this));
 
-      constraints1.gridx = 1;
-      constraints1.gridy = 1;
+      constraints1.gridx = 0;
+      constraints1.gridy = 2;
 
       jPanel.add(this.retour, constraints1);
 
@@ -385,7 +383,7 @@ public class QuatreJoueursConfigurationView extends JPanel {
     private ContinuousAudioDataStream audioDataStream;
     private void music() {
         try {
-            AudioData data = new AudioStream(new FileInputStream("../sons/main_theme_menu1.wav")).getData();
+            AudioData data = new AudioStream(new FileInputStream("sons/main_theme_menu1.wav")).getData();
             audioDataStream = new ContinuousAudioDataStream(data);
             AudioPlayer.player.start(audioDataStream);
         } catch(IOException ignored) { }
