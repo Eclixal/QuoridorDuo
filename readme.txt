@@ -1,0 +1,1 @@
+Pour lancer le jeu il suffit de se rendre dans le dossier du jar qui lui contient aussi le dossier sons et images, ensuite effectuer la commande java -jar Quoridor.java pour démarrer le jeu et lors du lancement il faut entrer o afin de lancer le jeu en mode Graphique
