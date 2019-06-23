@@ -30,7 +30,7 @@
         <mkdir dir="${dist}/lib"/>
         <jar jarfile="${dist}/lib/Quoridor.jar" basedir="${build}">
             <manifest>
-                <attribute name="Main-Class" value="Launcher"/>
+                <attribute name="Main-Class" value="quoridor.Launcher"/>
             </manifest>
         </jar>
     </target>

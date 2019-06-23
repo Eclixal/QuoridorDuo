@@ -1,15 +1,10 @@
-import quoridor.Mode;
-import quoridor.Controlleur;
-import quoridor.Partie;
-import quoridor.Difficulte;
+package quoridor;
+
 import quoridor.ui.MainFrame;
 import quoridor.ui.view.Menu;
-import quoridor.ui.view.PlateauView;
 
 import javax.swing.*;
-import java.io.*;
 import java.util.Scanner;
-import java.util.TimerTask;
 
 /**
   * Cette classe permet de lancer l'application
