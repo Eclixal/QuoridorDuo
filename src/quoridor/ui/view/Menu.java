@@ -126,7 +126,7 @@ public class Menu extends JPanel {
   private ContinuousAudioDataStream audioDataStream;
   private void music() {
     try {
-      AudioData data = new AudioStream(new FileInputStream("../sons/main_theme_menu2.wav")).getData();
+      AudioData data = new AudioStream(new FileInputStream("sons/main_theme_menu2.wav")).getData();
       audioDataStream = new ContinuousAudioDataStream(data);
       AudioPlayer.player.start(audioDataStream);
 

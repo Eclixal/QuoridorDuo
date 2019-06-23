@@ -1,7 +1,6 @@
 package quoridor;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 
 /**
   * Classe abstraite gérant les joueurs
@@ -15,7 +14,7 @@ public abstract class Joueur {
     protected Pion pion;
     protected Plateau plateau;
     protected Coordonnee fin;
-    private int numDeplacement = 1;
+    private int numDeplacement = 10;
 
     /**
       * Créé un nouvel objet Humain
@@ -34,7 +33,7 @@ public abstract class Joueur {
         this.plateau = plateau;
 
         if (barrieres == null) {
-            this.barrieres = new ArrayList<Barriere>();
+            this.barrieres = new ArrayList<>();
             for (int i = 0; i < 20/plateau.getPartie().getMode().toString().length(); i++)
                 this.barrieres.add(new Barriere(this.getCouleur(), new Coordonnee(-1,-1,-1,-1)));
         } else {
@@ -162,14 +161,13 @@ public abstract class Joueur {
                     if (existWay(liste.get(i), liste.get(i+1), tmp, j)) {
                         exist = true;
                     } else {
-                        tmp[liste.get(i)][liste.get(i+1)] =  -1;
+                        tmp[liste.get(i)][liste.get(i+1)] = -1;
                         plateau.getPartie().getJoueurs().get(j).setNumDeplacement(plateau.getPartie().getJoueurs().get(j).getNumDeplacement()-1);
                     }
                 }
             }
             i = i + 2;
         }
-
         return exist;
     }
 

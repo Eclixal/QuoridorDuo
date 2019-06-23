@@ -23,7 +23,7 @@ public class NouvellePartieListener extends MouseAdapter {
 
     @Override
     public void mouseClicked(MouseEvent e) {
-        playSound("../sons/main_gui_click.wav");
+        playSound("sons/main_gui_click.wav");
         if (e.getSource() == this.nouvellePartie.getjButtonMenu2J()) {
             AudioPlayer.player.stop(nouvellePartie.getAudioDataStream());
             nouvellePartie.getMainFrame().setContentPane(new DeuxJoueursConfigurationView(nouvellePartie.getMainFrame()));

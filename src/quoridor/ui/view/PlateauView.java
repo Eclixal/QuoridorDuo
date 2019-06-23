@@ -86,7 +86,7 @@ public class PlateauView extends JPanel {
         GridBagConstraints constraints1 = new GridBagConstraints();
         constraints1.insets = new Insets(10,0,10,0);
 
-        this.joueur = new JLabel("Tour : " + this.joueurs.get(tour).getNom(), new ImageIcon(new ImageIcon("../images/Rond_" + this.joueurs.get(tour).getCouleur().toLowerCase() + ".png").getImage().getScaledInstance(40, 40, Image.SCALE_DEFAULT)), SwingConstants.CENTER);
+        this.joueur = new JLabel("Tour : " + this.joueurs.get(tour).getNom(), new ImageIcon(new ImageIcon("images/Rond_" + this.joueurs.get(tour).getCouleur().toLowerCase() + ".png").getImage().getScaledInstance(40, 40, Image.SCALE_DEFAULT)), SwingConstants.CENTER);
         this.joueur.setFont(new Font("Courier New", Font.BOLD, ((int)(this.joueur.getFont().getSize()*1.8))));
         this.joueur.setIconTextGap(20);
         this.joueur.setForeground(Color.decode("#309286"));
@@ -122,15 +122,15 @@ public class PlateauView extends JPanel {
         launch();
 
         this.table.setRowSelectionAllowed(false);
-        this.table.setRowHeight(60);
+        this.table.setRowHeight(50);
 
 
 
         for(int i = 0;i < this.plateau.getTaille();i++){
             if(i%2 == 0){
                 TableColumn column = this.table.getColumnModel().getColumn(i);
-                column.setMinWidth(60);
-                column.setMaxWidth(60);
+                column.setMinWidth(50);
+                column.setMaxWidth(50);
             }
             else{
                 table.setRowHeight(i,10);
@@ -169,13 +169,13 @@ public class PlateauView extends JPanel {
                 if(this.tour < this.joueurs.size()-1){
                     this.tour++;
                     this.joueur.setText("Tour : " + this.joueurs.get(tour).getNom());
-                    this.joueur.setIcon(new ImageIcon(new ImageIcon("../images/Rond_" + this.joueurs.get(tour).getCouleur().toLowerCase() + ".png").getImage().getScaledInstance(40, 40, Image.SCALE_DEFAULT)));
+                    this.joueur.setIcon(new ImageIcon(new ImageIcon("images/Rond_" + this.joueurs.get(tour).getCouleur().toLowerCase() + ".png").getImage().getScaledInstance(40, 40, Image.SCALE_DEFAULT)));
                     this.barriere.setText("Il vous reste " + this.joueurs.get(tour).getBarrieres().stream().filter(barriere1 -> barriere1.getCoordonnee().getX1() == -1).count() + " barrière" + (this.joueurs.get(tour).getBarrieres().stream().filter(barriere1 -> barriere1.getCoordonnee().getX1() == -1).count() > 1 ? "s" :" "));
                 }
                 else{
                     this.tour = 0;
                     this.joueur.setText("Tour : " + this.joueurs.get(tour).getNom());
-                    this.joueur.setIcon(new ImageIcon(new ImageIcon("../images/Rond_" + this.joueurs.get(tour).getCouleur().toLowerCase() + ".png").getImage().getScaledInstance(40, 40, Image.SCALE_DEFAULT)));
+                    this.joueur.setIcon(new ImageIcon(new ImageIcon("images/Rond_" + this.joueurs.get(tour).getCouleur().toLowerCase() + ".png").getImage().getScaledInstance(40, 40, Image.SCALE_DEFAULT)));
                     this.barriere.setText("Il vous reste " + this.joueurs.get(tour).getBarrieres().stream().filter(barriere1 -> barriere1.getCoordonnee().getX1() == -1).count() + " barrière" + (this.joueurs.get(tour).getBarrieres().stream().filter(barriere1 -> barriere1.getCoordonnee().getX1() == -1).count() > 1 ? "s" :" "));
                 }
                 if(this.joueurs.get(tour).isIA()){
