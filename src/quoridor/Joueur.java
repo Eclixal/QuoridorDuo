@@ -391,7 +391,7 @@ public abstract class Joueur {
         else if((y-4) >= 0){
           if(tableau[x][y-2] != 0 && tableau[x][y-1] == 0 && tableau[x][y-4] == 0 && tableau[x][y-3] == 0){
             liste.add(x);
-            liste.add(y+4);
+            liste.add(y-4);
           }
           else if(tableau[x][y-2] != 0 && tableau[x][y-1] == 0 && (tableau[x][y - 3] != 0)){
             if((x+2) < this.plateau.getTaille() && tableau[x+2][y-2] == 0 && tableau[x+1][y-1] == 0 && tableau[x+1][y] == 0 && tableau[x+1][y-2] == 0){
