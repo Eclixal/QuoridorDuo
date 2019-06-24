@@ -165,8 +165,11 @@ public class PlateauView extends JPanel {
   * Joue le tour d'un IA
   */
     public void tourIA(){
-        this.partie.jouer(tour, -1, -1);
-        this.changerJoueur();
+        String message = this.partie.jouer(tour, -1, -1);
+        if(message.equals("gagné"))
+            this.finJeu();
+        else
+            this.changerJoueur();
     }
 
 /**
