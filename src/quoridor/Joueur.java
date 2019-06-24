@@ -299,7 +299,8 @@ public abstract class Joueur {
                                this.plateau.setValue(coordonnee.getX1(), coordonnee.getY1() + 2, 5);
                            }
                        }
-                   }
+                   } else
+                       ret = false;
                } else
                    ret = false;
            }
